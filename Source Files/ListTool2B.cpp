@@ -27,9 +27,7 @@
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */       
 						//  INCLUDE:
-#include <iostream>						//  cout, cin
-#include <cstring>						//  strlen, strcmp
-#include "../Headers/ListTool2B.h"		//  Definition of classes.
+#include "../Headers/headere.h"
 
 using namespace std;
 

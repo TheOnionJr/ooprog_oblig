@@ -1,7 +1,4 @@
-#include "../Headers/Const.h"
-#include "../Headers/ListTool2B.h"
-#include <cstring>
-#include <iostream>
+#include "../Headers/headere.h"
 
 using namespace std;
 
@@ -21,9 +18,9 @@ int main() {
 		case 'M':	break;
 		case 'P':	break;
 		case 'X':	break;
-		default:   skrivMeny();        break;
+		default:	skrivMeny();        break;
 		}
-		kommando = lesKommando();                  //  Får inn brukers ønske.
+		kommando = lesKommando();		//  Får inn brukers ønske.
 	}
 	return 0;
 }
