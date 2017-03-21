@@ -38,6 +38,7 @@ void Nasjon : endre(int hva) { // TRENGER CASE FOR DELTAGERE
 		cin.getline(buffer, NAVNLEN);
 		fulltNavn = new char[strlen(buffer) + 1]; strcpy(fulltNavn, buffer);
 		cout << "\nNavnet er oppdatert. Det er nå: " << fulltNavn << endl;
+		break;
 	case 2:		//Endre kontaktpersons navn
 		char buffer[NVNLEN];
 		cout << "\nKontaktpersonens nye navn: ";
@@ -45,10 +46,12 @@ void Nasjon : endre(int hva) { // TRENGER CASE FOR DELTAGERE
 		cin.getline(buffer, NAVNLEN);
 		kontaktNavn = new char[strlen(buffer) + 1]; strcpy(kontaktNavn, buffer);
 		cout << "\nNavnet er oppdatert. Det er nå: " << kontaktNavn << endl;
+		break;
 	case 3:		//Endre kontaktpersons nummer
 		cout << "\nKontaktpersonens nye tlfnummer: ";
 		cin >> kontaktNr;
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
+		break;
 	default:
 		break;
 	}
