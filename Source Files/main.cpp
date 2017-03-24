@@ -13,7 +13,26 @@ int main() {
 										//  Looper til 'x'/'X' tastes:
 	while (kommando != 'X') {
 		switch (kommando) {
-		case 'N':	break;
+		case 'N':
+			nasjonerMeny();
+			kommando = lesKommando();
+			while (kommando != 'X') {
+				switch (kommando)
+				{
+				case 'N':
+					nasjoner->add(Nasjon* nasjon);
+				case 'E':
+				case 'A':
+				case 'T':
+				case 'S':
+				case 'X':
+				default:
+					nasjonerMeny();
+					break;
+				}
+				kommando = 'V'; //Så bruker kan velge nye ting
+			}
+			break;
 		case 'D':	break;
 		case 'G':	break;
 		case 'O':	break;

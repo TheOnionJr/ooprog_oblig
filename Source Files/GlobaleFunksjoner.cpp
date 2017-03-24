@@ -60,6 +60,7 @@ void nasjonerMeny() {
 	cout << "\n\tA: Skriv hoveddataene alle nasjoner.";
 	cout << "\n\tT: Skriv en nasjons deltagertropp.";
 	cout << "\n\tS: Skriv alle data om en nasjon.";
+	cout << "\n\tX: Gå ut av menyen.";
 }
 
 //Deltager-funksjoner.

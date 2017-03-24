@@ -1,5 +1,3 @@
-#pragma once
-#ifndef Enumer.h
-#define Enumer.h
+#define Enumer_h
 
 enum poengSystem {poeng, tid};

@@ -1,5 +1,4 @@
-#ifndef Deltager.h
-#define Deltager.h
+#define Deltager_h
 #include "headere.h"
 
 class Deltager : NumElement {
