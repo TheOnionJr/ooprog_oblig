@@ -1,5 +1,5 @@
-#ifndef deltager.h
-#define deltager.h
+#ifndef Deltager.h
+#define Deltager.h
 #include "headere.h"
 
 class Deltager : NumElement {
