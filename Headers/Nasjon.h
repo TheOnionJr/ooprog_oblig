@@ -2,9 +2,9 @@
 #define nasjon.h
 #include "headere.h"
 
-class Nasjon {
+class Nasjon : TextElement {
 	private:
-		char forkortelse[3];		//Forkortelse på navnet
+		// Forkortelsen kommer i constructor til 'TextElement'o
 		char* fulltNavn;
 		//Deltagere* deltager;		// Må lages
 		char* kontaktNavn;

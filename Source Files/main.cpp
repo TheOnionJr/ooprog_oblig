@@ -3,6 +3,8 @@
 using namespace std;
 
 int main() {
+	List* nasjoner;						// 'Nasjoner' liste,  sortert
+	nasjoner = new List(Sorted);
 	char kommando;
 
 	skrivMeny();                        //  Skriver brukermeny.
