@@ -4,6 +4,7 @@
 #include "ListTool2B.h"				//Definisjon av klasser
 #include "GlobaleFunksjoner.h"		//Deklarasjon av alle globale funksjoner.
 #include "Nasjon.h"
+#include "Enumer.h"					//Alle enumer.
 #include <cstring>					//strcpy_s, strlen, strcmp
 #include <iostream>					//cin, cout
 #include <cctype>					//toupper
