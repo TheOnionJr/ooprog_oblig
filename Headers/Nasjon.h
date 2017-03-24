@@ -1,5 +1,4 @@
-#ifndef najson.h
-#define nasjon.h
+#define nasjon_h
 #include "headere.h"
 
 class Nasjon : TextElement {

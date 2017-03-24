@@ -1,6 +1,4 @@
-#pragma once
-#ifndef gren.h
-#define gren.h
+#define gren_h
 #include "headere.h"
 
 using namespace std;
@@ -17,6 +15,3 @@ class Gren : TextElement {
 		void endre();
 		void skriv();
 };
-
-
-#endif
