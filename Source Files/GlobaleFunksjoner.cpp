@@ -30,7 +30,7 @@ char lesKommando() {
 	char ch;
 	cout << "\nKommando: ";
 	cin >> ch; cin.ignore();
-	toupper(ch);
+	ch = toupper(ch);
 	return(ch);
 }
 										//Leser inn tall i et intervall.
