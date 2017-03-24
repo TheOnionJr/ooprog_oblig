@@ -8,6 +8,7 @@ using namespace std;
 
 
 //Generelle funksjoner.
+										//Skriver hovedmeny.
 void skrivMeny() {
 	cout << "\n\nTILGJENGELIGE VALG:";
 	cout << "\n\tN: Nasjoner.";
@@ -18,13 +19,13 @@ void skrivMeny() {
 	cout << "\n\tP: Poengoversikt";
 	cout << "\n\tX: Avslutt program";
 }
-
+										//Leser inn char (ikke upcaset).
 char les() {
 	char ch;
 	cout << "\nKommando: ";
 	cin >> ch; cin.ignore();
 }
-
+										//Leser inn kommando og gir upcaset char
 char lesKommando() {
 	char ch;
 	cout << "\nKommando: ";
@@ -32,7 +33,7 @@ char lesKommando() {
 	toupper(ch);
 	return(ch);
 }
-
+										//Leser inn tall i et intervall.
 int les(const char * t, const int min, const int max)
 {
 	int tall;
@@ -51,6 +52,7 @@ void les(const char t[], char s[], const int LEN) {
 
 
 //Nasjoner-funksjoner.
+										//Skriver undermeny for nasjoner.
 void nasjonerMeny() {
 	cout << "\n\nMENYVALG FOR NASJONER:";
 	cout << "\n\tN: Registrer en ny nasjon.";
@@ -61,6 +63,7 @@ void nasjonerMeny() {
 }
 
 //Deltager-funksjoner.
+										//Skriver undermeny for deltager.
 void deltagerMeny() {
 	cout << "\n\nMENYVALG FOR DELTAGERE:";
 	cout << "\n\tN: Registrer ny deltager.";
@@ -70,6 +73,7 @@ void deltagerMeny() {
 }
 
 //Gren-funksjoner
+										//Skriver undermeny for gren.
 void grenMeny() {
 	cout << "\n\nMENYVALG FOR GRENER";
 	cout << "\n\tN: Registrer ny gren.";
@@ -79,6 +83,7 @@ void grenMeny() {
 }
 
 //Ovelse-funksjoner
+										//Skriver undermy for ovelse.
 void ovelseMeny() {
 	cout << "\n\nMENYVALG FOR OVELSER";
 	cout << "\n\tN: Registrer en ny ovelse.";
@@ -89,6 +94,7 @@ void ovelseMeny() {
 	cout << "\n\tR: Resultatlister.";
 }
 
+										//Skriver undermeny for deltager.
 void deltagerlisteMeny() {
 	cout << "\n\nMENYVALG FOR DELTAGERLISTER:";
 	cout << "\n\tS: Skriv deltager-/startliste.";
@@ -97,6 +103,7 @@ void deltagerlisteMeny() {
 	cout << "\n\tF: Fjerne deltager-/startliste.";
 }
 
+										//Skriver undermeny for deltagerliste.
 void resultatlisteMeny() {
 	cout << "\n\nMENYVALG FOR RESULTATLISTER:";
 	cout << "\n\tS: Skriv resultatliste.";
