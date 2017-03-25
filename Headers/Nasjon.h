@@ -1,16 +1,18 @@
 #define nasjon_h
-#include "headere.h"
+#include "../Headers/headere.h"
 
-class Nasjon : TextElement {
+class Nasjon : public TextElement {
 	private:
-		// Forkortelsen kommer i constructor til 'TextElement'o
 		char* fulltNavn;
-		//Deltagere* deltager;		// Må lages
+		char forkortelse[NASJKORTLEN];
+		List* deltagere;
 		char* kontaktNavn;
 		int kontaktNr;
 	public:
 		Nasjon();			//Constructor
 		~Nasjon();			//Deconstructor
 		void endre(int hva); // Valget følger med fra en meny
+		void display();
+		void displayAll();
 };
 

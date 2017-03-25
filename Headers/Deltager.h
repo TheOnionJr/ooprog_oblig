@@ -1,7 +1,7 @@
 #define deltager_h
-#include "headere.h"
+#include "../Headers/headere.h"
 
-class Deltager : NumElement {
+class Deltager : public NumElement {
 	private:
 		char navn[NVNLEN];		// Deltagers navn
 		char kjonn[1];			// m/k (trigger warning)
@@ -10,5 +10,5 @@ class Deltager : NumElement {
 		Deltager();
 		~Deltager();
 		void endre(int hva);
-		void skrivData();
+		void display();
 };

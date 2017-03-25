@@ -35,7 +35,7 @@ void Gren :: endre() {
 }
 
 										//Skriver alle data om en gren.
-void Gren::skriv() {
+void Gren::display() {
 	cout << "\nNavn: \t" << navn;		//Navn.
 
 	cout << "\nTid/poeng: ";			//Om prestasjonsmåling er tid/poeng.

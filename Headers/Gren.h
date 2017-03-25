@@ -1,9 +1,9 @@
 #define gren_h
-#include "headere.h"
+#include "../Headers/headere.h"
 
 using namespace std;
 
-class Gren : TextElement {
+class Gren : public TextElement {
 	private:
 		char navn[NVNLEN];
 		poengSystem pt;
@@ -13,5 +13,5 @@ class Gren : TextElement {
 		Gren();
 		~Gren();
 		void endre();
-		void skriv();
+		void display();
 };

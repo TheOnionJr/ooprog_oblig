@@ -22,15 +22,15 @@ int main() {
 				switch (kommando)
 				{
 				case 'N':
-					nasjoner->add(Nasjon);
+					nasjoner->add(new Nasjon);
 					break;
-				case 'E':
+				case 'E': break;
 				case 'A':
-					Nasjon->
+					nasjoner->displayList();
 					break;
-				case 'T':
-				case 'S':
-				case 'X':
+				case 'T': break;
+				case 'S': break;
+				case 'X': break;
 				default:
 					nasjonerMeny();
 					break;
@@ -45,7 +45,7 @@ int main() {
 			while (kommando != 'X') {		
 				switch (kommando) {
 					case 'N':				//Oppretter ny gren.
-						grener->add(Gren); break;
+						grener->add(new Gren); break;
 					case 'E': break;
 					case 'A': break;
 					case 'S': break;
