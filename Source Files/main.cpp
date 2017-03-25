@@ -5,6 +5,8 @@ using namespace std;
 int main() {
 	List* nasjoner;						// 'Nasjoner' liste,  sortert
 	nasjoner = new List(Sorted);
+	List* grener;					
+	grener = new List(Sorted);			//'Grener' liste, sortert. 
 	char kommando;
 
 	skrivMeny();                        //  Skriver brukermeny.
@@ -37,7 +39,21 @@ int main() {
 			}
 			break;
 		case 'D':	break;
-		case 'G':	break;
+		case 'G':	break;					//Valg for Gren.
+			grenMeny();						//Skriver undermeny for grener.
+			kommando = lesKommando();		//Leser kommando.
+			while (kommando != 'X') {		
+				switch (kommando) {
+					case 'N':				//Oppretter ny gren.
+						grener->add(Gren); break;
+					case 'E': break;
+					case 'A': break;
+					case 'S': break;
+					default: 
+						nasjonerMeny();	break;
+				}
+				kommando = 'V'; //Så bruker kan velge nye ting.
+			}
 		case 'O':	break;
 		case 'M':	break;
 		case 'P':	break;
