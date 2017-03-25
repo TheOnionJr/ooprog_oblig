@@ -1,6 +1,6 @@
 #include "../Headers/headere.h"
 
-Nasjon:Nasjon{
+Nasjon::Nasjon{
 	// Forkortelsen til nasjonen:
 	   cout << "\nVenligst skriv inn nasjonens forkortelse: ";
 	   cin >> forkortelse;
@@ -21,14 +21,17 @@ Nasjon:Nasjon{
 	// Nummeret til denne kontaktpersonen:
 	   cout << "\nVenligst skriv inn tlfnummer til " << kontaktNavn << ": ";
 	   cin >> kontaktNr;
+
+	   deltagere = new list(Sorted);	//Lager deltagere listen
 }
 
-Nasjon:~Nasjon{
+Nasjon::~Nasjon{
 	   // Sletter alle data:
 	   delete[] forkortelse, fulltNavn, kontaktNavn; delete kontaktNr;
 	   // Egen for deltagere må legges til
 }
-void Nasjon : endre(int hva) { // TRENGER CASE FOR DELTAGERE
+
+void Nasjon::endre(int hva) { // TRENGER CASE FOR DELTAGERE
 	switch (hva)
 	{
 	case 1:		//Endre fullt navn på en nasjon
@@ -54,5 +57,28 @@ void Nasjon : endre(int hva) { // TRENGER CASE FOR DELTAGERE
 		break;
 	default:
 		break;
+	}
+}
+
+void Nasjon::displayMain() {	//Skriver hoveddata om nasjonen
+	cout << "\nForkortelse: " << text;
+	cout << "Navn: " << fulltNavn;
+	cout << "Antall deltagere: " << deltagere->noOfElements();
+}
+
+void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
+	cout << "\nForkortelse: " << text;
+	cout << "\nNavn: " << fulltNavn;
+	cout << "\nKontakt: " << kontaktNavn;
+	cout << "\nKontakt nummer: " << kontaktNr;
+
+	cout << "\n\nNasjonens deltagere: ";
+	if (deltagere->noOfElements() > 0) {
+		for (int i = 0; i < deltagere->noOfElements(); i++) {
+			cout << "\n"; deltagere->deltager->skrivData();
+		}
+	}
+	else() {
+		cout << "\nNasjonen har ingen deltagere.";
 	}
 }

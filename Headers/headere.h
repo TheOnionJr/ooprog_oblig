@@ -3,9 +3,9 @@
 #include "Const.h"					//Nødvendige const'er
 #include "ListTool2B.h"				//Definisjon av klasser
 #include "GlobaleFunksjoner.h"		//Deklarasjon av alle globale funksjoner.
-#include "Nasjon.h"
-#include "Enumer.h"					//Alle enumer.
-#include "Deltager.h"				//Deltager klasse header
+#include "nasjon.h"
+#include "enumer.h"					//Alle enumer.
+#include "deltager.h"				//Deltager klasse header
 #include "Gren.h"
 #include <cstring>					//strcpy_s, strlen, strcmp
 #include <iostream>					//cin, cout

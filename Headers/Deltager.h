@@ -1,4 +1,4 @@
-#define Deltager_h
+#define deltager_h
 #include "headere.h"
 
 class Deltager : NumElement {

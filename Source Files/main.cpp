@@ -20,9 +20,12 @@ int main() {
 				switch (kommando)
 				{
 				case 'N':
-					nasjoner->add(Nasjon* nasjon);
+					nasjoner->add(Nasjon);
+					break;
 				case 'E':
 				case 'A':
+					Nasjon->
+					break;
 				case 'T':
 				case 'S':
 				case 'X':
