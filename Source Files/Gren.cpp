@@ -6,9 +6,9 @@ using namespace std;
 #endif 
 
 										//Constructor.
-Gren::Gren() : TextElement {
+/*Gren::Gren() : TextElement {
 
-}
+}*/
 
 										//Constructor m/navn-parameter.
 Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
