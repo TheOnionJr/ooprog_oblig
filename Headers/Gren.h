@@ -11,7 +11,7 @@ class Gren : public TextElement {
 		int sisteBrukt;
 	public:
 		Gren();
-		Gren(char tempNvn);
+		Gren(char tempNvn[NVNLEN]);
 		~Gren();
 		void endre();
 		void display();
