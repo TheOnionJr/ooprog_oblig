@@ -6,21 +6,14 @@ Nasjon::Nasjon(){
 	   cin >> forkortelse;
 
 	// Nasjonens fulle navn:
-	   cout << "\nVenligst skriv inn nasjonens fulle navn: ";
-	   char buffer[NVNLEN];
-	   cin.ignore();
-	   cin.getline(buffer, NVNLEN);
-	   fulltNavn = new char[strlen(buffer) + 1]; strcpy(fulltNavn, buffer);
+	   les("\nVenligst skriv inn nasjonens fulle navn: ", fulltNavn, NVNLEN);
 
 	// Nasjonens kontaktperson:
 	   cout << "\nVenligst skriv inn navnet på nasjonens kontaktperson: ";
-	   cin.ignore();
-	   cin.getline(buffer, NVNLEN);
-	   kontaktNavn = new char[strlen(buffer) + 1]; strcpy(kontaktNavn, buffer);
+	   les("\nVenligst skriv inn navnet på nasjonens kontaktperson: ", kontaktNavn, NVNLEN);
 
 	// Nummeret til denne kontaktpersonen:
-	   cout << "\nVenligst skriv inn tlfnummer til " << kontaktNavn << ": ";
-	   cin >> kontaktNr;
+	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", 00000000, 99999999);
 
 	   deltagere = new List(Sorted);	//Lager deltagere listen
 }
@@ -35,24 +28,15 @@ void Nasjon::endre(int hva) { // TRENGER CASE FOR DELTAGERE
 	switch (hva)
 	{
 	case 1:		//Endre fullt navn på en nasjon
-		char buffer[NVNLEN];
-		cout << "\nNasjonens nye navn: ";
-		cin.ignore();
-		cin.getline(buffer, NVNLEN);
-		fulltNavn = new char[strlen(buffer) + 1]; strcpy(fulltNavn, buffer);
+		les("\nNasjonens nye navn: ", fulltNavn, NVNLEN);
 		cout << "\nNavnet er oppdatert. Det er nå: " << fulltNavn << endl;
 		break;
 	case 2:		//Endre kontaktpersons navn
-		char buffer[NVNLEN];
-		cout << "\nKontaktpersonens nye navn: ";
-		cin.ignore();
-		cin.getline(buffer, NVNLEN);
-		kontaktNavn = new char[strlen(buffer) + 1]; strcpy(kontaktNavn, buffer);
+		les("\nKontaktpersonens nye navn: ", kontaktNavn, NVNLEN);
 		cout << "\nNavnet er oppdatert. Det er nå: " << kontaktNavn << endl;
 		break;
 	case 3:		//Endre kontaktpersons nummer
-		cout << "\nKontaktpersonens nye tlfnummer: ";
-		cin >> kontaktNr;
+		les("\nKontaktpersonens nye tlfnummer: ", 00000000, 9999999)
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
 		break;
 	default:
