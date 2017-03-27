@@ -13,7 +13,7 @@ Nasjon::Nasjon(){
 	   les("\nVenligst skriv inn navnet på nasjonens kontaktperson: ", kontaktNavn, NVNLEN);
 
 	// Nummeret til denne kontaktpersonen:
-	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", 10000000, 99999999);
+	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
 
 	   deltagere = new List(Sorted);	//Lager deltagere listen
 }
@@ -36,7 +36,7 @@ void Nasjon::endre(int hva) { // TRENGER CASE FOR DELTAGERE
 		cout << "\nNavnet er oppdatert. Det er nå: " << kontaktNavn << endl;
 		break;
 	case 3:		//Endre kontaktpersons nummer
-		les("\nKontaktpersonens nye tlfnummer: ", 10000000, 99999999);
+		les("\nKontaktpersonens nye tlfnummer: ", MINTLF, MAXTLF);
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
 		break;
 	default:
@@ -61,7 +61,7 @@ void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
 		for (int i = 0; i < deltagere->noOfElements(); i++) {
 			Deltager* hjelpeDeltager;
 			hjelpeDeltager = (Deltager*) deltagere->removeNo(i);
-			cout << "\n"; hjelpeDeltager->skrivData();
+			cout << "\n"; hjelpeDeltager->display();
 			deltagere->add(hjelpeDeltager);
 		}
 	}
