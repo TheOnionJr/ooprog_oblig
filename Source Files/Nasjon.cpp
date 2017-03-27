@@ -1,9 +1,9 @@
 #include "../Headers/headere.h"
 
 Nasjon::Nasjon(){
-	// Forkortelsen til nasjonen:
-	   cout << "\nVenligst skriv inn nasjonens forkortelse: ";
-	   cin >> forkortelse;
+	while(nasjoner->inList(text) || (strlen(text) > 3 || strlen(text) <= 0)){
+		TextElement:TextElement();		//Spør om id på nytt om finnes allerede
+	}
 
 	// Nasjonens fulle navn:
 	   les("\nVenligst skriv inn nasjonens fulle navn: ", fulltNavn, NVNLEN);
@@ -13,7 +13,7 @@ Nasjon::Nasjon(){
 	   les("\nVenligst skriv inn navnet på nasjonens kontaktperson: ", kontaktNavn, NVNLEN);
 
 	// Nummeret til denne kontaktpersonen:
-	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", 00000000, 99999999);
+	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", 10000000, 99999999);
 
 	   deltagere = new List(Sorted);	//Lager deltagere listen
 }
@@ -36,7 +36,7 @@ void Nasjon::endre(int hva) { // TRENGER CASE FOR DELTAGERE
 		cout << "\nNavnet er oppdatert. Det er nå: " << kontaktNavn << endl;
 		break;
 	case 3:		//Endre kontaktpersons nummer
-		les("\nKontaktpersonens nye tlfnummer: ", 00000000, 9999999)
+		les("\nKontaktpersonens nye tlfnummer: ", 10000000, 99999999)
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
 		break;
 	default:

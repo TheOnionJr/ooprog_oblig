@@ -21,16 +21,16 @@ int main() {
 			while (kommando != 'X') {
 				switch (kommando)
 				{
-				case 'N':
+				case 'N':					//Legge til en ny nasjon
 					nasjoner->add(new Nasjon);
 					break;
-				case 'E': break;
-				case 'A':
+				case 'E': break;			//Endre eksisterende nasjon
+				case 'A':					//Alle hoveddata om alle nasjoner
 					nasjoner->displayList();
 					break;
-				case 'T': break;
-				case 'S': break;
-				case 'X': break;
+				case 'T': break;			//Skriv en nasjons deltagertropp
+				case 'S': break;			//Skriver alle data om en nasjon
+				case 'X': break;			//Gå tilbake
 				default:
 					nasjonerMeny();
 					break;
