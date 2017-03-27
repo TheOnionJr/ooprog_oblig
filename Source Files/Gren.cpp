@@ -5,12 +5,16 @@ using namespace std;
 #define _CRT_SECURE_NO_WARNINGS
 #endif 
 
-										//Constructor
-Gren::Gren() {
+										//Constructor.
+Gren::Gren() : TextElement {
+
+}
+
+										//Constructor m/navn-parameter.
+Gren::Gren(char tempNavn[NVNLEN]) : TextElement(tempNavn) {
 	char svar;
 
-	les("Grenens navn", navn, NVNLEN);	//Leser inn navnet til grenen.
-
+	strcpy(navn, tempNavn);				//Setter navn fra parameter.
 										//Spør om hvordan prestasjon måles.
 	cout << "Hvordan måles prestasjon i grenen? 't'=tid, 'p'=poeng: ";
 	
