@@ -29,7 +29,13 @@ int main() {
 					nasjoner->displayList();
 					break;
 				case 'T': break;			//Skriv en nasjons deltagertropp
-				case 'S': break;			//Skriver alle data om en nasjon
+				case 'S': 					//Skriver alle data om en nasjon
+					char kort[3];			//Hjelpecariabel
+					while(!nasjoner->inList(kort)){ //Sjekker om nasjon finnes
+						les("\nLandets forkortelse", kort, 3);
+					}
+					nasjoner->displayElement(kort);	//Skriver ut data
+					break;			
 				case 'X': break;			//Gå tilbake
 				default:
 					nasjonerMeny();
