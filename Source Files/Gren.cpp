@@ -11,6 +11,7 @@ Gren::Gren() {
 
 	les("Grenens navn", navn, NVNLEN);	//Leser inn navnet til grenen.
 
+										//Spør om hvordan prestasjon måles.
 	cout << "Hvordan måles prestasjon i grenen? 't'=tid, 'p'=poeng: ";
 	
 	do {
@@ -31,7 +32,10 @@ Gren::~Gren(){							//Destructor
 
 										//Funksjon for å endre data i en gren.
 void Gren :: endre() {
-		les("Grenens nye navn", navn, NVNLEN);
+	char tempNavn[NVNLEN];
+	les("Grenens nye navn", tempNavn, NVNLEN);
+	strcpy(navn, tempNavn);
+	cout << "\nNavnet er endret, det er nå " << navn << ".";
 }
 
 										//Skriver alle data om en gren.
