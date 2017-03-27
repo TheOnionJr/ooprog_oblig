@@ -82,7 +82,9 @@ int main() {
 							cout << "\nFant ikke en gren med det navnet!\n";
 						}
 						break;
-					case 'A': break;
+					case 'A': 
+						grener->displayList();
+						break;
 					case 'S': break;
 					default: 
 						nasjonerMeny();	break;
