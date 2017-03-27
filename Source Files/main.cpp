@@ -41,7 +41,7 @@ int main() {
 					nasjonerMeny();
 					break;
 				}
-				kommando = 'V'; //Så bruker kan velge nye ting
+				kommando = 'V';				//Så bruker kan velge nye ting
 			}
 			break;
 		case 'D':	break;
@@ -51,8 +51,30 @@ int main() {
 			while (kommando != 'X') {		
 				switch (kommando) {
 					case 'N':				//Oppretter ny gren.
-						grener->add(new Gren); break;
-					case 'E': break;
+						char tempNvn[NVNLEN];
+
+						les("Grenens navn", tempNvn, NVNLEN);	//Leser inn navnet til grenen.
+						if (grener->inList(tempNvn))	//Sjekker om finnes allerede.
+							grener->add(new Gren(Gren(tempNvn)));	//Legger til grenen.
+						else                //Feilmelding.
+							cout << "En gren med det navnet finnes allerede!";
+
+						 break;
+					case 'E':				//Endrer navnet på en gren.
+						char grenNvn[NVNLEN];	//Temp. for sammenligning.
+						Gren* hjelpeGren;		//Hjelpepeker.
+										//Spør om navnet på gren som skal endres.
+						les("Navnet på grenen du vil endre", grenNvn, NVNLEN);
+											//Hvis grenen finnes...
+						if (grener->inList(grenNvn)) {
+							hjelpeGren = (Gren*)grener->remove(grenNvn);
+							hjelpeGren->endre();	//Fjerner, endrer, og adder
+							grener->add(hjelpeGren);//grenen i lista.
+						}
+						else {				//Feilmeld.
+							cout << "\nFant ikke en gren med det navnet!\n";
+						}
+						break;
 					case 'A': break;
 					case 'S': break;
 					default: 
