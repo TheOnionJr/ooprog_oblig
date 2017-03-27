@@ -10,6 +10,7 @@ class Nasjon : public TextElement {
 		int kontaktNr;
 	public:
 		Nasjon();			//Constructor
+		Nasjon(char* navn);
 		~Nasjon();			//Deconstructor
 		void endre(int hva); // Valget følger med fra en meny
 		void display();

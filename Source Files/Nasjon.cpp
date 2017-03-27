@@ -1,12 +1,12 @@
 #include "../Headers/headere.h"
 
 Nasjon::Nasjon(){
-	while(nasjoner->inList(text) || (strlen(text) > 3 || strlen(text) <= 0)){
+	/*while(nasjoner->inList(text) || (strlen(text) > 3 || strlen(text) <= 0)){
 		TextElement:TextElement();		//Spør om id på nytt om finnes allerede
 	}
 
 	// Nasjonens fulle navn:
-	   les("\nVenligst skriv inn nasjonens fulle navn: ", fulltNavn, NVNLEN);
+	   les("\nVenligst skriv inn nasjonens fulle navn: ", fulltNavn, NVNLEN);*/
 
 	// Nasjonens kontaktperson:
 	   cout << "\nVenligst skriv inn navnet på nasjonens kontaktperson: ";
@@ -16,6 +16,10 @@ Nasjon::Nasjon(){
 	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
 
 	   deltagere = new List(Sorted);	//Lager deltagere listen
+}
+
+Nasjon::Nasjon(char* navn) : TextElement(navn){
+
 }
 
 Nasjon::~Nasjon(){

@@ -22,7 +22,14 @@ int main() {
 				switch (kommando)
 				{
 				case 'N':					//Legge til en ny nasjon
-					nasjoner->add(new Nasjon);
+					char tempNavn[NVNLEN];
+					les("\nVennligst skriv landets fulle navn: ", tempNavn, NVNLEN);
+					if (!nasjoner->inList(tempNavn)) {
+						nasjoner->add(new Nasjon(tempNavn));
+					}
+					else {
+						cout << "\nNasjonen eksisterer allerede.";
+					}
 					break;
 				case 'E': break;			//Endre eksisterende nasjon
 				case 'A':					//Alle hoveddata om alle nasjoner
@@ -55,7 +62,7 @@ int main() {
 
 						les("Grenens navn", tempNvn, NVNLEN);	//Leser inn navnet til grenen.
 						if (grener->inList(tempNvn))	//Sjekker om finnes allerede.
-							grener->add(new Gren(Gren(tempNvn)));	//Legger til grenen.
+							grener->add(new Gren(tempNvn));	//Legger til grenen.
 						else                //Feilmelding.
 							cout << "En gren med det navnet finnes allerede!";
 
