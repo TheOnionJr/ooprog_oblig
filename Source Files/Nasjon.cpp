@@ -36,7 +36,7 @@ void Nasjon::endre(int hva) { // TRENGER CASE FOR DELTAGERE
 		cout << "\nNavnet er oppdatert. Det er nå: " << kontaktNavn << endl;
 		break;
 	case 3:		//Endre kontaktpersons nummer
-		les("\nKontaktpersonens nye tlfnummer: ", 10000000, 99999999)
+		les("\nKontaktpersonens nye tlfnummer: ", 10000000, 99999999);
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
 		break;
 	default:
