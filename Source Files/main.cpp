@@ -3,9 +3,9 @@
 using namespace std;
 
 int main() {
-	List* nasjoner;						// 'Nasjoner' liste,  sortert
+	
 	nasjoner = new List(Sorted);
-	List* grener;					
+						
 	grener = new List(Sorted);			//'Grener' liste, sortert. 
 	char kommando;
 
