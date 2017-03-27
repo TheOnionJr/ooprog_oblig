@@ -11,10 +11,10 @@ Gren::Gren() : TextElement {
 }
 
 										//Constructor m/navn-parameter.
-Gren::Gren(char tempNavn[NVNLEN]) : TextElement(tempNavn) {
+Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	char svar;
 
-	strcpy(navn, tempNavn);				//Setter navn fra parameter.
+	strcpy(navn, tempNvn);				//Setter navn fra parameter.
 										//Spør om hvordan prestasjon måles.
 	cout << "Hvordan måles prestasjon i grenen? 't'=tid, 'p'=poeng: ";
 	
