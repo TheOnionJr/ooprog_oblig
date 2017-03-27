@@ -4,10 +4,10 @@ using namespace std;
 
 int main() {
 	
-	nasjoner = new List(Sorted);
+	nasjoner = new List(Sorted);		// 'Nasjoner' liste,  sortert
 						
 	grener = new List(Sorted);			//'Grener' liste, sortert. 
-	char kommando;
+	
 
 	skrivMeny();                        //  Skriver brukermeny.
 

@@ -3,4 +3,5 @@ using namespace std;
 #include "../Headers/headere.h"
 
 List* nasjoner;						// 'Nasjoner' liste,  sortert
-List* grener;
+List* grener;						//'Grener' liste, sortert. 
+char kommando;
