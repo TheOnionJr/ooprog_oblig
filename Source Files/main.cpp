@@ -66,7 +66,7 @@ int main() {
 					nasjonerMeny();
 					break;
 				}
-				kommando = 'V';				//Så bruker kan velge nye ting
+				kommando = lesKommando();				//Så bruker kan velge nye ting
 			}
 			break;
 		case 'D':	break;
@@ -107,7 +107,7 @@ int main() {
 					default: 
 						nasjonerMeny();	break;
 				}
-				kommando = 'X'; //Sender bruker tilbake til hovedmeny.
+				kommando = lesKommando(); //Sender bruker tilbake til hovedmeny.
 			}
 		case 'O':	break;
 		case 'M':	break;

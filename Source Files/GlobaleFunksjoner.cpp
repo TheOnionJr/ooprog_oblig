@@ -40,7 +40,7 @@ int les(const char * t, const int min, const int max)
 	int tall;
 	do {
 		cout << '\t' << t << " (" << min << '-' << max << "): ";
-		cin >> tall; cin.ignore();
+		cin >> tall; //cin.ignore();
 	} while (tall < min || tall > max);
 	return tall;
 }

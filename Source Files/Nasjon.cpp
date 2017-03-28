@@ -15,11 +15,11 @@ Nasjon::Nasjon(){
 Nasjon::Nasjon(char id[NASJKORTLEN]) : TextElement(id){
 	// Nasjonens fulle navn:
 	cout << "\nVennligst skriv inn det fulle navnet på nasjonen: ";
-	strcpy(fulltNavn, lesPrivat());
+	fulltNavn = lesPrivat();
 
 	// Nasjonens kontaktperson:
 	cout << "\nVenligst skriv inn navnet på nasjonens kontaktperson: ";
-	strcpy(kontaktNavn, lesPrivat());
+	kontaktNavn = lesPrivat();
 
 	// Nummeret til denne kontaktpersonen:
 	kontaktNr = les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
