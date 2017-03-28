@@ -2,14 +2,10 @@
 
 using namespace std;
 
-List* nasjoner;							//'Nasjoner' liste, sortert.
 List* grener;							//'Grener' liste, sortert.
 char kommando;
 
-int main() {
-	
-	nasjoner = new List(Sorted);		// 'Nasjoner' liste,  sortert
-						
+int main() {						
 	grener = new List(Sorted);			//'Grener' liste, sortert. 
 	
 
@@ -82,14 +78,19 @@ int main() {
 			while (kommando != 'X') {
 				switch (kommando) {
 				case 'N': 
+					nyDeltager();
 					break;
 				case 'E': 
+					endreDeltager();
 					break;
 				case 'A': 
+					skrivDeltagerliste();
 					break;
 				case 'S': 
+					skrivDeltager();
 					break;
-				default: break;
+				default: 
+					break;
 				}
 				deltagerMeny(); 
 				kommando = lesKommando();

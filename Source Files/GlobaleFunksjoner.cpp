@@ -133,3 +133,33 @@ void resultatlisteMeny() {
 	cout << "\n\tF: Fjern resultatliste.";
 	cout << "\n\tX: Tilbake til hovedmeny.";
 }
+
+										//Registrerer ny deltager
+void nyDeltager() {
+	char nasjonalitet[NASJKORTLEN];	
+	int nummer;
+	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
+	cin.getline(nasjonalitet, (NASJKORTLEN - 1));
+	if (nasjoner->inList(nasjonalitet)) {
+		if (deltagere->inList(nummer)) {
+			Deltager* hjelpeobjekt = new Deltager(nummer);
+		}
+		else
+			cout << "\nFant ikke deltager.";
+	}
+}
+
+										//Endrer en deltager
+void endreDeltager() {
+
+}
+
+										//Skriver info om alle deltagere
+void skrivDeltagerliste() {
+
+}
+
+										//Skriver info om en deltager
+void skrivDeltager() {
+
+}
