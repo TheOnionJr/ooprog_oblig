@@ -54,7 +54,12 @@ int main() {
 				case 'A':					//Alle hoveddata om alle nasjoner
 					nasjoner->displayList();
 					break;
-				case 'T': break;			//Skriv en nasjons deltagertropp
+				case 'T': 					//Skriv en nasjons deltagertropp
+					while(!nasjoner->inList(id)) {
+						les("\nLandets forkortelse", id, NASJKORTLEN);
+					}
+					nasjoner->deltagere->displayList();
+					break;
 				case 'S': 					//Skriver alle data om en nasjon
 					while(!nasjoner->inList(id)){ //Sjekker om nasjon finnes
 						les("\nLandets forkortelse", id, NASJKORTLEN);
