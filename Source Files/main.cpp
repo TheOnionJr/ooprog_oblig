@@ -11,7 +11,7 @@ int main() {
 
 	skrivMeny();                        //  Skriver brukermeny.
 
-	kommando = lesKommando();           //  Får inn brukers ønske.
+	kommando = lesKommando();           //  FÃ¥r inn brukers Ã¸nske.
 										//  Looper til 'x'/'X' tastes:
 	while (kommando != 'X') {
 		switch (kommando) {
@@ -22,16 +22,27 @@ int main() {
 				switch (kommando)
 				{
 				case 'N':					//Legge til en ny nasjon
-					char tempNavn[NVNLEN];
-					les("\nVennligst skriv landets fulle navn: ", tempNavn, NVNLEN);
-					if (!nasjoner->inList(tempNavn)) {
-						nasjoner->add(new Nasjon(tempNavn));
+					char id[3];				//Landets forkortelse
+					les("\nVennligst skriv landets forkortelse: ", id, 3);
+					if (!nasjoner->inList(id)) {	//Om landet ikke finnes
+						nasjoner->add(new Nasjon(id));//lager nytt land
 					}
-					else {
+					else {	//Om landet finnes fra fÃ¸r
 						cout << "\nNasjonen eksisterer allerede.";
 					}
 					break;
-				case 'E': break;			//Endre eksisterende nasjon
+				case 'E': 					//Endre eksisterende nasjon
+					char id[3];				//Landets forkortelse
+					while(!nasjoner->inList(id)){	//Om landet finnes
+						les("\nForkortelsen til den nasjonen du vil endre: ", id, 3);
+						while ((kommando != 'X') && (nasjoner-inList(id)) {
+							nasjoner->id->endreNasjonerMeny();	//Endringsmeny
+							kommando = lesKommando();		//Leser kommando
+							nasjoner->id->endre(kommando);	//UtfÃ¸rer kommando
+							//Looper til bruker skriver kommando 'X'
+						}
+					}
+					break;			
 				case 'A':					//Alle hoveddata om alle nasjoner
 					nasjoner->displayList();
 					break;
@@ -43,12 +54,12 @@ int main() {
 					}
 					nasjoner->displayElement(kort);	//Skriver ut data
 					break;			
-				case 'X': break;			//Gå tilbake
+				case 'X': break;			//GÃ¥ tilbake
 				default:
 					nasjonerMeny();
 					break;
 				}
-				kommando = 'V';				//Så bruker kan velge nye ting
+				kommando = 'V';				//SÃ¥ bruker kan velge nye ting
 			}
 			break;
 		case 'D':	break;
@@ -67,11 +78,11 @@ int main() {
 							cout << "En gren med det navnet finnes allerede!";
 
 						 break;
-					case 'E':				//Endrer navnet på en gren.
+					case 'E':				//Endrer navnet pÃ¥ en gren.
 						char grenNvn[NVNLEN];	//Temp. for sammenligning.
 						Gren* hjelpeGren;		//Hjelpepeker.
-										//Spør om navnet på gren som skal endres.
-						les("Navnet på grenen du vil endre", grenNvn, NVNLEN);
+										//SpÃ¸r om navnet pÃ¥ gren som skal endres.
+						les("Navnet pÃ¥ grenen du vil endre", grenNvn, NVNLEN);
 											//Hvis grenen finnes...
 						if (grener->inList(grenNvn)) {
 							hjelpeGren = (Gren*)grener->remove(grenNvn);
@@ -89,7 +100,7 @@ int main() {
 					default: 
 						nasjonerMeny();	break;
 				}
-				kommando = 'V'; //Så bruker kan velge nye ting.
+				kommando = 'V'; //SÃ¥ bruker kan velge nye ting.
 			}
 		case 'O':	break;
 		case 'M':	break;
@@ -97,7 +108,7 @@ int main() {
 		case 'X':	break;
 		default:	skrivMeny();        break;
 		}
-		kommando = lesKommando();		//  Får inn brukers ønske.
+		kommando = lesKommando();		//  FÃ¥r inn brukers Ã¸nske.
 	}
 	return 0;
 }

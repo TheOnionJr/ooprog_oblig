@@ -52,7 +52,6 @@ void les(const char t[], char s[], const int LEN) {
 
 
 //Nasjoner-funksjoner.
-										//Skriver undermeny for nasjoner.
 void nasjonerMeny() {
 	cout << "\n\nMENYVALG FOR NASJONER:";
 	cout << "\n\tN: Registrer en ny nasjon.";
@@ -61,6 +60,14 @@ void nasjonerMeny() {
 	cout << "\n\tT: Skriv en nasjons deltagertropp.";
 	cout << "\n\tS: Skriv alle data om en nasjon.";
 	cout << "\n\tX: Gå ut av menyen.";
+}
+
+void endreNasjonerMeny(){
+	cout << "\n\nTING SOM KAN ENDRES:";
+	cout << "\n\nN: Nasjonens navn.";
+	cout << "\n\nK: Kontakt navn.";
+	cout << "\n\nT: Kontakt nummer.";
+	cout << "\n\nX: Gå tilbake.";
 }
 
 //Deltager-funksjoner.
