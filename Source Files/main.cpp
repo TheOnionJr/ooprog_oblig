@@ -20,13 +20,13 @@ int main() {
 	while (kommando != 'X') {
 		switch (kommando) {
 		case 'N':
+			char id[NASJKORTLEN];				//Landets forkortelse
 			nasjonerMeny();
 			kommando = lesKommando();
 			while (kommando != 'X') {
 				switch (kommando)
 				{
 				case 'N':					//Legge til en ny nasjon
-					char id[NASJKORTLEN];				//Landets forkortelse
 					les("\nVennligst skriv landets forkortelse: ", id, NASJKORTLEN);
 					if (!nasjoner->inList(id)) {	//Om landet ikke finnes
 						nasjoner->add(new Nasjon(id));//lager nytt land
@@ -36,7 +36,6 @@ int main() {
 					}
 					break;
 				case 'E': 					//Endre eksisterende nasjon
-					char id[NASJKORTLEN];				//Landets forkortelse
 					les("\nForkortelsen til den nasjonen du vil endre: ", id, NASJKORTLEN);
 					if (nasjoner->inList(id)) {	//Om landet finnes
 						Nasjon* hjelpenasjon = (Nasjon*)nasjoner->remove(id);
@@ -57,11 +56,10 @@ int main() {
 					break;
 				case 'T': break;			//Skriv en nasjons deltagertropp
 				case 'S': 					//Skriver alle data om en nasjon
-					char kort[3];			//Hjelpecariabel
-					while(!nasjoner->inList(kort)){ //Sjekker om nasjon finnes
-						les("\nLandets forkortelse", kort, NASJKORTLEN);
+					while(!nasjoner->inList(id)){ //Sjekker om nasjon finnes
+						les("\nLandets forkortelse", id, NASJKORTLEN);
 					}
-					nasjoner->displayElement(kort);	//Skriver ut data
+					nasjoner->displayElement(id);	//Skriver ut data
 					break;			
 				case 'X': break;			//Gå tilbake
 				default:
