@@ -66,7 +66,7 @@ int main() {
 					nasjonerMeny();
 					break;
 				}
-				kommando = lesKommando();				//Så bruker kan velge nye ting
+				kommando = lesKommando(); //Bruker skriver her kommando for nasjonsmeny
 			}
 			break;
 		case 'D':	break;
@@ -107,7 +107,7 @@ int main() {
 					default: 
 						nasjonerMeny();	break;
 				}
-				kommando = lesKommando(); //Sender bruker tilbake til hovedmeny.
+				kommando = lesKommando(); //Bruker skriver her kommando for gren-meny
 			}
 		case 'O':	break;
 		case 'M':	break;
