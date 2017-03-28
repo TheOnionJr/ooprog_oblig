@@ -71,6 +71,7 @@ int main() {
 					nasjonerMeny();
 					break;
 				}
+				nasjonerMeny();
 				kommando = lesKommando(); //Bruker skriver her kommando for nasjonsmeny
 			}
 			break;
@@ -112,6 +113,7 @@ int main() {
 					default: 
 						nasjonerMeny();	break;
 				}
+				grenMeny();
 				kommando = lesKommando(); //Bruker skriver her kommando for gren-meny
 			}
 		case 'O':	break;
@@ -120,6 +122,7 @@ int main() {
 		case 'X':	break;
 		default:	skrivMeny();        break;
 		}
+		skrivMeny();
 		kommando = lesKommando();		//  Får inn brukers ønske.
 	}
 	return 0;
