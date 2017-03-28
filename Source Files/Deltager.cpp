@@ -1,6 +1,12 @@
-#include "../Headers/ListTool2B.h"
+#define _CRT_SECURE_NO_DEPRECATE
+#define _CRT_NONSTDC_NO_DEPRECATE
+
 #include <iostream>
+#include "../Headers/ListTool2B.h"
 #include "../Headers/Deltager.h"
+#include "../Headers/Const.h"
+
+using namespace std;
 
 Deltager::Deltager(int id) : NumElement(id) {	// Deltagers data skrives inn
 	// ID legges i numElement

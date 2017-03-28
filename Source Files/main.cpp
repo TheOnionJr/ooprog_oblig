@@ -1,12 +1,15 @@
 #include <iostream>
-#include "../Headers/GlobaleFunksjoner.h"
+#include "../Headers/Grener.h"
+#include "../Headers/Deltagere.h"
 #include "../Headers/Const.h"
 #include "../Headers/Enumer.h"
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Nasjoner.h"
+#include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Nasjon.h"
-#include "../Headers/Grener.h"
 #include "../Headers/Gren.h"
+#include "../Headers/Medaljer.h"
+#include "../Headers/Poeng.h"
 
 using namespace std;
 
@@ -14,9 +17,16 @@ using namespace std;
 #define _CRT_SECURE_NO_WARNINGS
 #endif 
 
+
 char kommando;
+Nasjoner* nasjoner;
+Deltagere* deltagere;
+Grener* grener;
+Medaljer* medaljer;
+Poeng* poeng;
 
 int main() {						
+
 	skrivMeny();                        //  Skriver brukermeny.
 
 	kommando = lesKommando();           //  Får inn brukers ønske.

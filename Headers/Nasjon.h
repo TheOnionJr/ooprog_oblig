@@ -1,6 +1,6 @@
 #if !defined(nasjon_h)
 #define nasjon_h
-#include "listTool2B.h"
+#include "ListTool2B.h"
 
 class Nasjon : public TextElement {
 	private:

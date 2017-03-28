@@ -1,3 +1,6 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#define _CRT_NONSTDC_NO_DEPRECATE
+
 #include <iostream>
 #include "../Headers/Deltager.h"
 #include "../Headers/Const.h"
@@ -10,9 +13,6 @@
 
 using namespace std;
 
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
-#endif 
 
 
 //Generelle funksjoner.

@@ -1,4 +1,13 @@
 #if !defined(Grener_h)
 #define Grener_h
-List* grener = new List(Sorted);					//'Grener' liste, sortert.
+#include "ListTool2B.h"
+class Grener {
+private:
+	List* grenliste;
+public:
+	Grener() {
+		grenliste = new List(Sorted);					//'Grener' liste, sortert.
+	}
+};
+
 #endif

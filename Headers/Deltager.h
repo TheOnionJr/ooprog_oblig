@@ -1,6 +1,6 @@
 #if !defined(deltager_h)
 #define deltager_h
-#include "../Headers/headere.h"
+#include "ListTool2B.h"
 
 class Deltager : public NumElement {
 	private:

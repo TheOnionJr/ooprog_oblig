@@ -2,9 +2,6 @@ using namespace std;
 
 //Headerfil for globale funksjonsdeklarasjoner.
 
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
-#endif 
 
 //Generelle funksjoner.
 void skrivMeny();					//Skriver hovedmeny.
