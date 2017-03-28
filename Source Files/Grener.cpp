@@ -61,4 +61,4 @@ void Grener::skrivHovedGren() {
 	grenliste->displayList();
 }
 
-void Grener::skrivHovedGren() {}
+//void Grener::skrivGren() {}
