@@ -76,7 +76,25 @@ int main() {
 				kommando = lesKommando(); //Bruker skriver her kommando for nasjonsmeny
 			}
 			break;
-		case 'D':	break;
+		case 'D':	
+			deltagerMeny();
+			kommando = lesKommando();
+			while (kommando != 'X') {
+				switch (kommando) {
+				case 'N': 
+					break;
+				case 'E': 
+					break;
+				case 'A': 
+					break;
+				case 'S': 
+					break;
+				default: break;
+				}
+				deltagerMeny(); 
+				kommando = lesKommando();
+			}
+			break;
 		case 'G':							//Valg for Gren.
 			grenMeny();						//Skriver undermeny for grener.
 			kommando = lesKommando();		//Leser kommando.

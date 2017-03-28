@@ -1,9 +1,17 @@
 #include "../Headers/headere.h"
 
-Deltager::Deltager() {	// Deltagers data skrives inn
+Deltager::Deltager(int id) : NumElement(id) {	// Deltagers data skrives inn
 	// ID ligger i numElement construtor
-	cout << "\nDeltagersdNavn: "; cin >> dNavn;
-	cout << "\nDeltagers kjønn(m/k): "; cin >> kjonn;
+	char buffer[NVNLEN];
+	cout << "\nDeltagersdNavn: "; 
+	cin.ignore();
+	cin.getline(buffer, NVNLEN);
+	dNavn = new char[strlen(buffer) + 1];
+	strcpy(dNavn, buffer);
+	cout << "\nDeltagers kjønn(m/k): "; 
+	while (kjonn != 'm' || kjonn != 'k') {
+		cin >> kjonn;
+	}
 }
 
 Deltager::~Deltager() {
