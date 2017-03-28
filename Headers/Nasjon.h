@@ -14,6 +14,6 @@ class Nasjon : public TextElement {
 		void endre(char hva); // Valget følger med fra en meny
 		void display();
 		void displayAll();
-		void diplayDeltagere();
+		void displayDeltagere();
 };
 

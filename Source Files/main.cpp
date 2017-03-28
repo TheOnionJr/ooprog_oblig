@@ -57,7 +57,7 @@ int main() {
 				case 'T': 					//Skriv en nasjons deltagertropp
 					les("\nForkortelsen til den nasjoner du vil endre: ", id, NASJKORTLEN);
 					if (nasjoner->inList(id)) {
-						Nasjon* hjelpenasjon = (nasjon*)nasjoner->remove(id);
+						Nasjon* hjelpenasjon = (Nasjon*)nasjoner->remove(id);
 						hjelpenasjon->displayDeltagere();
 					}
 					break;
