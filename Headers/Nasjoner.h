@@ -14,5 +14,6 @@ public:
 	void endreNasjon();
 	void visNasjonsDeltagere();
 	void visNasjonsInfo();
+	bool inList(const char* t);
 };
 #endif

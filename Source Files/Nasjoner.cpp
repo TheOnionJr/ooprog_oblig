@@ -87,3 +87,7 @@ void Nasjoner::visNasjonsInfo() {
 	}
 	nasjonsliste->displayElement(id);	//Skriver ut data
 }
+
+bool Nasjoner::inList(const char* t) {
+	return(nasjonsliste->inList(t));
+}

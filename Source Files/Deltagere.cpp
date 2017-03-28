@@ -39,7 +39,7 @@ void Deltagere::nyDeltager() {
 	if (nasjoner->inList(nasjonalitet)) {
 		cout << "\nHvilket nummer har deltageren?\t";
 		cin >> nummer;
-		if (!deltagere->inList(nummer)) {
+		if (!deltagerliste->inList(nummer)) {
 			Deltager* hjelpeobjekt = new Deltager(nummer);
 		}
 		else

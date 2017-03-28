@@ -42,8 +42,7 @@ void Grener::nyGren() {
 }
 
 void Grener::endreGren() {
-	char grenNvn[NVNLEN];	//Temp. for sammenligning.
-	Grener* hjelpeGren;		//Hjelpepeker.
+	char grenNvn[NVNLEN];	//Temp. for sammenligning
 							//Spør om navnet på gren som skal endres.
 	les("Navnet på grenen du vil endre", grenNvn, NVNLEN);
 	//Hvis grenen finnes...
