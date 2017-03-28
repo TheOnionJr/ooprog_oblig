@@ -54,7 +54,3 @@ void Deltagere::endreDeltager() {
 void Deltagere::skrivDeltagerliste() {
 
 }
-
-void Deltagere::endreDeltager() {
-
-}
