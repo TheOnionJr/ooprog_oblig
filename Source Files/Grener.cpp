@@ -2,6 +2,7 @@
 #include "../Headers/Const.h"
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Grener.h"
+#include "../Headers/Gren.h"
 #include <iostream>
 using namespace std;
 
@@ -35,7 +36,7 @@ void Grener::nyGren() {
 
 	les("Grenens navn", tempNvn, NVNLEN);	//Leser inn navnet til grenen.
 	if (!grenliste->inList(tempNvn))			//Sjekker om finnes allerede.
-		grenliste->add(new Grener(tempNvn));	//Legger til grenen.
+		grenliste->add(new Gren(tempNvn));	//Legger til grenen.
 	else									//Feilmelding.
 		cout << "En gren med det navnet finnes allerede!";
 }
@@ -47,7 +48,7 @@ void Grener::endreGren() {
 	les("Navnet på grenen du vil endre", grenNvn, NVNLEN);
 	//Hvis grenen finnes...
 	if (grenliste->inList(grenNvn)) {
-		Grener* hjelpeGren = (Grener*)grenliste->remove(grenNvn);
+		Gren* hjelpeGren = (Gren*)grenliste->remove(grenNvn);
 		hjelpeGren->endre();	//Fjerner, endrer, og adder
 		grenliste->add(hjelpeGren);//grenen i lista.
 	}
