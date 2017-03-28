@@ -42,7 +42,7 @@ int les(const char * t, const int min, const int max)
 		cout << '\t' << t << " (" << min << '-' << max << "): ";
 		cin >> tall; cin.ignore();
 	} while (tall < min || tall > max);
-	return 0;
+	return tall;
 }
 
 void les(const char t[], char s[], const int LEN) {

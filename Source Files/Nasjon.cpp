@@ -14,22 +14,23 @@ Nasjon::Nasjon(){
 
 Nasjon::Nasjon(char id[NASJKORTLEN]) : TextElement(id){
 	// Nasjonens fulle navn:
-	les("\nVenligst skriv inn nasjonens fulle navn: ", fulltNavn, NVNLEN);
+	cout << "\nVennligst skriv inn det fulle navnet på nasjonen: ";
+	strcpy(fulltNavn, lesPrivat());
 
 	// Nasjonens kontaktperson:
-	   cout << "\nVenligst skriv inn navnet på nasjonens kontaktperson: ";
-	   strcpy(kontaktNavn, lesPrivat());
+	cout << "\nVenligst skriv inn navnet på nasjonens kontaktperson: ";
+	strcpy(kontaktNavn, lesPrivat());
 
 	// Nummeret til denne kontaktpersonen:
-	   les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
+	kontaktNr = les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
 
-	   deltagere = new List(Sorted);	//Lager deltagere listen
+	deltagere = new List(Sorted);	//Lager deltagere listen
 }
 
 Nasjon::~Nasjon(){
-	   // Sletter alle data:
-	   delete[] fulltNavn, kontaktNavn;
-	   // Egen for deltagere må legges til
+	// Sletter alle data:
+	delete[] fulltNavn, kontaktNavn;
+	// Egen for deltagere må legges til
 }
 
 void Nasjon::endre(char hva) { // TRENGER CASE FOR DELTAGERE
