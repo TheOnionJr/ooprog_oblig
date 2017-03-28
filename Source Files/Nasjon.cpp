@@ -28,7 +28,7 @@ Nasjon::Nasjon(char id[3]) : TextElement(id){
 
 Nasjon::~Nasjon(){
 	   // Sletter alle data:
-	   delete[] forkortelse, fulltNavn, kontaktNavn;
+	   delete[] fulltNavn, kontaktNavn;
 	   // Egen for deltagere må legges til
 }
 
@@ -47,7 +47,11 @@ void Nasjon::endre(char hva) { // TRENGER CASE FOR DELTAGERE
 		les("\nKontaktpersonens nye tlfnummer: ", MINTLF, MAXTLF);
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
 		break;
+	case 'X':
+		cout << "\nAvslutter endring av nasjon." << endl;
+		break;
 	default:
+		cout << "\nDette er ikke et valg.";
 		break;
 	}
 }

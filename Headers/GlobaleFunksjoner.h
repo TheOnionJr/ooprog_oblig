@@ -16,7 +16,7 @@ void les(const char t[], char s[], const int LEN);
 //Nasjoner funksjoner.
 void nasjonerMeny();				//Skriver undermeny for nasjoner.
 void nyNasjon();					//Oppretter/registrerer en ny nasjon.
-void endreNasjon();					//Endrer data i en nasjon.
+void endreNasjonerMeny();			//Endrer data i en nasjon.
 void skrivHovedNasjon();			//Skriver hoveddata om alle nasjoner.
 void skrivDeltagertropp();			//Skriver nasjonens deltagertropp.
 void skrivNasjon();					//Skriver alle data om en nasjon. 

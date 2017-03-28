@@ -26,8 +26,8 @@ int main() {
 				switch (kommando)
 				{
 				case 'N':					//Legge til en ny nasjon
-					char id[3];				//Landets forkortelse
-					les("\nVennligst skriv landets forkortelse: ", id, 3);
+					char id[NASJKORTLEN];				//Landets forkortelse
+					les("\nVennligst skriv landets forkortelse: ", id, NASJKORTLEN);
 					if (!nasjoner->inList(id)) {	//Om landet ikke finnes
 						nasjoner->add(new Nasjon(id));//lager nytt land
 					}
@@ -36,17 +36,21 @@ int main() {
 					}
 					break;
 				case 'E': 					//Endre eksisterende nasjon
-					char id[3];				//Landets forkortelse
-					while(!nasjoner->inList(id)){	//Om landet finnes
-						les("\nForkortelsen til den nasjonen du vil endre: ", id, 3);
-						while ((kommando != 'X') && (nasjoner-inList(id)) {
-							nasjoner->id->endreNasjonerMeny();	//Endringsmeny
+					char id[NASJKORTLEN];				//Landets forkortelse
+					les("\nForkortelsen til den nasjonen du vil endre: ", id, NASJKORTLEN);
+					if (nasjoner->inList(id)) {	//Om landet finnes
+						Nasjon* hjelpenasjon = (Nasjon*)nasjoner->remove(id);
+						while (kommando != 'X') {
+							endreNasjonerMeny();			//Endringsmeny
 							kommando = lesKommando();		//Leser kommando
-							nasjoner->id->endre(kommando);	//Utfører kommando
+							hjelpenasjon->endre(kommando);	//Utfører kommando
 							//Looper til bruker skriver kommando 'X'
 						}
+						nasjoner->add(hjelpenasjon);
 						kommando = 'V';		//S� bruker kan velge nye ting
 					}
+					else
+						cout << "\nFant ikke nasjonen.";
 					break;			
 				case 'A':					//Alle hoveddata om alle nasjoner
 					nasjoner->displayList();
@@ -55,7 +59,7 @@ int main() {
 				case 'S': 					//Skriver alle data om en nasjon
 					char kort[3];			//Hjelpecariabel
 					while(!nasjoner->inList(kort)){ //Sjekker om nasjon finnes
-						les("\nLandets forkortelse", kort, 3);
+						les("\nLandets forkortelse", kort, NASJKORTLEN);
 					}
 					nasjoner->displayElement(kort);	//Skriver ut data
 					break;			
