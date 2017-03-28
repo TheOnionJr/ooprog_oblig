@@ -8,6 +8,11 @@ public:
 	Deltagere() {
 		deltagerliste = new List(Sorted);
 	}
+	void deltagerMeny();
+	void nyDeltager();
+	void endreDeltager();
+	void skrivDeltagerliste();
+	void skrivDeltager();
 };
 
 #endif

@@ -143,7 +143,7 @@ void resultatlisteMeny() {
 }
 
 										//Registrerer ny deltager
-void nyDeltager() {
+/*void nyDeltager() {
 	char nasjonalitet[NASJKORTLEN];	
 	int nummer;
 	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
@@ -172,4 +172,4 @@ void skrivDeltagerliste() {
 										//Skriver info om en deltager
 void skrivDeltager() {
 
-}
+}*/

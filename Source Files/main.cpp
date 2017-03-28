@@ -19,11 +19,7 @@ using namespace std;
 
 
 char kommando;
-Nasjoner* nasjoner;
-Deltagere* deltagere;
-Grener* grener;
-Medaljer* medaljer;
-Poeng* poeng;
+
 
 int main() {						
 
@@ -34,7 +30,8 @@ int main() {
 	while (kommando != 'X') {
 		switch (kommando) {
 		case 'N':
-			char id[NASJKORTLEN];				//Landets forkortelse
+			nasjoner->nasjonsmeny();
+			/*char id[NASJKORTLEN];				//Landets forkortelse
 			nasjonerMeny();
 			kommando = lesKommando();
 			while (kommando != 'X') {
@@ -88,11 +85,11 @@ int main() {
 				}
 				nasjonerMeny();
 				kommando = lesKommando(); //Bruker skriver her kommando for nasjonsmeny
-			}
+			}*/
 			break;
 		case 'D':	
-			deltagerMeny();
-			kommando = lesKommando();
+			deltagere->deltagerMeny();
+			/*kommando = lesKommando();
 			while (kommando != 'X') {
 				switch (kommando) {
 				case 'N': 
@@ -112,7 +109,7 @@ int main() {
 				}
 				deltagerMeny(); 
 				kommando = lesKommando();
-			}
+			}*/
 			break;
 		case 'G':							//Valg for Gren.
 			grenMeny();						//Skriver undermeny for grener.

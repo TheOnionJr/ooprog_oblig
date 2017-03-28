@@ -9,5 +9,10 @@ public:
 	Nasjoner() {
 		nasjonsliste = new List(Sorted);
 	}
+	void nasjonsmeny();
+	void nyNasjon();
+	void endreNasjon();
+	void visNasjonsDeltagere();
+	void visNasjonsInfo();
 };
 #endif
