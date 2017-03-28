@@ -27,10 +27,10 @@ void skrivDeltager();				//Skriver alle data om en deltager.
 
 //Gren-funksjoner
 void grenMeny();					//Skriver delmeny for Grener.
-void nyGren();						//Oppretter en ny gren.
+/*void nyGren();						//Oppretter en ny gren.
 void endreGren();
 void skrivHovedGren();				//Skriver hoveddata for alle grener.
-void skrivGren();					//Skriver alle data om en gren.
+void skrivGren();					//Skriver alle data om en gren.*/
 
 //Ovelse-funksjoner
 void ovelseMeny();					//Skriver undermeny for ovelser.

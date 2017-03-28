@@ -115,19 +115,19 @@ int main() {
 			}
 			break;
 		case 'G':							//Valg for Gren.
-			grenMeny();						//Skriver undermeny for grener.
+			grener->grenerMeny();
+											/*grenMeny();						//Skriver undermeny for grener.
 			kommando = lesKommando();		//Leser kommando.
 			while (kommando != 'X') {		
 				switch (kommando) {
 					case 'N':				//Oppretter ny gren.
-						char tempNvn[NVNLEN];
+						 char tempNvn[NVNLEN];
 
 						les("Grenens navn", tempNvn, NVNLEN);	//Leser inn navnet til grenen.
 						if (!grener->inList(tempNvn))			//Sjekker om finnes allerede.
-							grener->add(new Gren(tempNvn));		//Legger til grenen.
-						else                //Feilmelding.
+							grener->add(new Grener(tempNvn));	//Legger til grenen.
+						else									//Feilmelding.
 							cout << "En gren med det navnet finnes allerede!";
-
 						 break;
 					case 'E':				//Endrer navnet på en gren.
 						char grenNvn[NVNLEN];	//Temp. for sammenligning.
@@ -153,7 +153,7 @@ int main() {
 				}
 				grenMeny();
 				kommando = lesKommando(); //Bruker skriver her kommando for gren-meny
-			}
+			} */
 		case 'O':	break;
 		case 'M':	break;
 		case 'P':	break;
