@@ -3,11 +3,11 @@
 
 class Deltager : public NumElement {
 	private:
-		char dNavn[NVNLEN];		// Deltagers navn
-		char kjonn[1];			// m/k (trigger warning)
+		char* dNavn;		// Deltagers navn
+		char kjonn;			// m/k (trigger warning)
 		
 	public:
-		Deltager();
+		Deltager(int id);
 		~Deltager();
 		void endre(int hva);
 		void display();
