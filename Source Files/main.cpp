@@ -10,6 +10,7 @@
 #include "../Headers/Gren.h"
 #include "../Headers/Medaljer.h"
 #include "../Headers/Poeng.h"
+#include "../Headers/main.h"
 
 using namespace std;
 

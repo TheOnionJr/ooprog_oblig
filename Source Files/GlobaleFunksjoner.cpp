@@ -10,6 +10,7 @@
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Medaljer.h"
 #include "../Headers/Nasjoner.h"
+#include "../Headers/main.h"
 
 using namespace std;
 

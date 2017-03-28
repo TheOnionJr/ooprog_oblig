@@ -3,7 +3,7 @@
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Const.h"
 #include "../Headers/Enumer.h"
-#include "../Headers/Nasjoner.h"
+#include "../Headers/main.h"
 #include <iostream>
 
 void Deltagere::deltagerMeny() {

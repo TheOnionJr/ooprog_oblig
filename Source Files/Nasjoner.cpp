@@ -3,6 +3,7 @@
 #include "../Headers/Const.h"
 #include "../Headers/Enumer.h"
 #include "../Headers/Nasjon.h"
+#include "../Headers/main.h"
 #include <iostream>
 
 using namespace std;
