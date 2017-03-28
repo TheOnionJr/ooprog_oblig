@@ -5,7 +5,7 @@ using namespace std;
 
 class Gren : public TextElement {
 	private:
-		char gNavn[NVNLEN];
+		char* gNavn;
 		poengSystem pt;
 		int ovelseNr[20];
 		int sisteBrukt;
