@@ -53,7 +53,7 @@ void Nasjoner::nyNasjon() {
 
 void Nasjoner::endreNasjon() {
 	char id[NASJKORTLEN];
-	char kommando;
+	char kommando = '0';
 	les("\nForkortelsen til den nasjonen du vil endre: ", id, NASJKORTLEN);
 	if (nasjonsliste->inList(id)) {	//Om landet finnes
 		Nasjon* hjelpenasjon = (Nasjon*)nasjonsliste->remove(id);
