@@ -45,6 +45,7 @@ int main() {
 							nasjoner->id->endre(kommando);	//Utf√∏rer kommando
 							//Looper til bruker skriver kommando 'X'
 						}
+						kommando = 'V';		//SÂ bruker kan velge nye ting
 					}
 					break;			
 				case 'A':					//Alle hoveddata om alle nasjoner
