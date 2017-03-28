@@ -2,13 +2,9 @@
 
 using namespace std;
 
-List* grener;							//'Grener' liste, sortert.
 char kommando;
 
 int main() {						
-	grener = new List(Sorted);			//'Grener' liste, sortert. 
-	
-
 	skrivMeny();                        //  Skriver brukermeny.
 
 	kommando = lesKommando();           //  Får inn brukers ønske.
