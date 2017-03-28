@@ -79,8 +79,8 @@ int main() {
 						char tempNvn[NVNLEN];
 
 						les("Grenens navn", tempNvn, NVNLEN);	//Leser inn navnet til grenen.
-						if (grener->inList(tempNvn))	//Sjekker om finnes allerede.
-							grener->add(new Gren(tempNvn));	//Legger til grenen.
+						if (!grener->inList(tempNvn))			//Sjekker om finnes allerede.
+							grener->add(new Gren(tempNvn));		//Legger til grenen.
 						else                //Feilmelding.
 							cout << "En gren med det navnet finnes allerede!";
 

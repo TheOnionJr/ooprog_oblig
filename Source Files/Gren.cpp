@@ -13,8 +13,6 @@ using namespace std;
 										//Constructor m/navn-parameter.
 Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	char svar;
-
-	strcpy(gNavn, tempNvn);				//Setter navn fra parameter.
 										//Spør om hvordan prestasjon måles.
 	cout << "Hvordan måles prestasjon i grenen? 't'=tid, 'p'=poeng: ";
 	
@@ -59,20 +57,19 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 }
 
 Gren::~Gren(){							//Destructor
-	delete gNavn, pt, sisteBrukt, ovelseNr;	//Sletter alle data.
+	delete[]  ovelseNr, sisteBrukt, pt;	//Sletter alle data.
 }
 
 										//Funksjon for å endre data i en gren.
 void Gren :: endre() {
-	char tempNavn[NVNLEN];
-	les("Grenens nye navn", tempNavn, NVNLEN);
-	strcpy( gNavn, tempNavn);
-	cout << "\nNavnet er endret, det er nå " << gNavn << ".";
+	cout << "\nSkriv inn nytt navn.\n";
+	text = lesPrivat();
+	cout << "\nNavnet er endret, det er nå " << text << ".";
 }
 
 										//Skriver alle data om en gren.
 void Gren::display() {
-	cout << "\nNavn: \t" << gNavn;		//Navn.
+	cout << "\nNavn: \t" << text;		//Navn.
 
 	cout << "\nTid/poeng: \n";			//Om prestasjonsmåling er tid/poeng.
 	switch (pt) {						//Og hvilken type det er.
