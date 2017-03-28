@@ -12,6 +12,7 @@ void skrivMeny();					//Skriver hovedmeny.
 char lesKommando();					//Leser inn og upcaser en char.
 int les(const char* t, const int min, const int max);	//Leser inn en int innenfor et intervall.
 void les(const char t[], char s[], const int LEN);
+char* lesPrivat();
 
 //Nasjoner funksjoner.
 void nasjonerMeny();				//Skriver undermeny for nasjoner.

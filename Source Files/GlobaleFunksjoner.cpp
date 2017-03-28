@@ -51,6 +51,15 @@ void les(const char t[], char s[], const int LEN) {
 	} while (strlen(s) == 0);           //  Sjekker at tekstlengden er ulik 0.
 }
 
+char* lesPrivat() {
+	char* retur;
+	char buffer[NVNLEN];
+	cin.getline(buffer, NVNLEN);
+	retur = new char[strlen(buffer) + 1];
+	strcpy(retur, buffer);
+	return retur;
+}
+
 
 //Nasjoner-funksjoner.
 void nasjonerMeny() {
