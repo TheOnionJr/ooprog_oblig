@@ -88,7 +88,7 @@ void deltagerMeny() {
 	cout << "\n\tE: Endre en deltager.";
 	cout << "\n\tA: Skriv hoveddataene om alle deltagere.";
 	cout << "\n\tS: Skriv alle data om en gitt deltager.";
-	cout << "\n\tX: Tibake til hovedmeny."
+	cout << "\n\tX: Tibake til hovedmeny.";
 }
 
 //Gren-funksjoner
