@@ -1,4 +1,12 @@
-#include "../Headers/headere.h"
+#include <iostream>
+#include "../Headers/Deltager.h"
+#include "../Headers/Const.h"
+#include "../Headers/Enumer.h"
+#include "../Headers/Deltagere.h"
+#include "../Headers/Grener.h"
+#include "../Headers/ListTool2B.h"
+#include "../Headers/Medaljer.h"
+#include "../Headers/Nasjoner.h"
 
 using namespace std;
 

@@ -1,4 +1,9 @@
-#include "../Headers/headere.h"
+#include "../Headers/Nasjon.h"
+#include "../Headers/Const.h"
+#include <iostream>
+#include "../Headers/GlobaleFunksjoner.h"
+#include "../Headers/Deltager.h"
+
 
 Nasjon::Nasjon(){
 	/*while(nasjoner->inList(text) || (strlen(text) > 3 || strlen(text) <= 0)){

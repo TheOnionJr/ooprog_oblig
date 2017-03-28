@@ -1,5 +1,7 @@
+#if !defined(gren_h)
 #define gren_h
-#include "../Headers/headere.h"
+#include "enumer.h"
+#include "ListTool2B.h"
 
 using namespace std;
 
@@ -15,3 +17,4 @@ class Gren : public TextElement {
 		void endre();
 		void display();
 };
+#endif

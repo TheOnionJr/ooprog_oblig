@@ -1,6 +1,18 @@
-#include "../Headers/headere.h"
+#include <iostream>
+#include "../Headers/GlobaleFunksjoner.h"
+#include "../Headers/Const.h"
+#include "../Headers/Enumer.h"
+#include "../Headers/ListTool2B.h"
+#include "../Headers/Nasjoner.h"
+#include "../Headers/Nasjon.h"
+#include "../Headers/Grener.h"
+#include "../Headers/Gren.h"
 
 using namespace std;
+
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif 
 
 char kommando;
 

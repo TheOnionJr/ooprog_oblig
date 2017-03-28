@@ -1,4 +1,6 @@
-#include "../Headers/headere.h"
+#include "../Headers/ListTool2B.h"
+#include <iostream>
+#include "../Headers/Deltager.h"
 
 Deltager::Deltager(int id) : NumElement(id) {	// Deltagers data skrives inn
 	// ID legges i numElement

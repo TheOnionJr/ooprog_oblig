@@ -1,4 +1,8 @@
-#include "../Headers/headere.h"
+#include "../Headers/enumer.h"
+#include "../Headers/Const.h"
+#include "../Headers/GlobaleFunksjoner.h"
+#include "../Headers/Gren.h"
+#include <iostream>
 using namespace std;
 
 #ifdef _MSC_VER

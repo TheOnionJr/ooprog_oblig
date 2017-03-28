@@ -27,7 +27,9 @@
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 */       
 						//  INCLUDE:
-#include "../Headers/headere.h"
+#include <iostream>
+#include <cstring>
+#include "../Headers/ListTool2B.h"
 
 using namespace std;
 

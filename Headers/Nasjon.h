@@ -1,5 +1,6 @@
+#if !defined(nasjon_h)
 #define nasjon_h
-#include "../Headers/headere.h"
+#include "listTool2B.h"
 
 class Nasjon : public TextElement {
 	private:
@@ -17,3 +18,4 @@ class Nasjon : public TextElement {
 		void displayDeltagere();
 };
 
+#endif

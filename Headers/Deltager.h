@@ -1,3 +1,4 @@
+#if !defined(deltager_h)
 #define deltager_h
 #include "../Headers/headere.h"
 
@@ -12,3 +13,4 @@ class Deltager : public NumElement {
 		void endre(int hva);
 		void display();
 };
+#endif

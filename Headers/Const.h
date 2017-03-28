@@ -1,4 +1,5 @@
-#pragma once
+#if !defined(Const_h)
+#define Const_h
 
 //Const.h - Header fil med alle const-er.
 
@@ -11,3 +12,4 @@ int const MINDELTAGERE = 5;				//Min antall deltagere.
 int const MAXDELTAGERE = 100;			//Max antall deltagere.
 int const MINTLF = 10000000;			//Minste numeriske telefonnummer
 int const MAXTLF = 99999999;			//Største numeriske telefonnummer
+#endif
