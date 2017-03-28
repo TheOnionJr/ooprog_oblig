@@ -2,7 +2,7 @@
 
 Deltager::Deltager() {	// Deltagers data skrives inn
 	// ID ligger i numElement construtor
-	cout << "\nDeltagers navn: "; cin >> navn;
+	cout << "\nDeltagersdNavn: "; cin >> dNavn;
 	cout << "\nDeltagers kjønn(m/k): "; cin >> kjonn;
 }
 
@@ -11,12 +11,12 @@ Deltager::~Deltager() {
 }
 
 void Deltager::endre(int hva) { // Endrer deltagers data (ikke id)
-	cout << "\nDeltagers navn: "; cin >> navn;
+	cout << "\nDeltagersdNavn: "; cin >> dNavn;
 	cout << "\nDeltagers kjønn(m/k): "; cin >> kjonn;
 }
 
 void Deltager::display() {	//Skriver ut deltagers data
 	cout << "\nID: " << number;
-	cout << "\nNavn: " << navn;
+	cout << "\nNavn: " << dNavn;
 	cout << "\nKjonn: " << kjonn;
 }

@@ -24,6 +24,7 @@ char les() {
 	char ch;
 	cout << "\nKommando: ";
 	cin >> ch; cin.ignore();
+	return ch;
 }
 										//Leser inn kommando og gir upcaset char
 char lesKommando() {
