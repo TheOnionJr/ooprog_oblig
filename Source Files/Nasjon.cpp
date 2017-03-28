@@ -63,6 +63,10 @@ void Nasjon::display() {	//Skriver hoveddata om nasjonen
 	cout << "Antall deltagere: " << deltagere->noOfElements();
 }
 
+void Nasjon::displayDeltagere() {
+	deltagere->displayList();
+}
+
 void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
 	cout << "\nForkortelse: " << text;
 	cout << "\nNavn: " << fulltNavn;

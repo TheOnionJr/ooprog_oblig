@@ -55,10 +55,11 @@ int main() {
 					nasjoner->displayList();
 					break;
 				case 'T': 					//Skriv en nasjons deltagertropp
-					while(!nasjoner->inList(id)) {
-						les("\nLandets forkortelse", id, NASJKORTLEN);
+					les("\nForkortelsen til den nasjoner du vil endre: ", id, NASJKORTLEN);
+					if (nasjoner->inList(id)) {
+						Nasjon* hjelpenasjon = (nasjon*)nasjoner->remove(id);
+						hjelpenasjon->displayDeltagere();
 					}
-					nasjoner->deltagere->displayList();
 					break;
 				case 'S': 					//Skriver alle data om en nasjon
 					while(!nasjoner->inList(id)){ //Sjekker om nasjon finnes
