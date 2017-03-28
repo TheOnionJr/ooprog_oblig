@@ -107,7 +107,7 @@ int main() {
 					default: 
 						nasjonerMeny();	break;
 				}
-				kommando = 'V'; //Så bruker kan velge nye ting.
+				kommando = 'X'; //Sender bruker tilbake til hovedmeny.
 			}
 		case 'O':	break;
 		case 'M':	break;
