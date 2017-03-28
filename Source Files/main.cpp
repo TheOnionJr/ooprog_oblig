@@ -70,7 +70,7 @@ int main() {
 			}
 			break;
 		case 'D':	break;
-		case 'G':	break;					//Valg for Gren.
+		case 'G':							//Valg for Gren.
 			grenMeny();						//Skriver undermeny for grener.
 			kommando = lesKommando();		//Leser kommando.
 			while (kommando != 'X') {		
