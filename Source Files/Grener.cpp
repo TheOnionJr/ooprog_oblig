@@ -27,28 +27,29 @@ void Grener::grenerMeny() {
 		grenerMeny();
 		kommando = lesKommando(); //Bruker skriver her kommando for gren-meny
 	}
+}
 	
 
 void Grener::nyGren() {
 	char tempNvn[NVNLEN];
 
 	les("Grenens navn", tempNvn, NVNLEN);	//Leser inn navnet til grenen.
-	if (!grener->inList(tempNvn))			//Sjekker om finnes allerede.
-		grener->add(new Grener(tempNvn));	//Legger til grenen.
+	if (!grenliste->inList(tempNvn))			//Sjekker om finnes allerede.
+		grenliste->add(new Grener(tempNvn));	//Legger til grenen.
 	else									//Feilmelding.
 		cout << "En gren med det navnet finnes allerede!";
 }
 
 void Grener::endreGren() {
 	char grenNvn[NVNLEN];	//Temp. for sammenligning.
-	Gren* hjelpeGren;		//Hjelpepeker.
+	Grener* hjelpeGren;		//Hjelpepeker.
 							//Spør om navnet på gren som skal endres.
 	les("Navnet på grenen du vil endre", grenNvn, NVNLEN);
 	//Hvis grenen finnes...
-	if (grener->inList(grenNvn)) {
-		hjelpeGren = (Gren*)grener->remove(grenNvn);
+	if (grenliste->inList(grenNvn)) {
+		Grener* hjelpeGren = (Grener*)grenliste->remove(grenNvn);
 		hjelpeGren->endre();	//Fjerner, endrer, og adder
-		grener->add(hjelpeGren);//grenen i lista.
+		grenliste->add(hjelpeGren);//grenen i lista.
 	}
 	else {				//Feilmeld.
 		cout << "\nFant ikke en gren med det navnet!\n";
@@ -56,7 +57,7 @@ void Grener::endreGren() {
 }
 
 void Grener::skrivHovedGren() {
-	grener->displayList();
+	grenliste->displayList();
 }
 
 void Grener::skrivHovedGren() {}
