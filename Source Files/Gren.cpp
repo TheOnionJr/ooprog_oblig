@@ -38,7 +38,7 @@ Gren::~Gren(){							//Destructor
 void Gren :: endre() {
 	char tempNavn[NVNLEN];
 	les("Grenens nye navn", tempNavn, NVNLEN);
-	strcpy(navn, tempNavn);
+	strcpy( gNavn, tempNavn);
 	cout << "\nNavnet er endret, det er nå " << gNavn << ".";
 }
 
