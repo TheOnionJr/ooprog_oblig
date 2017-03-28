@@ -21,8 +21,36 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	do {
 		svar = lesKommando();			//Leser inn og upcaser.
 		switch (svar) {
-			//case'T': pt = tid;	 break;	//Setter enum til tid.
-			//case'P': pt = poeng; break;	//Setter enum til poeng.
+			case'T':					//Valg for 'Tid'
+				cout << "\nHvor nøye skal tiden måles? "
+					 << "\n\t 1: Tideler."
+					 << "\n\t 2: Hundredeler."
+					 << "\n\t 3: Tusendeler.\n";
+				do {
+					svar = lesKommando();
+					switch (svar) {
+						case '1': pt = tidTi; break;	//Setter enum Tideler.
+						case '2': pt = tidHu; break;	//Setter enum Hundredeler.
+						case '3': pt = tidTu; break;	//Setter enum Tusendeler.
+						default: cout << "Ukjent svar.";//Feilmeld.
+					}
+				} while (svar != '1' && svar != '2' && svar != '3');
+				break;	
+			
+			case'P':
+				cout << "\nHvor mange siffer skal poengskalaen ha? "
+					 << "\n\t 1: 1."
+					 << "\n\t 2: 2.";
+				do {
+					svar = lesKommando();
+					switch (svar) {
+						case '1': pt = poengH;
+						case '2': pt = poengK;
+						default: cout << "Ukjent svar!"; //Feilmeld.
+					}
+				} while (svar != '1' && svar != '2');
+
+				break;	//Setter enum til poeng.
 			default:					//Feilmelding.
 				cout << "Ukjent svar, skriv 'T' for tid, eller 'P' for poeng.";
 				break;
@@ -46,9 +74,15 @@ void Gren :: endre() {
 void Gren::display() {
 	cout << "\nNavn: \t" << gNavn;		//Navn.
 
-	/*cout << "\nTid/poeng: ";			//Om prestasjonsmåling er tid/poeng.
-	if (pt = tid) cout << "tid.";
-	else		  cout << "poeng.";*/
+	cout << "\nTid/poeng: \n";			//Om prestasjonsmåling er tid/poeng.
+	switch (pt) {						//Og hvilken type det er.
+		case tidTi: cout << "Tid med tideler (Min:Sek:Tidel).";			break;
+		case tidHu: cout << "Tid med hundredeler (Min:Sek:Hundredel)."; break;
+		case tidTu: cout << "Tid med tusendeler (Min:Sek:Tusendel).";	break;
+		case poengH: cout << "Poeng med et siffer.";					break;
+		case poengK: cout << "Poeng med to siffer.";					break;
+		default: cout << "Finner ikke prestasjonsmåling!";				break;
+	}
 
 	cout << "\nAntall øvelser: " << sisteBrukt;		//Antall øvelser i grenen.
 }
