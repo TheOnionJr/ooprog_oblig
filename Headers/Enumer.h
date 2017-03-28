@@ -1,3 +1,4 @@
 #define Enumer_h
 
-enum poengSystem {poeng, tid};
+			//Poeng Hopp, Kunstløp. Tidel, Hundredel, Tusendel.
+enum poengSystem {poengH, poengK, tidTi, tidHu, tidTu };
