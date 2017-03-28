@@ -33,6 +33,7 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 						default: cout << "Ukjent svar.";//Feilmeld.
 					}
 				} while (svar != '1' && svar != '2' && svar != '3');
+				svar = 'X';				//Sender bruker tilbake til Grener meny.
 				break;	
 			
 			case'P':
@@ -41,19 +42,20 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 					 << "\n\t 2: 2.";
 				do {
 					svar = lesKommando();
-					switch (svar) {
-						case '1': pt = poengH;
-						case '2': pt = poengK;
-						default: cout << "Ukjent svar!"; //Feilmeld.
+					switch (svar) {			//Setter antall siffer i poengskala.
+						case '1': pt = poengH;	break;			//Ett siffer.
+						case '2': pt = poengK;	break;			//To siffer.
+						default: cout << "Ukjent svar!"; break; //Feilmeld. 
 					}
 				} while (svar != '1' && svar != '2');
-
+				svar = 'X';				//Sender bruker tilbake til grener meny.
 				break;	//Setter enum til poeng.
+
 			default:					//Feilmelding.
 				cout << "Ukjent svar, skriv 'T' for tid, eller 'P' for poeng.";
 				break;
 		}								//do-whie som looper til godkjent svar.
-	} while (svar != 'T' && svar != 'P');
+	} while (svar != 'T' && svar != 'P' && svar != 'X');
 }
 
 Gren::~Gren(){							//Destructor

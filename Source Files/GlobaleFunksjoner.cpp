@@ -69,7 +69,7 @@ void nasjonerMeny() {
 	cout << "\n\tA: Skriv hoveddataene alle nasjoner.";
 	cout << "\n\tT: Skriv en nasjons deltagertropp.";
 	cout << "\n\tS: Skriv alle data om en nasjon.";
-	cout << "\n\tX: Gå ut av menyen.";
+	cout << "\n\tX: Tilbake til hovedmeny.";
 }
 
 void endreNasjonerMeny(){
@@ -88,6 +88,7 @@ void deltagerMeny() {
 	cout << "\n\tE: Endre en deltager.";
 	cout << "\n\tA: Skriv hoveddataene om alle deltagere.";
 	cout << "\n\tS: Skriv alle data om en gitt deltager.";
+	cout << "\n\tX: Tibake til hovedmeny."
 }
 
 //Gren-funksjoner
@@ -98,6 +99,7 @@ void grenMeny() {
 	cout << "\n\tE: Endre en gren.";
 	cout << "\n\tA: Skriv hoveddataene om alle grener.";
 	cout << "\n\tS: Skriv alle data om en gitt gren.";
+	cout << "\n\tX: Tilbake til hovedmeny.";
 }
 
 //Ovelse-funksjoner
@@ -110,6 +112,7 @@ void ovelseMeny() {
 	cout << "\n\tA: Skriv hoveddataene om alle ovelser";
 	cout << "\n\tL: Deltagerlister og startlister.";
 	cout << "\n\tR: Resultatlister.";
+	cout << "\n\tX: Tilbake til hovedmeny.";
 }
 
 										//Skriver undermeny for deltager.
@@ -119,6 +122,7 @@ void deltagerlisteMeny() {
 	cout << "\n\tN: Ny deltager-/startliste.";
 	cout << "\n\tE: Endre deltager-/startliste.";
 	cout << "\n\tF: Fjerne deltager-/startliste.";
+	cout << "\n\tX: Tilbake til hovedmeny.";
 }
 
 										//Skriver undermeny for deltagerliste.
@@ -127,4 +131,5 @@ void resultatlisteMeny() {
 	cout << "\n\tS: Skriv resultatliste.";
 	cout << "\n\tN: Ny resultatliste.";
 	cout << "\n\tF: Fjern resultatliste.";
+	cout << "\n\tX: Tilbake til hovedmeny.";
 }
