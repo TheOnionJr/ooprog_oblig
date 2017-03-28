@@ -141,11 +141,13 @@ void nyDeltager() {
 	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
 	cin.getline(nasjonalitet, (NASJKORTLEN - 1));
 	if (nasjoner->inList(nasjonalitet)) {
-		if (deltagere->inList(nummer)) {
+		cout << "\nHvilket nummer har deltageren?\t";
+		cin >> nummer;
+		if (!deltagere->inList(nummer)) {
 			Deltager* hjelpeobjekt = new Deltager(nummer);
 		}
 		else
-			cout << "\nFant ikke deltager.";
+			cout << "\nDeltager finnes allerede.";
 	}
 }
 
