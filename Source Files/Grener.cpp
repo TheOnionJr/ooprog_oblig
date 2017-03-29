@@ -18,16 +18,17 @@ void Grener::grenerMeny() {
 		case 'E':				//Endrer navnet på en gren.
 			endreGren();
 			break;
-		case 'A':
+		case 'A':				//Skriver hoveddata om alle grener.
 			skrivHovedGren();
 			break;
 		case 'S': break;
-		default:
-			nasjonerMeny();	break;
+		case 'X': break;
+		default:  cout << "Ukjent svar, prøv igjen!"; break;	//Feilmelding.
 		}
-		grenerMeny();
+		grenMeny();
 		kommando = lesKommando(); //Bruker skriver her kommando for gren-meny
 	}
+	
 }
 	
 
