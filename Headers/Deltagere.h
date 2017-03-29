@@ -8,7 +8,7 @@ public:
 	Deltagere() {
 		deltagerliste = new List(Sorted);
 	}
-	void deltagerMeny();
+	void deltagermeny();
 	void nyDeltager();
 	void endreDeltager();
 	void skrivDeltagerListe(const char* t);

@@ -93,7 +93,7 @@ int main() {
 			}*/
 			break;
 		case 'D':	
-			deltagere->deltagerMeny();
+			deltagere->deltagermeny();
 			/*kommando = lesKommando();
 			while (kommando != 'X') {
 				switch (kommando) {

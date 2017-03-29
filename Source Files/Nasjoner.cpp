@@ -85,6 +85,8 @@ void Nasjoner::visNasjonsDeltagere() {
 		hjelpenasjon->displayDeltagere();
 		nasjonsliste->add(hjelpenasjon);
 	}
+	else
+		cout << "\nFant ikke nasjonen.";
 }
 
 void Nasjoner::visNasjonsInfo() {
@@ -97,4 +99,10 @@ void Nasjoner::visNasjonsInfo() {
 
 bool Nasjoner::inList(const char* t) {
 	return(nasjonsliste->inList(t));
+}
+
+void Nasjoner::leggTilDeltager(const char* t) {
+	Nasjon* hjelpeobjekt = (Nasjon*) nasjonsliste->remove(t);
+	hjelpeobjekt->leggTilDeltager();
+	nasjonsliste->add(hjelpeobjekt);
 }

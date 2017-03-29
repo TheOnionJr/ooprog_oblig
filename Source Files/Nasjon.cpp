@@ -30,6 +30,8 @@ Nasjon::Nasjon(char id[NASJKORTLEN]) : TextElement(id){
 
 	// Nummeret til denne kontaktpersonen:
 	kontaktNr = les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
+
+	antDeltagere = 0;
 }
 
 Nasjon::~Nasjon(){
@@ -75,4 +77,8 @@ void Nasjon::displayDeltagere() {
 void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
 	display();
 	displayDeltagere();
+}
+
+void Nasjon::leggTilDeltager() {
+	antDeltagere++;
 }
