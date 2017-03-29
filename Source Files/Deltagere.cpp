@@ -6,8 +6,9 @@
 #include "../Headers/main.h"
 #include <iostream>
 
-void Deltagere::deltagerMeny() {
+void Deltagere::deltagermeny() {
 	char kommando;
+	deltagerMeny();
 	kommando = lesKommando();
 	while (kommando != 'X') {
 		switch (kommando) {
@@ -35,12 +36,14 @@ void Deltagere::nyDeltager() {
 	char nasjonalitet[NASJKORTLEN];
 	int nummer;
 	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
-	cin.getline(nasjonalitet, (NASJKORTLEN - 1));
+	cin.getline(nasjonalitet, (NASJKORTLEN));
 	if (nasjoner->inList(nasjonalitet)) {
 		cout << "\nHvilket nummer har deltageren?\t";
 		cin >> nummer;
 		if (!deltagerliste->inList(nummer)) {
 			Deltager* hjelpeobjekt = new Deltager(nummer);
+			deltagerliste->add(hjelpeobjekt);
+			nasjoner->leggTilDeltager(nasjonalitet);
 		}
 		else
 			cout << "\nDeltager finnes allerede.";
