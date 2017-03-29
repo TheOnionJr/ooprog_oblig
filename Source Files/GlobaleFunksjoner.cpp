@@ -11,6 +11,7 @@
 #include "../Headers/Medaljer.h"
 #include "../Headers/Nasjoner.h"
 #include "../Headers/main.h"
+#include "../Headers/GlobaleFunksjoner.h"
 
 using namespace std;
 

@@ -1,4 +1,5 @@
-#pragma once
+#if !defined(main_h)
+#define main_h
 using namespace std;
 #include "Nasjoner.h"
 #include "Deltagere.h"
@@ -11,3 +12,4 @@ Deltagere* deltagere;
 Grener* grener;
 Medaljer* medaljer;
 Poeng* poeng;
+#endif
