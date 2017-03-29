@@ -13,6 +13,7 @@ public:
 	void endreDeltager();
 	void skrivDeltagerListe(const char* t);
 	void skrivDeltager();
+	void endreDeltagerMeny();
 };
 
 #endif

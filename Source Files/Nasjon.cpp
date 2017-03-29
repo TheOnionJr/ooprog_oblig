@@ -82,3 +82,7 @@ void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
 void Nasjon::leggTilDeltager() {
 	antDeltagere++;
 }
+
+void Nasjon::fjernDeltager() {
+	antDeltagere--;
+}

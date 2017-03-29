@@ -17,6 +17,7 @@ class Nasjon : public TextElement {
 		void displayAll();
 		void displayDeltagere();
 		void leggTilDeltager();
+		void fjernDeltager();
 };
 
 #endif

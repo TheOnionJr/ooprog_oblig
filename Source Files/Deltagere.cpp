@@ -51,7 +51,24 @@ void Deltagere::nyDeltager() {
 }
 
 void Deltagere::endreDeltager() {
-
+	char id[NASJKORTLEN];
+	char kommando = '0';
+	int nummer;
+	cout << "\nHva er nummeret til deltageren du vil endre på?\t";
+	cin >> nummer;
+	if (deltagerliste->inList(nummer)) {	//Om landet finnes
+		Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(nummer);
+		while (kommando != 'X') {
+			endreDeltagerMeny();			//Endringsmeny
+			kommando = lesKommando();		//Leser kommando
+			hjelpeobjekt->endre(kommando);	//UtfÃ¸rer kommando
+											//Looper til bruker skriver kommando 'X'
+		}
+		deltagerliste->add(hjelpeobjekt);
+		kommando = 'V';		//Så bruker kan velge nye ting
+	}
+	else
+		cout << "\nFant ikke deltageren.";
 }
 
 void Deltagere::skrivDeltagerListe(const char* t) {
@@ -66,4 +83,11 @@ void Deltagere::skrivDeltagerListe(const char* t) {
 	}
 	else
 		cout << "\nNasjonen har ingen deltagere.";
+}
+
+void Deltagere::endreDeltagerMeny() {
+	cout << "\nHva vil du endre på?" << endl
+		<< "Navn:			A" << endl
+		<< "Nasjonalitet:	B" << endl
+		<< "Kjønn:			C";
 }

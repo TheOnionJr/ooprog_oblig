@@ -106,3 +106,9 @@ void Nasjoner::leggTilDeltager(const char* t) {
 	hjelpeobjekt->leggTilDeltager();
 	nasjonsliste->add(hjelpeobjekt);
 }
+
+void Nasjoner::fjernDeltager(const char* t) {
+	Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(t);
+	hjelpeobjekt->fjernDeltager();
+	nasjonsliste->add(hjelpeobjekt);
+}

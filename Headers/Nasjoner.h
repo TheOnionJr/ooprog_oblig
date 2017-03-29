@@ -16,5 +16,6 @@ public:
 	void visNasjonsInfo();
 	bool inList(const char* t);
 	void leggTilDeltager(const char* t);
+	void fjernDeltager(const char* t);
 };
 #endif

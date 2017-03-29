@@ -5,6 +5,7 @@
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Deltager.h"
 #include "../Headers/Const.h"
+#include "../Headers/main.h"
 
 using namespace std;
 
@@ -27,17 +28,27 @@ Deltager::~Deltager() {
 	// Må lages
 }
 
-void Deltager::endre(int hva) { // Endrer deltagers data (ikke id)
+void Deltager::endre(char hva) { // Endrer deltagers data (ikke id)
 	char buffer[NVNLEN];
-	cout << "\nDeltagersdNavn: "; 
-	cin.ignore();
-	cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
-	dNavn = new char[strlen(buffer) + 1];	//Setter av nøyaktig så mye plass som trengs
-	strcpy(dNavn, buffer);					//Setter navnet
-	cout << "\nDeltagers kjønn(m/k): ";
-	while (kjonn != 'M' && kjonn != 'K') {	//Spør om hvilket kjønn deltageren er til gyldig valg er gjort
-		cin >> kjonn;
-		kjonn = toupper(kjonn);
+	if (hva == 'A') {
+		cout << "\nDeltagers navn: ";
+		cin.ignore();
+		cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
+		dNavn = new char[strlen(buffer) + 1];	//Setter av nøyaktig så mye plass som trengs
+		strcpy(dNavn, buffer);					//Setter navnet
+	}
+	else if (hva == 'C') {
+		cout << "\nDeltagers kjønn(m/k): ";
+		while (kjonn != 'M' && kjonn != 'K') {	//Spør om hvilket kjønn deltageren er til gyldig valg er gjort
+			cin >> kjonn;
+			kjonn = toupper(kjonn);
+		}
+	}
+	else if (hva == 'B') {
+		nasjoner->fjernDeltager(nasjonalitet);
+		cout << "\nHva er deltagerens nye nasjonalitet (forkortelse på 3 bokstaver)?\t";
+		cin.getline(nasjonalitet, (NASJKORTLEN));
+		nasjoner->leggTilDeltager(nasjonalitet);
 	}
 }
 
