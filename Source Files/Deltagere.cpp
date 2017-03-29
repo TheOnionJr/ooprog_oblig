@@ -21,7 +21,7 @@ void Deltagere::deltagerMeny() {
 			skrivDeltagerliste();
 			break;
 		case 'S':
-			skrivDeltager();
+			//skrivDeltager();
 			break;
 		default:
 			break;

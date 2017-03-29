@@ -7,9 +7,9 @@ using namespace std;
 #include "Medaljer.h"
 #include "Poeng.h"
 
-Nasjoner* nasjoner;
-Deltagere* deltagere;
-Grener* grener;
-Medaljer* medaljer;
-Poeng* poeng;
+extern Nasjoner* nasjoner;
+extern Deltagere* deltagere;
+extern Grener* grener;
+extern Medaljer* medaljer;
+extern Poeng* poeng;
 #endif

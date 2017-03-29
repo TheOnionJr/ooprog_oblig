@@ -20,7 +20,11 @@ using namespace std;
 
 
 char kommando;
-
+Nasjoner* nasjoner;
+Deltagere* deltagere;
+Grener* grener;
+Medaljer* medaljer;
+Poeng* poeng;
 
 int main() {						
 
