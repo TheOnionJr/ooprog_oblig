@@ -5,7 +5,7 @@
 class Nasjon : public TextElement {
 	private:
 		char* fulltNavn;
-		List* deltagere;
+		int antDeltagere;
 		char* kontaktNavn;
 		int kontaktNr;
 	public:

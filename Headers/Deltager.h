@@ -5,6 +5,7 @@
 class Deltager : public NumElement {
 	private:
 		char* dNavn;		// Deltagers navn
+		char* nasjonalitet;	// Deltagerens nasjonalitet
 		char kjonn;			// m/k (trigger warning)
 		
 	public:
@@ -12,5 +13,6 @@ class Deltager : public NumElement {
 		~Deltager();
 		void endre(int hva);
 		void display();
+		char* returnKortNavn();
 };
 #endif

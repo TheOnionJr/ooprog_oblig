@@ -3,6 +3,8 @@
 #include <iostream>
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Deltager.h"
+#include "../Headers/main.h"
+#include "../Headers/Deltagere.h"
 
 
 Nasjon::Nasjon(){
@@ -28,8 +30,6 @@ Nasjon::Nasjon(char id[NASJKORTLEN]) : TextElement(id){
 
 	// Nummeret til denne kontaktpersonen:
 	kontaktNr = les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
-
-	deltagere = new List(Sorted);	//Lager deltagere listen
 }
 
 Nasjon::~Nasjon(){
@@ -65,29 +65,14 @@ void Nasjon::endre(char hva) { // TRENGER CASE FOR DELTAGERE
 void Nasjon::display() {	//Skriver hoveddata om nasjonen
 	cout << "\nForkortelse: " << text;
 	cout << "Navn: " << fulltNavn;
-	cout << "Antall deltagere: " << deltagere->noOfElements();
+	cout << "Antall deltagere: " << antDeltagere;
 }
 
 void Nasjon::displayDeltagere() {
-	deltagere->displayList();
+	deltagere->skrivDeltagerListe(text);
 }
 
 void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
-	cout << "\nForkortelse: " << text;
-	cout << "\nNavn: " << fulltNavn;
-	cout << "\nKontakt: " << kontaktNavn;
-	cout << "\nKontakt nummer: " << kontaktNr;
-
-	cout << "\n\nNasjonens deltagere: ";
-	if (deltagere->noOfElements() > 0) {
-		for (int i = 0; i < deltagere->noOfElements(); i++) {
-			Deltager* hjelpeDeltager;
-			hjelpeDeltager = (Deltager*) deltagere->removeNo(i);
-			cout << "\n"; hjelpeDeltager->display();
-			deltagere->add(hjelpeDeltager);
-		}
-	}
-	else {
-		cout << "\nNasjonen har ingen deltagere.";
-	}
+	display();
+	displayDeltagere();
 }

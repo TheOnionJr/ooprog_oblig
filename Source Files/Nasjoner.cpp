@@ -8,6 +8,10 @@
 
 using namespace std;
 
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif 
+
 void Nasjoner::nasjonsmeny() {
 	char kommando;
 	nasjonerMeny();
@@ -42,9 +46,12 @@ void Nasjoner::nasjonsmeny() {
 
 void Nasjoner::nyNasjon() {
 	char id[NASJKORTLEN];
+	char* nasjkort;
 	les("\nVennligst skriv landets forkortelse: ", id, NASJKORTLEN);
-	if (!nasjonsliste->inList(id)) {	//Om landet ikke finnes
-		nasjonsliste->add(new Nasjon(id));//lager nytt land
+	nasjkort = new char[strlen(id) + 1];
+	strcpy_s(nasjkort, NASJKORTLEN, id);
+	if (!nasjonsliste->inList(nasjkort)) {	//Om landet ikke finnes
+		nasjonsliste->add(new Nasjon(nasjkort));//lager nytt land
 	}
 	else {	//Om landet finnes fra før
 		cout << "\nNasjonen eksisterer allerede.";

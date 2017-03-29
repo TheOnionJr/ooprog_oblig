@@ -20,11 +20,11 @@ using namespace std;
 
 
 char kommando;
-Nasjoner* nasjoner;
-Deltagere* deltagere;
-Grener* grener;
-Medaljer* medaljer;
-Poeng* poeng;
+Nasjoner* nasjoner = new Nasjoner();
+Deltagere* deltagere = new Deltagere();
+Grener* grener = new Grener();
+Medaljer* medaljer = new Medaljer();
+Poeng* poeng = new Poeng();
 
 int main() {						
 

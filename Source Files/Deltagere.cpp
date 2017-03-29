@@ -18,7 +18,7 @@ void Deltagere::deltagerMeny() {
 			endreDeltager();
 			break;
 		case 'A':
-			skrivDeltagerliste();
+			//skrivDeltagerliste();
 			break;
 		case 'S':
 			//skrivDeltager();
@@ -51,6 +51,16 @@ void Deltagere::endreDeltager() {
 
 }
 
-void Deltagere::skrivDeltagerliste() {
-
+void Deltagere::skrivDeltagerListe(const char* t) {
+	if (deltagerliste->noOfElements() > 0) {
+		for (int i = 1; i < deltagerliste->noOfElements(); i++) {
+			Deltager* hjelpeobjekt = (Deltager*)deltagerliste->removeNo(i);
+			if (strcmp(t, hjelpeobjekt->returnKortNavn()) == 0) {
+				hjelpeobjekt->display();
+			}
+			deltagerliste->add(hjelpeobjekt);
+		}
+	}
+	else
+		cout << "\nNasjonen har ingen deltagere.";
 }

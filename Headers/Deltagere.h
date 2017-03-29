@@ -11,7 +11,7 @@ public:
 	void deltagerMeny();
 	void nyDeltager();
 	void endreDeltager();
-	void skrivDeltagerliste();
+	void skrivDeltagerListe(const char* t);
 	void skrivDeltager();
 };
 
