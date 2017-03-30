@@ -156,6 +156,7 @@ int main() {
 				grenMeny();
 				kommando = lesKommando(); //Bruker skriver her kommando for gren-meny
 			} */
+			break;
 		case 'O':	break;
 		case 'M':	break;
 		case 'P':	break;

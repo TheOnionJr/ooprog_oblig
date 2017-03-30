@@ -9,7 +9,7 @@ class Deltager : public NumElement {
 		char kjonn;			// m/k (trigger warning)
 		
 	public:
-		Deltager(int id);
+		Deltager(int id, char* nasj);
 		~Deltager();
 		void endre(char hva);
 		void display();

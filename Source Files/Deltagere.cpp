@@ -41,7 +41,7 @@ void Deltagere::nyDeltager() {
 		cout << "\nHvilket nummer har deltageren?\t";
 		cin >> nummer;
 		if (!deltagerliste->inList(nummer)) {
-			Deltager* hjelpeobjekt = new Deltager(nummer);
+			Deltager* hjelpeobjekt = new Deltager(nummer, nasjonalitet);
 			deltagerliste->add(hjelpeobjekt);
 			nasjoner->leggTilDeltager(nasjonalitet);
 		}
@@ -73,7 +73,7 @@ void Deltagere::endreDeltager() {
 
 void Deltagere::skrivDeltagerListe(const char* t) {
 	if (deltagerliste->noOfElements() > 0) {
-		for (int i = 1; i < deltagerliste->noOfElements(); i++) {
+		for (int i = 1; i <= deltagerliste->noOfElements(); i++) {
 			Deltager* hjelpeobjekt = (Deltager*)deltagerliste->removeNo(i);
 			if (strcmp(t, hjelpeobjekt->returnKortNavn()) == 0) {
 				hjelpeobjekt->display();
