@@ -4,6 +4,7 @@
 #include "../Headers/Enumer.h"
 #include "../Headers/Nasjon.h"
 #include "../Headers/main.h"
+#include "../Headers/Ovelse.h"
 #include <iostream>
 
 using namespace std;
