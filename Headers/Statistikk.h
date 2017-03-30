@@ -3,7 +3,6 @@
 #include "Const.h"
 
 class Statistikk {
-	private:
 	protected:
 		char* nasjonsforkortelse[MAXNASJONER];
 		int sisteBruktMed;
