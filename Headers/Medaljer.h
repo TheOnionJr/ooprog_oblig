@@ -9,5 +9,6 @@ public:
 	Medaljer() {		
 	};
 	void display();
+	void displayAll();
 };
 #endif

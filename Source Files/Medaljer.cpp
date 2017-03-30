@@ -12,3 +12,8 @@ Medaljer::display() {
 			 << "\t Solv: "	  << solv				//antall solv,
 			 << "\t Bronse: " << bronse << '\n';	//antall bronse.		
 }
+
+void Medaljer::displayAll() {
+	for (int i = 1; i <= sisteBruktMed; i++) {
+		Medaljer[i].display();
+}

@@ -4,8 +4,10 @@
 class Statistikk {
 	private:
 		char* nasjonsforkortelse[200];
+		int sisteBruktMed;
 	public:
 		//Statistikk();
+		void displayMed();
 };
 
 #endif
