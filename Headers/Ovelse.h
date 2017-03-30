@@ -3,7 +3,7 @@
 #endif
 #include "ListTool2B.h"
 
-class Ovelse : public TextElement {
+class Ovelse : public NumElement {
 	private:
 		char* fulltNavn;
 		char tidspunkt[8];
@@ -14,6 +14,6 @@ class Ovelse : public TextElement {
 
 	public:
 		Ovelse();
-		Ovelse(char* id);
+		Ovelse(int id);
 		~Ovelse();
 }
