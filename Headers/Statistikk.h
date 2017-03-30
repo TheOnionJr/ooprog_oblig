@@ -1,9 +1,11 @@
 #if !defined(Statistikk_h)
 #define Statistikk_h
+#include "Const.h"
 
 class Statistikk {
 	private:
-		char* nasjonsforkortelse[200];
+	protected:
+		char* nasjonsforkortelse[MAXNASJONER];
 		int sisteBruktMed;
 	public:
 		//Statistikk();
