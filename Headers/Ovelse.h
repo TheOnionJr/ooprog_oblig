@@ -1,6 +1,5 @@
 #if !defined(Ovelse_h)
 #define Ovelse_h
-#endif
 #include "ListTool2B.h"
 
 class Ovelse : public NumElement {
@@ -16,4 +15,5 @@ class Ovelse : public NumElement {
 		Ovelse();
 		Ovelse(int id);
 		~Ovelse();
-}
+};
+#endif
