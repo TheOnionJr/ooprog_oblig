@@ -9,9 +9,10 @@
 
 using namespace std;
 
-Deltager::Deltager(int id) : NumElement(id) {	// Deltagers data skrives inn
+Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skrives inn
 	// ID legges i numElement
 	char buffer[NVNLEN];					//Mellomlagring av navn
+	nasjonalitet = nasj;
 	cout << "\nDeltagersdNavn: ";			
 	cin.ignore();							
 	cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
@@ -32,7 +33,6 @@ void Deltager::endre(char hva) { // Endrer deltagers data (ikke id)
 	char buffer[NVNLEN];
 	if (hva == 'A') {
 		cout << "\nDeltagers navn: ";
-		cin.ignore();
 		cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
 		dNavn = new char[strlen(buffer) + 1];	//Setter av nøyaktig så mye plass som trengs
 		strcpy(dNavn, buffer);					//Setter navnet
