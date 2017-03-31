@@ -21,13 +21,12 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 	cout << "\nVenligst skriv inn øvelsens fulle navn: "
 	fulltNavn = lesPrivat();
 
-	cout << "\nVenligst skriv inn øvelsens tidspunkt(TTMMSS): "
+	int ss, mm, tt;
 	do{
-		cin >> tidspunkt;
-		if((tidspunkt > 240000) || (tidspunkt <= 0)) {
-			cout << "\nUgyldig tidspunkt!";
-		}
-	}while((tidspunkt > 240000) || (tidspunkt <= 0));
+		cout << "\nSekund: ";cin ss;
+		cout << "\nMinutt: ";cin mm;
+		cout << "\nTimer: "; cin tt;
+	}while(checkTime(ss, mm, tt));
 
 	int month, day, year;
 	do{
@@ -40,15 +39,15 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 		else{
 			cout << "\nDato registrert."
 		}
-	}while(!checkDate(month, day, year));
-	makeDate(month, day, year);
+	}while(!checkDate(day, month, year));
+	colonize(day, month, year);
 }
 
 Ovelse::~Ovelse() {
 
 }
 
-bool Ovelse::checkDate(int month, int day, int year){
+bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
 	bool gyldigDato;
 	if ((month = 1) || (month = 3) || (month = 5) || (month = 7) ||
@@ -68,11 +67,6 @@ bool Ovelse::checkDate(int month, int day, int year){
     {
         maxDager = 28;
     };
-    
-    if ((year < 999) || (year > 10000))
-    {
-        gyldigDato = FALSE;
-    }
     else if ((month < 1) || (month > 12))
     {
         gyldigDato = FALSE;
@@ -86,15 +80,82 @@ bool Ovelse::checkDate(int month, int day, int year){
     return gyldigDato;
 }
 
-void Ovelse::makeDate(int month, int day, int year){
+bool Ovelse::checkTime(int ss, int mm, int tt) {
+	bool gyldigTid;
+	if((ss < 0) || (ss >= 60)) {
+		gyldigTid = FALSE;
+	}
+	else if((mm < 0) || (mm >= 60)){
+		gyldigTid = FALSE;
+	}
+	else if((tt < 0) || (tt >= 24)){
+		gyldigTid = FALSE;
+	}
+	else{
+		gyldigTid = TRUE;
+	}
+	return gyldigTid;
+}
+
+void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short medium og long
 	char buffer[2];		//Buffer
 
-	strcpy(buffer, day);		//Legger dag til buffer
-	strcpy(dato, buffer);		//DD
-	strcat(dato, ":");			//DD:
-	strcpy(buffer, month);		//Legger måned til buffer
-	strcat(dato, buffer);		//DD:MM
-	strcat(dato, ":");			//DD:MM:
-	strcpy(buffer, year);		//Legger år til buffer
-	strcat(dato, buffer);		//DD:MM:YY
+	if(day < 10) {
+		strcpy(buffer, "0");			//for å holde på formatet
+		strcat(buffer, day);
+	}
+	else{
+		strcpy(buffer, day);				//Legger sekund til buffer
+	}
+	strcpy(dato, buffer);
+	strcat(dato, ":");			//SS:
+	if(month < 10) {
+		strcpy(buffer, "0");
+		strcat(buffer, month);
+	}
+	else{
+		strcpy(buffer, month);				//Legger dag til buffer
+	}
+	strcat(dato, buffer)
+	strcat(dato, ":");			//SS:MM
+	if(year < 10) {
+		strcpy(buffer, "0");
+		strcat(buffer, year);
+	}
+	else{
+		year = year % 100;		
+		strcpy(buffer, year);
+	}
+	strcat(dato, buffer);
+}
+
+void Ovelse::makeTime(int s, int m, int t){ //
+	char buffer[2];		//Buffer
+
+	if(s < 10) {
+		strcpy(buffer, "0");			//for å holde på formatet
+		strcat(buffer, s);
+	}
+	else{
+		strcpy(buffer, s);				//Legger sekund til buffer
+	}
+	strcpy(tidspunkt, buffer);
+	strcat(tidspunkt, ":");			//SS:
+	if(m < 10) {
+		strcpy(buffer, "0");
+		strcat(buffer, m);
+	}
+	else{
+		strcat(buffer, m);				//Legger dag til buffer
+	}
+	strcat(tidspunkt, buffer);
+	strcat(tidspunkt, ":");			//SS:MM
+	if(t < 10) {
+		strcpy(buffer, "0");
+		strcat(buffer, t);
+	}
+	else{
+		strcat(buffer, t);
+	}
+	strcat(tidspunkt, buffer);
 }

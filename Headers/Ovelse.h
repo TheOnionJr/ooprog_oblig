@@ -5,7 +5,7 @@
 class Ovelse : public NumElement {
 	private:
 		char* fulltNavn;
-		int tidspunkt[6];
+		char tidspunkt[8];
 		char dato[8];
 		int antDeltagere;
 		// insert deltagere liste
@@ -16,5 +16,8 @@ class Ovelse : public NumElement {
 		Ovelse(int id);
 		~Ovelse();
 		bool checkDate(int month, int day, int year);
+		bool checkTime(int ss, int mm, int tt);
+		void makeDate(int month, int day, int year);
+		void makeTime(int ss, int mm, int tt);
 };
 #endif
