@@ -18,29 +18,29 @@ Ovelse::Ovelse(){
 }
 
 Ovelse::Ovelse(int id) : NumElement(id) {
-	cout << "\nVenligst skriv inn øvelsens fulle navn: "
+	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
 	fulltNavn = lesPrivat();
 
 	int ss, mm, tt;
 	do{
-		cout << "\nSekund: ";cin ss;
-		cout << "\nMinutt: ";cin mm;
-		cout << "\nTimer: "; cin tt;
+		cout << "\nSekund: ";cin >> ss;
+		cout << "\nMinutt: ";cin >> mm;
+		cout << "\nTimer: "; cin >> tt;
 	}while(checkTime(ss, mm, tt));
 
 	int month, day, year;
 	do{
 		cout << "\nDag: ";cin >> day;
-		cout << "\nMåned: "; cin month;
-		cout << "\nÅr: "; cin year;
-		if(!checkDate(month, day, year));{
+		cout << "\nMåned: "; cin >> month;
+		cout << "\nÅr: "; cin >> year;
+		if(!checkDate(month, day, year)) {
 			cout << "\nUgyldig dato!";
 		}
-		else{
-			cout << "\nDato registrert."
+		else {
+			cout << "\nDato registrert.";
 		}
-	}while(!checkDate(day, month, year));
-	colonize(day, month, year);
+	} while (!checkDate(day, month, year));
+	makeDate(day, month, year);
 }
 
 Ovelse::~Ovelse() {
@@ -66,16 +66,16 @@ bool Ovelse::checkDate(int day, int month, int year){
     else if ((month = 2) && (year % 4 != 0))
     {
         maxDager = 28;
-    };
+    }
     else if ((month < 1) || (month > 12))
     {
-        gyldigDato = FALSE;
+        gyldigDato = 0;
     }
     else if((day > maxDager) || (day < 0)){
-    	gyldigDato = FALSE;
+    	gyldigDato = 0;
     }
     else{
-    	gyldigDato = TRUE;
+    	gyldigDato = 1;
     }
     return gyldigDato;
 }
@@ -83,16 +83,16 @@ bool Ovelse::checkDate(int day, int month, int year){
 bool Ovelse::checkTime(int ss, int mm, int tt) {
 	bool gyldigTid;
 	if((ss < 0) || (ss >= 60)) {
-		gyldigTid = FALSE;
+		gyldigTid = 0;
 	}
 	else if((mm < 0) || (mm >= 60)){
-		gyldigTid = FALSE;
+		gyldigTid = 0;
 	}
 	else if((tt < 0) || (tt >= 24)){
-		gyldigTid = FALSE;
+		gyldigTid = 0;
 	}
 	else{
-		gyldigTid = TRUE;
+		gyldigTid = 1;
 	}
 	return gyldigTid;
 }
@@ -116,7 +116,7 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 	else{
 		strcpy(buffer, month);				//Legger dag til buffer
 	}
-	strcat(dato, buffer)
+	strcat(dato, buffer);
 	strcat(dato, ":");			//SS:MM
 	if(year < 10) {
 		strcpy(buffer, "0");
