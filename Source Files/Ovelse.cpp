@@ -41,7 +41,7 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 			cout << "\nDato registrert."
 		}
 	}while(!checkDate(month, day, year));
-	strcpy(dato, makeDate(month, day, year));
+	makeDate(month, day, year);
 }
 
 Ovelse::~Ovelse() {
