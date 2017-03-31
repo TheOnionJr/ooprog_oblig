@@ -6,6 +6,8 @@
 #include "../Headers/main.h"
 #include "../Headers/Ovelse.h"
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -23,24 +25,32 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 
 	int ss, mm, tt;
 	do{
-		cout << "\nSekund: ";cin >> ss;
-		cout << "\nMinutt: ";cin >> mm;
-		cout << "\nTimer: "; cin >> tt;
+		cout << "\nSekund: ";cin >> ss;		//Leser sekund
+		cout << "\nMinutt: ";cin >> mm;		//Leser minutt
+		cout << "\nTimer: "; cin >> tt;		//Leser timer
+		if(!checkTime(ss, mm, tt)){
+			cout << "\nUgyldig tidspunkt!";
+		}
+		else {
+			makeTime(ss, mm, tt);
+			cout << "\nTidspunktet er registrert.";
+		}
 	}while(checkTime(ss, mm, tt));
 
 	int month, day, year;
 	do{
-		cout << "\nDag: ";cin >> day;
-		cout << "\nMåned: "; cin >> month;
-		cout << "\nÅr: "; cin >> year;
-		if(!checkDate(month, day, year)) {
-			cout << "\nUgyldig dato!";
+		cout << "\nDag: ";cin >> day;		//Leser hvilken dag
+		cout << "\nMåned: "; cin >> month;	//Leser hvilken måned
+		cout << "\nÅr: "; cin >> year;		//Leser hvilket år
+		year = year % 100;				   //year ikke overskriver 2 karakterer
+		if(!checkDate(month, day, year)) {	//Sjekker om datoen er gyldig
+			cout << "\nUgyldig dato!";		//Gir beskjed om ugyldig
 		}
 		else {
-			cout << "\nDato registrert.";
+			makeDate(day, month, year);		//Lagrer datoen om den er gyldig
+			cout << "\nDato registrert.";	//Gir beskjed om registrert
 		}
 	} while (!checkDate(day, month, year));
-	makeDate(day, month, year);
 }
 
 Ovelse::~Ovelse() {
@@ -49,50 +59,44 @@ Ovelse::~Ovelse() {
 
 bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
-	bool gyldigDato;
+	bool gyldigDato = true;
 	if ((month = 1) || (month = 3) || (month = 5) || (month = 7) ||
-        (month = 8) || (month = 10) || (month = 12))
+        (month = 8) || (month = 10) || (month = 12)) //Om måneden har 31 dager
     {
         maxDager = 31;
     }
-    else if ((month = 4) || (month = 6) || (month = 9) || (month = 11))
-    {
+    else if ((month = 4) || (month = 6) || (month = 9) || (month = 11))	
+    {												//Eller 30 dager
         maxDager = 30;
     }
-    else if ((month = 2) && (year % 4 == 0))
+    else if ((month = 2) && (year % 4 == 0))		//Eller februar og skuddår
     {
     	maxDager = 29;
     }
-    else if ((month = 2) && (year % 4 != 0))
+    else if ((month = 2) && (year % 4 != 0))		//Eller ikke
     {
         maxDager = 28;
     }
-    else if ((month < 1) || (month > 12))
+    else if ((month < 1) || (month > 12))			//Om måneden finnes
     {
-        gyldigDato = 0;
+        gyldigDato = false;
     }
-    else if((day > maxDager) || (day < 0)){
-    	gyldigDato = 0;
-    }
-    else{
-    	gyldigDato = 1;
+    else if((day > maxDager) || (day < 0)){			//Om ikke for mange dager
+    	gyldigDato = false;
     }
     return gyldigDato;
 }
 
 bool Ovelse::checkTime(int ss, int mm, int tt) {
-	bool gyldigTid;
-	if((ss < 0) || (ss >= 60)) {
-		gyldigTid = 0;
+	bool gyldigTid = true;
+	if((ss < 0) || (ss >= 60)) {					//Om !innenfor ett minutt
+		gyldigTid = false;
 	}
-	else if((mm < 0) || (mm >= 60)){
-		gyldigTid = 0;
+	else if((mm < 0) || (mm >= 60)){				//Om !innnenfor en time
+		gyldigTid = false;
 	}
-	else if((tt < 0) || (tt >= 24)){
-		gyldigTid = 0;
-	}
-	else{
-		gyldigTid = 1;
+	else if((tt < 0) || (tt >= 24)){				//Om !innenfor ett døgn
+		gyldigTid = false;
 	}
 	return gyldigTid;
 }
@@ -101,61 +105,60 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 	char buffer[2];		//Buffer
 
 	if(day < 10) {
-		strcpy(buffer, "0");			//for å holde på formatet
-		strcat(buffer, day);
+		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
+		itoa(day, buffer, 10);			//int -> char
 	}
-	else{
-		strcpy(buffer, day);				//Legger sekund til buffer
+	else if(s > 10){
+		itoa(day, buffer, 10);			//Legger sekund til buffer
 	}
-	strcpy(dato, buffer);
-	strcat(dato, ":");			//SS:
+	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(month < 10) {
-		strcpy(buffer, "0");
-		strcat(buffer, month);
+		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
+		itoa(month, buffer, 10);			//int -> char
 	}
 	else{
-		strcpy(buffer, month);				//Legger dag til buffer
+		itoa(month, buffer, 10);		//Legger til minutt i buffer
 	}
-	strcat(dato, buffer);
-	strcat(dato, ":");			//SS:MM
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(year < 10) {
-		strcpy(buffer, "0");
-		strcat(buffer, year);
+		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
+		itoa(t, buffer, 10);			//int -> char
 	}
 	else{
-		year = year % 100;		
-		strcpy(buffer, year);
+		itoa(t, buffer, 10);			//Legger til timer i buffer
 	}
-	strcat(dato, buffer);
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
 }
 
 void Ovelse::makeTime(int s, int m, int t){ //
 	char buffer[2];		//Buffer
 
 	if(s < 10) {
-		strcpy(buffer, "0");			//for å holde på formatet
-		strcat(buffer, s);
+		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
+		itoa(s, buffer, 10);			//int -> char
 	}
-	else{
-		strcpy(buffer, s);				//Legger sekund til buffer
+	else if(s > 10){
+		itoa(s, buffer, 10);			//Legger sekund til buffer
 	}
-	strcpy(tidspunkt, buffer);
-	strcat(tidspunkt, ":");			//SS:
+	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(m < 10) {
-		strcpy(buffer, "0");
-		strcat(buffer, m);
+		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
+		itoa(m, buffer, 10);			//int -> char
 	}
 	else{
-		strcat(buffer, m);				//Legger dag til buffer
+		itoa(m, buffer, 10);			//Legger til minutt i buffer
 	}
-	strcat(tidspunkt, buffer);
-	strcat(tidspunkt, ":");			//SS:MM
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(t < 10) {
-		strcpy(buffer, "0");
-		strcat(buffer, t);
+		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
+		itoa(t, buffer, 10);			//int -> char
 	}
 	else{
-		strcat(buffer, t);
+		itoa(t, buffer, 10);			//Legger til timer i buffer
 	}
-	strcat(tidspunkt, buffer);
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
 }
