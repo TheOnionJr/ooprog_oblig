@@ -87,18 +87,14 @@ bool Ovelse::checkDate(int month, int day, int year){
 }
 
 void Ovelse::makeDate(int month, int day, int year){
-	char date[8]; 		//DD:MM:YY
 	char buffer[2];		//Buffer
 
 	strcpy(buffer, day);		//Legger dag til buffer
-	strcpy(date, buffer);		//DD
-	strcat(date, ":");			//DD:
+	strcpy(dato, buffer);		//DD
+	strcat(dato, ":");			//DD:
 	strcpy(buffer, month);		//Legger måned til buffer
-	strcat(date, buffer);		//DD:MM
-	strcat(date, ":");			//DD:MM:
+	strcat(dato, buffer);		//DD:MM
+	strcat(dato, ":");			//DD:MM:
 	strcpy(buffer, year);		//Legger år til buffer
-	strcat(date, buffer);		//DD:MM:YY
-
-	return date;
-
+	strcat(dato, buffer);		//DD:MM:YY
 }
