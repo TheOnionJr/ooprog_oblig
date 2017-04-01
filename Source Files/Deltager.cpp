@@ -12,7 +12,7 @@ using namespace std;
 Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skrives inn
 	// ID legges i numElement
 	char buffer[NVNLEN];					//Mellomlagring av navn
-	nasjonalitet = nasj;
+	strcpy(nasjonalitet, nasj);
 	cout << "\nDeltagersdNavn: ";			
 	cin.ignore();							
 	cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
@@ -39,10 +39,10 @@ void Deltager::endre(char hva) { // Endrer deltagers data (ikke id)
 	}
 	else if (hva == 'C') {
 		cout << "\nDeltagers kjønn(m/k): ";
-		while (kjonn != 'M' && kjonn != 'K') {	//Spør om hvilket kjønn deltageren er til gyldig valg er gjort
+		do {									//Spør om hvilket kjønn deltageren er til gyldig valg er gjort
 			cin >> kjonn;
 			kjonn = toupper(kjonn);
-		}
+		} while (kjonn != 'M' && kjonn != 'K');
 	}
 	else if (hva == 'B') {
 		char nasj[NASJKORTLEN];
