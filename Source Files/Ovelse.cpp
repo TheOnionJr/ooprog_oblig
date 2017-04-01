@@ -108,7 +108,7 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
 		itoa(day, buffer, 10);			//int -> char
 	}
-	else if(day >= 10){
+	else{
 		itoa(day, buffer, 10);			//Legger sekund til buffer
 	}
 	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
@@ -139,7 +139,7 @@ void Ovelse::makeTime(int s, int m, int t){ //
 		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
 		itoa(s, buffer, 10);			//int -> char
 	}
-	else if(s > 10){
+	else{
 		itoa(s, buffer, 10);			//Legger sekund til buffer
 	}
 	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
