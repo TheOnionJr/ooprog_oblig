@@ -45,10 +45,13 @@ void Deltager::endre(char hva) { // Endrer deltagers data (ikke id)
 		}
 	}
 	else if (hva == 'B') {
-		nasjoner->fjernDeltager(nasjonalitet);
+		char nasj[NASJKORTLEN];
+		strcpy(nasj, nasjonalitet);
+		nasjoner->fjernDeltager(nasj);
 		cout << "\nHva er deltagerens nye nasjonalitet (forkortelse på 3 bokstaver)?\t";
 		cin.getline(nasjonalitet, (NASJKORTLEN));
-		nasjoner->leggTilDeltager(nasjonalitet);
+		strcpy(nasj, nasjonalitet);
+		nasjoner->leggTilDeltager(nasj);
 	}
 }
 

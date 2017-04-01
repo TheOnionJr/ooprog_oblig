@@ -57,7 +57,7 @@ Ovelse::~Ovelse() {
 
 }
 
-Ovelse::endre() {
+void Ovelse::endre() {
 	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
 	fulltNavn = lesPrivat();
 
