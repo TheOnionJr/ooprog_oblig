@@ -5,6 +5,7 @@
 #include "../Headers/Nasjon.h"
 #include "../Headers/main.h"
 #include "../Headers/Ovelse.h"
+#include "../Headers/ListTool2B.h"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,6 +56,44 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 
 Ovelse::~Ovelse() {
 
+}
+
+void Ovelse::endre() {
+	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
+	fulltNavn = lesPrivat();
+
+	int ss, mm, tt;
+	do{
+		cout << "\nSekund: ";cin >> ss;		//Leser sekund
+		cout << "\nMinutt: ";cin >> mm;		//Leser minutt
+		cout << "\nTimer: "; cin >> tt;		//Leser timer
+		if(!checkTime(ss, mm, tt)){
+			cout << "\nUgyldig tidspunkt!";
+		}
+		else {
+			makeTime(ss, mm, tt);
+			cout << "\nTidspunktet er registrert.";
+		}
+	}while(checkTime(ss, mm, tt));
+
+	int month, day, year;
+	do{
+		cout << "\nDag: ";cin >> day;		//Leser hvilken dag
+		cout << "\nMåned: "; cin >> month;	//Leser hvilken måned
+		cout << "\nÅr: "; cin >> year;		//Leser hvilket år
+		year = year % 100;				   //year ikke overskriver 2 karakterer
+		if(!checkDate(month, day, year)) {	//Sjekker om datoen er gyldig
+			cout << "\nUgyldig dato!";		//Gir beskjed om ugyldig
+		}
+		else {
+			makeDate(day, month, year);		//Lagrer datoen om den er gyldig
+			cout << "\nDato registrert.";	//Gir beskjed om registrert
+		}
+	} while (!checkDate(day, month, year));
+}
+
+int Ovelse::returnID(){
+	return number;
 }
 
 bool Ovelse::checkDate(int day, int month, int year){

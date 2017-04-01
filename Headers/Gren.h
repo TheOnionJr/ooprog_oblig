@@ -2,19 +2,23 @@
 #define gren_h
 #include "enumer.h"
 #include "ListTool2B.h"
+#include "Ovelse.h"
 
 using namespace std;
 
 class Gren : public TextElement {
 	private:
 		poengSystem pt;
-		int ovelseNr[20];
+		Ovelse* ovelser[20];
 		int sisteBrukt;
 	public:
-		Gren();
+		//Gren();
 		Gren(char tempNvn[NVNLEN]);
-		~Gren();
+		//~Gren();
 		void endre();
 		void display();
+		void nyOvelse();
+		void endreOvelse();
+		int finnesAllerede(int id);
 };
 #endif

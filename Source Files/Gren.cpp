@@ -2,6 +2,7 @@
 #include "../Headers/Const.h"
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Gren.h"
+#include "../Headers/Ovelse.h"
 #include <iostream>
 using namespace std;
 
@@ -59,15 +60,54 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	} while (svar != 'T' && svar != 'P' && svar != 'X');
 }
 
-Gren::~Gren(){							//Destructor
-	delete[]  ovelseNr, sisteBrukt, pt;	//Sletter alle data.
-}
+/*Gren::~Gren(){							//Destructor
+	delete[]  pt;						//Sletter alle data.
+	delete sisteBrukt;
+}*/
 
 										//Funksjon for å endre data i en gren.
 void Gren :: endre() {
 	cout << "\nSkriv inn nytt navn.\n";
 	text = lesPrivat();
 	cout << "\nNavnet er endret, det er nå " << text << ".";
+}
+
+void Gren::nyOvelse() {
+	int id;
+	id = les("\nSkriv inn øvelsens ID: ", DIVMIN, DIVMAX);
+	if(finnesAllerede(id) != 0) {
+		cout << "\nDenne øvelsen finnes allerede!";
+	}
+	else if(sisteBrukt > 20) {
+		cout << "\nDet er ikke plass til flere øvelser!";
+	}
+	else {
+		ovelser[sisteBrukt++] = new Ovelse(id);
+	}
+}
+
+void Gren::endreOvelse(){
+	bool fant = false;
+	int id;
+	id = les("\nSrkiv inn øvelsens ID: ", DIVMIN, DIVMAX);
+	for(int i = 0; i <= DIVMAX; i++){
+		if(ovelser[i] && ovelser[i]->returnID() == id){
+			ovelser[i]->endre();
+			fant = true;
+		}
+	}
+	if(fant = false){
+		cout << "\nFant ikke ovelsen.";
+	}
+}
+
+int Gren::finnesAllerede(int id) {
+	for(int i = 0; i <= sisteBrukt; i++) {
+		if(ovelser[i] && ovelser[i]->returnID() == id){
+			return i;
+		}
+	}
+	return 0;
 }
 
 										//Skriver alle data om en gren.
