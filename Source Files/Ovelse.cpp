@@ -77,7 +77,7 @@ bool Ovelse::checkDate(int day, int month, int year){
     {
         maxDager = 28;
     }
-    else if ((month < 1) || (month > 12))			//Om måneden finnes
+    if ((month < 1) || (month > 12))			//Om måneden finnes
     {
         gyldigDato = false;
     }
@@ -105,60 +105,60 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 	char buffer[2];		//Buffer
 
 	if(day < 10) {
-		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
-		itoa(day, buffer, 10);			//int -> char
+		strcpy_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
+		_itoa_s(day, buffer, 2, 10);			//int -> char
 	}
 	else if(day >= 10){
-		itoa(day, buffer, 10);			//Legger sekund til buffer
+		_itoa_s(day, buffer, 2, 10);			//Legger sekund til buffer
 	}
-	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
-	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
+	strcpy_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
 	if(month < 10) {
-		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
-		itoa(month, buffer, 10);			//int -> char
+		strcat_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
+		_itoa_s(month, buffer, 2, 10);			//int -> char
 	}
 	else{
-		itoa(month, buffer, 10);		//Legger til minutt i buffer
+		_itoa_s(month, buffer, 2, 10);		//Legger til minutt i buffer
 	}
-	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
-	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
+	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
 	if(year < 10) {
-		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
-		itoa(year, buffer, 10);			//int -> char
+		strcat_s(tidspunkt, 8, "0");			//Legger til '0' for å holde formatet
+		_itoa_s(year, buffer, 2, 10);			//int -> char
 	}
 	else{
-		itoa(year, buffer, 10);			//Legger til timer i buffer
+		_itoa_s(year, buffer, 2, 10);			//Legger til timer i buffer
 	}
-	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
 }
 
 void Ovelse::makeTime(int s, int m, int t){ //
 	char buffer[2];		//Buffer
 
 	if(s < 10) {
-		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
-		itoa(s, buffer, 10);			//int -> char
+		strcpy_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
+		_itoa_s(s, buffer, 2, 10);			//int -> char
 	}
 	else if(s > 10){
-		itoa(s, buffer, 10);			//Legger sekund til buffer
+		_itoa_s(s, buffer, 2, 10);			//Legger sekund til buffer
 	}
-	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
-	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
+	strcpy_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
 	if(m < 10) {
-		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
-		itoa(m, buffer, 10);			//int -> char
+		strcat_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
+		_itoa_s(m, buffer, 2, 10);			//int -> char
 	}
 	else{
-		itoa(m, buffer, 10);			//Legger til minutt i buffer
+		_itoa_s(m, buffer, 2, 10);			//Legger til minutt i buffer
 	}
-	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
-	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
+	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
 	if(t < 10) {
-		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
-		itoa(t, buffer, 10);			//int -> char
+		strcat_s(tidspunkt, 8, "0");			//Legger til '0' for å holde formatet
+		_itoa_s(t, buffer, 2, 10);			//int -> char
 	}
 	else{
-		itoa(t, buffer, 10);			//Legger til timer i buffer
+		_itoa_s(t, buffer, 2, 10);			//Legger til timer i buffer
 	}
-	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
 }
