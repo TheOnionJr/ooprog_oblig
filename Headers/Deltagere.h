@@ -12,6 +12,7 @@ public:
 	void nyDeltager();
 	void endreDeltager();
 	void skrivDeltagerListe(const char* t);
+	void skrivDeltagerliste();
 	void skrivDeltager();
 	void endreDeltagerMeny();
 };

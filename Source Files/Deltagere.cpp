@@ -19,7 +19,7 @@ void Deltagere::deltagermeny() {
 			endreDeltager();
 			break;
 		case 'A':
-			//skrivDeltagerliste();
+			skrivDeltagerliste();
 			break;
 		case 'S':
 			skrivDeltager();
@@ -101,4 +101,8 @@ void Deltagere::skrivDeltager() {
 		hjelpeobjekt->display();
 		deltagerliste->add(hjelpeobjekt);
 	}
+}
+
+void Deltagere::skrivDeltagerliste() {
+	deltagerliste->displayList();
 }
