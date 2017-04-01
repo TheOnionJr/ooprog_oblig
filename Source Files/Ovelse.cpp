@@ -88,7 +88,11 @@ void Ovelse::endre() {
 			makeDate(day, month, year);		//Lagrer datoen om den er gyldig
 			cout << "\nDato registrert.";	//Gir beskjed om registrert
 		}
-	} while (!checkDate(day, month, year));
+	} while (!checkDate(day, month, year));>
+}
+
+int Ovelse::returnID(){
+	return number;
 }
 
 bool Ovelse::checkDate(int day, int month, int year){
