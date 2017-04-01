@@ -5,6 +5,7 @@
 #include "../Headers/Nasjon.h"
 #include "../Headers/main.h"
 #include "../Headers/Ovelse.h"
+#include "../Headers/ListTool2B.h"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -88,7 +89,7 @@ void Ovelse::endre() {
 			makeDate(day, month, year);		//Lagrer datoen om den er gyldig
 			cout << "\nDato registrert.";	//Gir beskjed om registrert
 		}
-	} while (!checkDate(day, month, year));>
+	} while (!checkDate(day, month, year));
 }
 
 int Ovelse::returnID(){

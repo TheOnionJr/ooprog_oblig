@@ -2,6 +2,7 @@
 #include "../Headers/Const.h"
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Gren.h"
+#include "../Headers/Ovelse.h"
 #include <iostream>
 using namespace std;
 
@@ -59,9 +60,10 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	} while (svar != 'T' && svar != 'P' && svar != 'X');
 }
 
-Gren::~Gren(){							//Destructor
-	delete[]  ovelseNr, sisteBrukt, pt;	//Sletter alle data.
-}
+/*Gren::~Gren(){							//Destructor
+	delete[]  pt;						//Sletter alle data.
+	delete sisteBrukt;
+}*/
 
 										//Funksjon for å endre data i en gren.
 void Gren :: endre() {
@@ -71,6 +73,7 @@ void Gren :: endre() {
 }
 
 void Gren::nyOvelse() {
+	int id;
 	id = les("\nSkriv inn øvelsens ID: ", DIVMIN, DIVMAX);
 	if(finnesAllerede(id) != 0) {
 		cout << "\nDenne øvelsen finnes allerede!";
@@ -79,13 +82,13 @@ void Gren::nyOvelse() {
 		cout << "\nDet er ikke plass til flere øvelser!";
 	}
 	else {
-		Ovelser[sisteBrukt] = new Ovelse(id);
+		ovelser[sisteBrukt] = new Ovelse(id);
 	}
 }
 
-void Gren::finnesAllerede() {
+int Gren::finnesAllerede(int id) {
 	for(int i = 0; i <= sisteBrukt; i++) {
-		if(Ovelser[i] && Ovelser[i]->returnId == id){
+		if(ovelser[i] && ovelser[i]->returnID() == id){
 			return i;
 		}
 	}

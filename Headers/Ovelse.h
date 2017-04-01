@@ -20,5 +20,6 @@ class Ovelse : public NumElement {
 		bool checkTime(int ss, int mm, int tt);
 		void makeDate(int month, int day, int year);
 		void makeTime(int ss, int mm, int tt);
+		int returnID();
 };
 #endif
