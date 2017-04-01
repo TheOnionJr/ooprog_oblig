@@ -22,7 +22,7 @@ void Deltagere::deltagermeny() {
 			//skrivDeltagerliste();
 			break;
 		case 'S':
-			//skrivDeltager();
+			skrivDeltager();
 			break;
 		default:
 			break;
@@ -51,7 +51,6 @@ void Deltagere::nyDeltager() {
 }
 
 void Deltagere::endreDeltager() {
-	char id[NASJKORTLEN];
 	char kommando = '0';
 	int nummer;
 	cout << "\nHva er nummeret til deltageren du vil endre på?\t";
@@ -89,5 +88,17 @@ void Deltagere::endreDeltagerMeny() {
 	cout << "\nHva vil du endre på?" << endl
 		<< "Navn:			A" << endl
 		<< "Nasjonalitet:	B" << endl
-		<< "Kjønn:			C";
+		<< "Kjønn:			C" << endl
+		<< "Gå tilbake:		X";
+}
+
+void Deltagere::skrivDeltager() {
+	int id;
+	cout << "\nHva er nummeret til deltageren du vil se info om?: ";
+	cin >> id;
+	if (deltagerliste->inList(id)) {
+		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);
+		hjelpeobjekt->display();
+		deltagerliste->add(hjelpeobjekt);
+	}
 }
