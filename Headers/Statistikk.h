@@ -4,8 +4,7 @@
 
 class Statistikk {
 	protected:
-		char* nasjonsforkortelse[MAXNASJONER];
-		int sisteBruktMed;
+		char nasjKort[MAXNASJONER][NASJKORTLEN];
 	public:
 		//Statistikk();
 		void displayMed();

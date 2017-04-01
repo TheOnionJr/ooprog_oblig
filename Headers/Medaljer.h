@@ -4,11 +4,16 @@
 
 class Medaljer : public Statistikk{
 private:
-	int medaljer;			//Medaljer G,S,B, 010101. <- Eks på en av hver.
+	int medaljer[MAXNASJONER];			//Medaljer G,S,B, 010101. <- Eks på en av hver.
+	int sisteBrukt;
 public:
-	Medaljer() {		
-	};
-	void display();
+	Medaljer() {	};
+	void display(int i);
 	void displayAll();
+	void leggTilMedaljer();
+	void trekkFraMedaljer();
+	void sorter();
+	void lesArrayFraFil();
+	void skrivArrayTilFil();
 };
 #endif

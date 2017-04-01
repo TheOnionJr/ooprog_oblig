@@ -5,9 +5,12 @@
 class Poeng : public Statistikk {
 private:
 	int poeng;			//Antall poeng en nasjon har.
+	int sisteBrukt;
 public:
-	Poeng() {
-		
-	}
+	Poeng() { };
+	void leggTilPoeng();
+	void trekkFraPoeng();
+	void lesArrayFraFil();
+	void skrivArrayTilFil();
 };
 #endif
