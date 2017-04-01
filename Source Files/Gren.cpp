@@ -82,7 +82,22 @@ void Gren::nyOvelse() {
 		cout << "\nDet er ikke plass til flere øvelser!";
 	}
 	else {
-		ovelser[sisteBrukt] = new Ovelse(id);
+		ovelser[sisteBrukt++] = new Ovelse(id);
+	}
+}
+
+void Gren::endreOvelse(){
+	bool fant = false;
+	int id;
+	id = les("\nSrkiv inn øvelsens ID: ", DIVMIN, DIVMAX);
+	for(int i = 0; i <= DIVMAX; i++){
+		if(ovelser[i] && ovelser[i]->returnID() == id){
+			ovelser[i]->endre();
+			fant = true;
+		}
+	}
+	if(fant = false){
+		cout << "\nFant ikke ovelsen.";
 	}
 }
 
