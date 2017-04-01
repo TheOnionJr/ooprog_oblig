@@ -70,6 +70,28 @@ void Gren :: endre() {
 	cout << "\nNavnet er endret, det er nå " << text << ".";
 }
 
+void Gren::nyOvelse() {
+	id = les("\nSkriv inn øvelsens ID: ", DIVMIN, DIVMAX);
+	if(finnesAllerede(id) != 0) {
+		cout << "\nDenne øvelsen finnes allerede!";
+	}
+	else if(sisteBrukt > 20) {
+		cout << "\nDet er ikke plass til flere øvelser!";
+	}
+	else {
+		Ovelser[sisteBrukt] = new Ovelse(id);
+	}
+}
+
+void Gren::finnesAllerede() {
+	for(int i = 0; i <= sisteBrukt; i++) {
+		if(Ovelser[i] && Ovelser[i]->returnId == id){
+			return i;
+		}
+	}
+	return 0;
+}
+
 										//Skriver alle data om en gren.
 void Gren::display() {
 	cout << "\nNavn: \t" << text;		//Navn.

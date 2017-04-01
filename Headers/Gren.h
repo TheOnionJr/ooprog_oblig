@@ -8,7 +8,7 @@ using namespace std;
 class Gren : public TextElement {
 	private:
 		poengSystem pt;
-		int ovelseNr[20];
+		int Ovelser[20];
 		int sisteBrukt;
 	public:
 		Gren();
@@ -16,5 +16,6 @@ class Gren : public TextElement {
 		~Gren();
 		void endre();
 		void display();
+		void nyOvelse();
 };
 #endif
