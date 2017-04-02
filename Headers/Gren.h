@@ -21,5 +21,6 @@ class Gren : public TextElement {
 		void endreOvelse();
 		void displayOvelser();
 		int finnesAllerede(int id);
+		poengSystem returnPt();
 };
 #endif

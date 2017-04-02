@@ -133,3 +133,6 @@ void Gren::display() {
 	cout << "\nAntall øvelser: " << sisteBrukt;		//Antall øvelser i grenen.
 }
 
+poengSystem Gren::returnPt() {
+	return(pt);
+}
