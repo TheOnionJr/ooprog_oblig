@@ -22,7 +22,6 @@ class Ovelse : public NumElement {
 		void makeDate(int month, int day, int year);
 		void makeTime(int ss, int mm, int tt);
 		int returnID();
-		void ovelseMeny();
 		void nyDeltager();
 };
 #endif

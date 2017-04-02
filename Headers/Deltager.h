@@ -15,5 +15,6 @@ class Deltager : public NumElement {
 		void endre(char hva);
 		void display();
 		char* returnKortNavn();
+		char* returnNavn();
 };
 #endif

@@ -44,7 +44,9 @@ int main() {
 		case 'G':						//Valg for Gren.
 			grener->grenerMeny();
 			break;
-		case 'O':	break;
+		case 'O':	
+			grener->ovelsemeny();
+			break;
 		case 'M':						//Skriver ut hele medaljestatistikken.
 			medaljer->displayAll();
 			break;

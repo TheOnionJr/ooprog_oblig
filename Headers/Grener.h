@@ -14,6 +14,8 @@ public:
 	void endreGren();
 	void skrivHovedGren();
 	void skrivGren();
+	void ovelsemeny();
+	void ovelseMeny();
 };
 
 #endif

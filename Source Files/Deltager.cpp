@@ -65,3 +65,7 @@ void Deltager::display() {	//Skriver ut deltagers data
 char* Deltager::returnKortNavn() {
 	return (nasjonalitet);
 }
+
+char* Deltager::returnNavn() {
+	return (dNavn);
+}
