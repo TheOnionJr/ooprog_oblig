@@ -8,7 +8,7 @@ class Ovelse : public NumElement {
 		char tidspunkt[8];
 		char dato[8];
 		int antDeltagere;
-		// insert deltagere liste
+		int deltagere[MAXDELTAGERE] = {0};
 		// insert resultater liste
 
 	public:

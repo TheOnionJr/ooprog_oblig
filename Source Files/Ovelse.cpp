@@ -105,6 +105,21 @@ void Ovelse::display() {
 	// Display deltagere
 	// Display resultater
 }
+
+void Ovelse::nyDeltager(){
+	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
+	bool done = false;
+	for(int i = 0; i <= MAXDELTAGERE; i++) {
+		if((deltagere[i] == 0) && (done == false) && (Deltagere->finnesDeldager(id))) {
+			deltagere[i] = id;
+			done == true;
+		}
+		else if(!Deltagere->finnesDeldager(id)){
+			cout << "\nDenne deltageren finnes ikke!";
+			done == true;
+		}
+	}
+}
 bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
 	bool gyldigDato = true;
