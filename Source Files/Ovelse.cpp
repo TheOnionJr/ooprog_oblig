@@ -96,6 +96,15 @@ int Ovelse::returnID(){
 	return number;
 }
 
+void Ovelse::display() {
+	cout << "\nID: " << number;
+	cout << "\nFullt Navn: " << fulltNavn;
+	cout << "\nTidspunkt: " << tidspunkt;
+	cout << "\nDato: " << dato;
+	cout << "Antall Deltagere: " << antDeltagere;
+	// Display deltagere
+	// Display resultater
+}
 bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
 	bool gyldigDato = true;

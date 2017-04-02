@@ -101,6 +101,12 @@ void Gren::endreOvelse(){
 	}
 }
 
+void Gren::displayOvelser() {
+	for(int i = 0; i <= sisteBrukt; i++) {
+		ovelser[i]->display();
+	}
+}
+
 int Gren::finnesAllerede(int id) {
 	for(int i = 0; i <= sisteBrukt; i++) {
 		if(ovelser[i] && ovelser[i]->returnID() == id){
