@@ -113,3 +113,7 @@ void Grener::ovelseMeny() {
 Gren* Grener::plsHelp(char* id) {
 	return((Gren*)grenliste->remove(id));
 }
+
+void Grener::thankYou(Gren* hjelpeobjekt) {
+	grenliste->add(hjelpeobjekt);
+}

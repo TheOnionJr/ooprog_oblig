@@ -18,6 +18,7 @@ public:
 	void endreDeltagerMeny();
 	bool finnesDeltager(int id);
 	Deltager* plsHelp(int id);
+	void thankYou(Deltager* hjelpeobjekt);
 };
 
 #endif

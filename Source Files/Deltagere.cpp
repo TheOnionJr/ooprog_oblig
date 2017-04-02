@@ -119,3 +119,7 @@ Deltager* Deltagere::plsHelp(int id) {
 	Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(id);
 	return (hjelpeobjekt);
 }
+
+void Deltagere::thankYou(Deltager* hjelpeobjekt) {
+	deltagerliste->add(hjelpeobjekt);
+}
