@@ -25,5 +25,7 @@ class Ovelse : public NumElement {
 		void ovelseMeny();
 		void nyDeltager();
 		char* filnavn(int id);
+		void finnes(int id);
+		void nyResList(int id);
 };
 #endif

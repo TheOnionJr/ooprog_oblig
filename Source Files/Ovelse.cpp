@@ -12,8 +12,10 @@
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Deltagere.h"
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
+
 
 using namespace std;
  
@@ -294,4 +296,15 @@ char* Ovelse::filnavn(int id) {
 	strcat(filnavn, buffer);
 	strcat(filnavn, ".RES");
 	return(filnavn);
+}
+
+void Ovelse::finnes(int id) {
+	int tempSiste;
+	ifstream innfil(filnavn(id));
+
+	innfil >> tempSiste;
+	if ((innfil && (tempSiste <= 0)) || !innfil)
+		nyResList(id);
+	else
+		cout << "Lista finnes allerede!";
 }
