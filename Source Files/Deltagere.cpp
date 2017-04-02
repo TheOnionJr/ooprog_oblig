@@ -91,6 +91,14 @@ void Deltagere::endreDeltagerMeny() {
 		<< "Kjønn:\t\t\tC" << endl
 		<< "Gå tilbake:\t\tX";
 }
+bool Deltagere::finnesDeltager(int id){
+	if(deltagerliste->inList(id)){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
 
 void Deltagere::skrivDeltager() {
 	int id;

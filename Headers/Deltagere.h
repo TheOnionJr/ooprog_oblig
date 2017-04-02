@@ -15,6 +15,7 @@ public:
 	void skrivDeltagerliste();
 	void skrivDeltager();
 	void endreDeltagerMeny();
+	bool finnesDeltager(int id);
 };
 
 #endif
