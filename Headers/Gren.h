@@ -19,6 +19,7 @@ class Gren : public TextElement {
 		void display();
 		void nyOvelse();
 		void endreOvelse();
+		void displayOvelser();
 		int finnesAllerede(int id);
 };
 #endif
