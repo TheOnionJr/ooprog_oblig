@@ -6,6 +6,7 @@
 #include "../Headers/main.h"
 #include "../Headers/Ovelse.h"
 #include "../Headers/ListTool2B.h"
+#include "../Headers/Deltagere.h"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
