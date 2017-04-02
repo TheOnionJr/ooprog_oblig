@@ -110,7 +110,7 @@ void Ovelse::nyDeltager(){
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool done = false;
 	for(int i = 0; i <= MAXDELTAGERE; i++) {
-		if((deltagere[i] == 0) && (done == false) && (Deltagere->finnesDeldager(id))) {
+		if((deltagere[i] == 0) && (done == false) && (Deltagere->finnesDeltager(id))) {
 			deltagere[i] = id;
 			done == true;
 		}
