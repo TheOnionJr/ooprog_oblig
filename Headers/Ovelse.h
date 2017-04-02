@@ -10,6 +10,12 @@ class Ovelse : public NumElement {
 		int antDeltagere;
 		int startListe[MAXDELTAGERE] = {0};
 		// insert resultater liste
+		char* grenNavn;
+		int sisteBrukt;
+		poengSystem ps;
+		int score[MAXDELTAGERE];
+		char deltNavn[MAXDELTAGERE][NVNLEN];
+		char nasj[MAXDELTAGERE][NASJKORTLEN];
 
 	public:
 		Ovelse();
@@ -26,5 +32,6 @@ class Ovelse : public NumElement {
 		char* filnavn(int id);
 		void finnes(int id);
 		void nyResList(int id);
+		void hentPs();
 };
 #endif

@@ -11,6 +11,9 @@
 #include "../Headers/Ovelse.h"
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Deltagere.h"
+#include "../Headers/Deltager.h"
+#include "../Headers/Gren.h"
+#include "../Headers/Grener.h"
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -262,28 +265,40 @@ void Ovelse::makeTime(int s, int m, int t){ //
 }
 
 
-char* Ovelse::filnavn(int id) {
-	char filnavn[FILLEN];
-	char buffer[FILLEN];
+char* Ovelse::filnavn(int id) {				//Funksjon som genererer filnavn for en ovelse.
+	char filnavn[FILLEN];					//Filnavnet.
+	char buffer[FILLEN];					//Mellomlagring.
 
-	_itoa(id, buffer, 10);
-	strcpy(filnavn, "OV");
-	strcat(filnavn, buffer);
-	strcat(filnavn, ".RES");
-	return(filnavn);
+	_itoa(id, buffer, 10);					//Skriver om inten id til char-mellomlagringa.
+	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
+	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
+	strcat(filnavn, ".RES");				//appender '.RES' på slutten av filnavn.
+	return(filnavn);						//Returnerer filnavn.
 }
 
-void Ovelse::finnes(int id) {
-	int tempSiste;
-	ifstream innfil(filnavn(id));
+void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
+	int tempSiste;							//Mellomlagring.
+	ifstream innfil(filnavn(id));			//Henter inn riktig fil.
 
-	innfil >> tempSiste;
-	if ((innfil && (tempSiste <= 0)) || !innfil)
-		nyResList(id);
+	innfil >> tempSiste;					//Leser inn sistebrukt.
+	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
+		nyResList(id);						//Kaller funksjon for å lage ny liste.
 	else
-		cout << "Lista finnes allerede!";
+		cout << "Lista finnes allerede!";	//Feilmelding hvis lista finnes og er i bruk.
 }
 
-void Ovelse::nyResList(int id) {
+void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
+	hentPs();
 
+	for (int i = 0; i >= antDeltagere; i++) {
+		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);
+		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());
+		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());
+	}
+}
+
+void Ovelse::hentPs() {
+	Gren* hjelpeGren = grener->plsHelp(grenNavn);		//grenNavn = navnet som blir hentet inn når man kaller 'O'.
+	ps = (hjelpeGren->returnPt());
+	grener->thankYou(hjelpeGren);
 }
