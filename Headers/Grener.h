@@ -1,6 +1,7 @@
 #if !defined(Grener_h)
 #define Grener_h
 #include "ListTool2B.h"
+#include "Gren.h"
 
 class Grener {
 private:
@@ -16,6 +17,7 @@ public:
 	void skrivGren();
 	void ovelsemeny();
 	void ovelseMeny();
+	Gren* plsHelp(char* id);
 };
 
 #endif

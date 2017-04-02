@@ -1,6 +1,7 @@
 #if !defined(Deltagere_h)
 #define Deltagere_h
 #include "ListTool2B.h"
+#include "Deltager.h"
 class Deltagere {
 private:
 	List* deltagerliste;
@@ -16,6 +17,7 @@ public:
 	void skrivDeltager();
 	void endreDeltagerMeny();
 	bool finnesDeltager(int id);
+	Deltager* plsHelp(int id);
 };
 
 #endif

@@ -109,3 +109,7 @@ void Grener::ovelseMeny() {
 	cout << "\n\tR: Resusltatlister.";
 	cout << "\n\tX: Gå tilbake.";
 }
+
+Gren* Grener::plsHelp(char* id) {
+	return((Gren*)grenliste->remove(id));
+}

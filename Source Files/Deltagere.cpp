@@ -114,3 +114,8 @@ void Deltagere::skrivDeltager() {
 void Deltagere::skrivDeltagerliste() {
 	deltagerliste->displayList();
 }
+
+Deltager* Deltagere::plsHelp(int id) {
+	Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(id);
+	return (hjelpeobjekt);
+}
