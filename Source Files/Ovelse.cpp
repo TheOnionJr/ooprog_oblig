@@ -111,13 +111,13 @@ void Ovelse::nyDeltager(){
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool done = false;
 	for(int i = 0; i <= MAXDELTAGERE; i++) {
-		if((startListe[i] == 0) && (done == false) && (deltagere.finnesDeltager(id))) {
+		if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
 			startListe[i] = id;
-			done == true;
+			done = true;
 		}
-		else if(!deltagere.finnesDeltager(id)){
+		else if(!deltagere->finnesDeltager(id)){
 			cout << "\nDenne deltageren finnes ikke!";
-			done == true;
+			done = true;
 		}
 	}
 }
