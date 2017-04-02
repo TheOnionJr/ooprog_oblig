@@ -210,3 +210,29 @@ void Ovelse::makeTime(int s, int m, int t){ //
 	}
 	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
 }
+
+void Ovelse::ovelseMeny() {
+	char kommando;
+	deltagerMeny();
+	kommando = lesKommando();
+	while (kommando != 'X') {
+		switch (kommando) {
+		case 'N':
+			break;
+		case 'E':
+			break;
+		case 'F':
+			break;
+		case 'A':
+			break;
+		case 'L':
+			break;
+		case 'R':
+			break;
+		default:
+			break;
+		}
+		deltagerMeny();
+		kommando = lesKommando();
+	}
+}

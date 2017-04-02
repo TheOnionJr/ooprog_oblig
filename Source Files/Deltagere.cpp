@@ -86,10 +86,10 @@ void Deltagere::skrivDeltagerListe(const char* t) {
 
 void Deltagere::endreDeltagerMeny() {
 	cout << "\nHva vil du endre på?" << endl
-		<< "Navn:			A" << endl
-		<< "Nasjonalitet:	B" << endl
-		<< "Kjønn:			C" << endl
-		<< "Gå tilbake:		X";
+		<< "Navn:\t\t\tA" << endl
+		<< "Nasjonalitet:\tB" << endl
+		<< "Kjønn:\t\t\tC" << endl
+		<< "Gå tilbake:\t\tX";
 }
 
 void Deltagere::skrivDeltager() {
