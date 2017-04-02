@@ -110,15 +110,46 @@ void Ovelse::display() {
 
 void Ovelse::nyDeltager(){
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
-	bool done = false;
-	for(int i = 0; i <= MAXDELTAGERE; i++) {
-		if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
-			startListe[i] = id;
-			done = true;
+	bool finnes = false;
+	for(int i = 0; i <= MAXDELTAGERE; i++) {	// Sjekker om listen er tom
+		if(startListe[i] != 0) {
+			finnes = true;						//Om listen ikke er tom
 		}
-		else if(!deltagere->finnesDeltager(id)){
-			cout << "\nDenne deltageren finnes ikke!";
-			done = true;
+	}
+	if(finnes == false) {						//Lager ny liste
+		char kommando;
+		int i = 0;
+		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
+			cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
+			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
+				cout << "\nDenne deltageren finnes ikke!";
+				cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
+			}
+			if(startListe[MAXDELTAGERE] != 0){				// Om listen er full
+				cout << "\nListen er nå full";
+				kommando = 'Y';
+			}
+			else{											//Om listen ikke er full
+				i++;
+				cout << "\nVil du avslutte? (y/n): ";
+				kommando = lesKommando();
+			}
+			antDeltagere++;
+		}
+		finnes = true;
+	}
+	else{
+		bool done = false;
+		for(int i = 0; i <= MAXDELTAGERE; i++) {
+			if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
+				startListe[i] = id;
+				done = true;
+				antDeltagere++;
+			}
+			else if(!deltagere->finnesDeltager(id)){
+				cout << "\nDenne deltageren finnes ikke!";
+				done = true;
+			}
 		}
 	}
 }
