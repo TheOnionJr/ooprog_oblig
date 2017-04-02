@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "../Headers/Nasjoner.h"
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Const.h"
@@ -12,10 +16,7 @@
 #include <stdlib.h>
 
 using namespace std;
-
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
-#endif 
+ 
 
 Ovelse::Ovelse(){
 	cout << "\n\nERROR THIS IS NOT POSSIBLE";
@@ -251,4 +252,15 @@ void Ovelse::ovelseMeny() {
 		deltagerMeny();
 		kommando = lesKommando();
 	}
+}
+
+char* Ovelse::filnavn(int id) {
+	char filnavn[FILLEN];
+	char buffer[FILLEN];
+
+	_itoa(id, buffer, 10);
+	strcpy(filnavn, "OV");
+	strcat(filnavn, buffer);
+	strcat(filnavn, ".RES");
+	return(filnavn);
 }
