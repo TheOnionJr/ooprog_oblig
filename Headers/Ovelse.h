@@ -23,5 +23,8 @@ class Ovelse : public NumElement {
 		void makeTime(int ss, int mm, int tt);
 		int returnID();
 		void nyDeltager();
+		char* filnavn(int id);
+		void finnes(int id);
+		void nyResList(int id);
 };
 #endif

@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "../Headers/Nasjoner.h"
 #include "../Headers/GlobaleFunksjoner.h"
 #include "../Headers/Const.h"
@@ -8,14 +12,13 @@
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Deltagere.h"
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 
-using namespace std;
 
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
-#endif 
+using namespace std;
+ 
 
 Ovelse::Ovelse(){
 	cout << "\n\nERROR THIS IS NOT POSSIBLE";
@@ -109,15 +112,46 @@ void Ovelse::display() {
 
 void Ovelse::nyDeltager(){
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
-	bool done = false;
-	for(int i = 0; i <= MAXDELTAGERE; i++) {
-		if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
-			startListe[i] = id;
-			done = true;
+	bool finnes = false;
+	for(int i = 0; i <= MAXDELTAGERE; i++) {	// Sjekker om listen er tom
+		if(startListe[i] != 0) {
+			finnes = true;						//Om listen ikke er tom
 		}
-		else if(!deltagere->finnesDeltager(id)){
-			cout << "\nDenne deltageren finnes ikke!";
-			done = true;
+	}
+	if(finnes == false) {						//Lager ny liste
+		char kommando = 'N';
+		int i = 0;
+		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
+			cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
+			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
+				cout << "\nDenne deltageren finnes ikke!";
+				cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
+			}
+			if(startListe[MAXDELTAGERE] != 0){				// Om listen er full
+				cout << "\nListen er nå full";
+				kommando = 'Y';
+			}
+			else{											//Om listen ikke er full
+				i++;
+				cout << "\nVil du avslutte? (y/n): ";
+				kommando = lesKommando();
+			}
+			antDeltagere++;
+		}
+		finnes = true;
+	}
+	else{
+		bool done = false;
+		for(int i = 0; i <= MAXDELTAGERE; i++) {
+			if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
+				startListe[i] = id;
+				done = true;
+				antDeltagere++;
+			}
+			else if(!deltagere->finnesDeltager(id)){
+				cout << "\nDenne deltageren finnes ikke!";
+				done = true;
+			}
 		}
 	}
 }
@@ -225,4 +259,31 @@ void Ovelse::makeTime(int s, int m, int t){ //
 		_itoa_s(t, buffer, 2, 10);			//Legger til timer i buffer
 	}
 	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+}
+
+
+char* Ovelse::filnavn(int id) {
+	char filnavn[FILLEN];
+	char buffer[FILLEN];
+
+	_itoa(id, buffer, 10);
+	strcpy(filnavn, "OV");
+	strcat(filnavn, buffer);
+	strcat(filnavn, ".RES");
+	return(filnavn);
+}
+
+void Ovelse::finnes(int id) {
+	int tempSiste;
+	ifstream innfil(filnavn(id));
+
+	innfil >> tempSiste;
+	if ((innfil && (tempSiste <= 0)) || !innfil)
+		nyResList(id);
+	else
+		cout << "Lista finnes allerede!";
+}
+
+void Ovelse::nyResList(int id) {
+
 }
