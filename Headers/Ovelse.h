@@ -23,5 +23,6 @@ class Ovelse : public NumElement {
 		void makeTime(int ss, int mm, int tt);
 		int returnID();
 		void ovelseMeny();
+		void nyDeltager();
 };
 #endif
