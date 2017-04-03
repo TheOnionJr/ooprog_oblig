@@ -109,7 +109,6 @@ void Ovelse::display() {
 	cout << "\nTidspunkt: " << tidspunkt;
 	cout << "\nDato: " << dato;
 	cout << "Antall Deltagere: " << antDeltagere;
-	// Display deltagere
 	// Display resultater
 }
 
@@ -126,7 +125,7 @@ void Ovelse::nyDeltager(){
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
 			cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
-			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
+			while(!deltagere->finnesDeltager(startListe[i]) && startListe[MAXDELTAGERE] != 0){	//Om deltageren ikke finnes
 				cout << "\nDenne deltageren finnes ikke!";
 				cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
 			}
@@ -136,10 +135,10 @@ void Ovelse::nyDeltager(){
 			}
 			else{											//Om listen ikke er full
 				i++;
+				antDeltagere++;
 				cout << "\nVil du avslutte? (y/n): ";
 				kommando = lesKommando();
 			}
-			antDeltagere++;
 		}
 		//Skrives så til fil
 		finnes = true;
@@ -150,8 +149,9 @@ void Ovelse::nyDeltager(){
 }
 
 void Ovelse::endreListe() {
+	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool done = false;
-	if(!resultatliste){
+	if(!score){
 		for(int i = 0; i <= MAXDELTAGERE; i++) {
 			if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
 				startListe[i] = id;
@@ -168,6 +168,7 @@ void Ovelse::endreListe() {
 		cout << "\nDet finnes allerede en resultatliste. Det er ikke mulig å endre på deltagerlisten!";
 	}
 }
+
 bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
 	bool gyldigDato = true;
