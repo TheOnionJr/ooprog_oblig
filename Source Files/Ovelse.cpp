@@ -304,8 +304,54 @@ void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
 		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);
 		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());
 		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());
+
+		switch(ps) {
+			case(poengH):
+				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] <<  " ? (x) ";
+				cin >> score[i];
+				break;
+			case(poengK): 
+				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] << " ? (x): ";
+				cin >> score[i];
+				break;
+			case(tidTi):
+				cout << "\nHvilken tid fikk " << deltNavn[i]
+					 << " fra " << nasj[i] << "? (på formen mmsst): ";
+				cin >> score[i];
+				break;
+			case(tidHu):
+				cout << "\nHvilken tid fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] << "? (på formen mmssth): ";
+				cin >> score[i];
+				break;
+			case(tidTu):
+				cout << "\nHvilken tid fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] << "? (på formen mmsstht): ";
+				cin >> score[i];
+				break;
+		}
+		sisteBrukt++;
+		sorter();
+		deltagere->thankYou(hjelpeObjekt);
 	}
 }
+
+void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
+	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
+		if (score[i] >= score[i - 1]) {					//Sjekker om i-1 er større.
+			char temp[NASJKORTLEN];						//Mellomlagring nasjonsforkortelse.
+			char tempNvn[NVNLEN];						//Mellomlagring navn.
+			int tempi;									//Mellomlagring score.b
+
+			strcpy(temp, deltNavn[i]); strcpy(tempNvn, nasj[i]); tempi = score[i];						//Kopierer i inn i mellomlagring.
+			strcpy(deltNavn[i], deltNavn[i - 1]); strcpy(nasj[i], nasj[i - 1]); score[i] = score[i - 1];	//Setter i til i-1.
+			strcpy(deltNavn[i - 1], temp); strcpy(nasj[i-1], temp); score[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
+		}
+	}
+}
+
 
 void Ovelse::hentPs() {
 	Gren* hjelpeGren = grener->plsHelp(grenNavn);		//grenNavn = navnet som blir hentet inn når man kaller 'O'.

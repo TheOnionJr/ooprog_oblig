@@ -34,5 +34,6 @@ class Ovelse : public NumElement {
 		void finnes(int id);
 		void nyResList(int id);
 		void hentPs();
+		void sorter();
 };
 #endif
