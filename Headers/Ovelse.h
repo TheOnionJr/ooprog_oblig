@@ -8,7 +8,7 @@ class Ovelse : public NumElement {
 		char tidspunkt[8];
 		char dato[8];
 		int antDeltagere;
-		int startListe[MAXDELTAGERE] = {0};
+		int startListe[MAXDELTAGERE];
 		// insert resultater liste
 		char* grenNavn;
 		int sisteBrukt;
