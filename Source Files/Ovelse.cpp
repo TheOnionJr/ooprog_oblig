@@ -328,43 +328,43 @@ void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
 }
 
 void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
-	hentPs();
+	hentPs();								//Kaller funksjon som henter inn enumen 'ps'.
 
-	for (int i = 0; i >= antDeltagere; i++) {
-		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);
-		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());
-		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());
+	for (int i = 0; i >= antDeltagere; i++) {	//Teller gjennom antall deltagere.
+		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);	//Lager hjelpeobjekt.
+		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());			//Henter ut nasjonaliteten til deltager nr i.
+		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());			//Henter ut navnet til deltager i.
 
-		switch(ps) {
-			case(poengH):
+		switch(ps) {							//Switch etter hvilken enum som er i bruk.
+			case(poengH):						//Poengtype: hopp. Form: x.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] <<  " ? (x) ";
-				cin >> score[i];
+					 << " fra " << nasj[i] <<  " ? (x) ";				//Spør hvor mange poeng deltager fra land fikk.
+				cin >> score[i];										//Leser inn poeng.
 				break;
-			case(poengK): 
+			case(poengK):						//Poengtype: kunstløp. Form: xx.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] << " ? (x): ";
-				cin >> score[i];
+					 << " fra " << nasj[i] << " ? (x): ";				//Spør hvor mange poeng deltager fra land fikk.
+				cin >> score[i];										//Leser inn poeng.
 				break;
-			case(tidTi):
-				cout << "\nHvilken tid fikk " << deltNavn[i]
-					 << " fra " << nasj[i] << "? (på formen mmsst): ";
-				cin >> score[i];
+			case(tidTi):						//Tid med tideler.
+				cout << "\nHvilken tid fikk " << deltNavn[i]			
+					 << " fra " << nasj[i] << "? (på formen mmsst): ";	//Spør hvilken tid deltager fra land fikk.
+				cin >> score[i];										//Leser inn tid.
 				break;
-			case(tidHu):
+			case(tidHu):						//Tid med hundredeler.
+				cout << "\nHvilken tid fikk " << deltNavn[i]			
+					 << " fra " << nasj[i] << "? (på formen mmssth): ";	//Spør hvilken tid deltager fra land fikk.
+				cin >> score[i];										//Leser inn tid.
+				break;
+			case(tidTu):						//Tid med tusendeler.
 				cout << "\nHvilken tid fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] << "? (på formen mmssth): ";
-				cin >> score[i];
-				break;
-			case(tidTu):
-				cout << "\nHvilken tid fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] << "? (på formen mmsstht): ";
-				cin >> score[i];
+					 << " fra " << nasj[i] << "? (på formen mmsstht): ";//Spør hvilken tid deltager fra land fikk.
+				cin >> score[i];										//Leser inn tid.
 				break;
 		}
-		sisteBrukt++;
-		sorter();
-		deltagere->thankYou(hjelpeObjekt);
+		sisteBrukt++;								//Teller opp sisteBrukt.
+		sorter();									//Sorterer array.
+		deltagere->thankYou(hjelpeObjekt);			//Legger tilbake hjelpeobjektet i deltagerlista.
 	}
 }
 
@@ -382,35 +382,35 @@ void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter 
 	}
 }
 
-void Ovelse::skrivResTilFil() {
-	ofstream utfil(filRES);
+void Ovelse::skrivResTilFil() {						//Funksjon som skriver resultatlista til fil.
+	ofstream utfil(filRES);							//Finner filen.
 
-	if (utfil) {
-		utfil << sisteBrukt;
-		for (int i = 0; i >= sisteBrukt; i++) {
-			utfil << nasj[i] << '\n';
-			utfil << score[i] << '\n';
-			utfil << deltNavn[i] << "\n\n";
+	if (utfil) {									//Sjekker om filen finnes/blir opprettet.
+		utfil << sisteBrukt;						//Skriver sisteBrukt til starten av filen.
+		for (int i = 0; i >= sisteBrukt; i++) {		//Teller gjennom antall entries i filen.
+			utfil << nasj[i] << '\n';					//Skriver nasjon.
+			utfil << score[i] << '\n';					//Skriver score.
+			utfil << deltNavn[i] << "\n\n";				//Skriver deltagernavnet. + hopper over en linje.
 		}
 	}
 }
 
-void Ovelse::lesResFraFil() {
-	ifstream innfil(filRES);
+void Ovelse::lesResFraFil() {						//Leser resultatliste fra fil.
+	ifstream innfil(filRES);						//Finner filen.
 
-	if (innfil) {
-		innfil >> sisteBrukt; innfil.ignore();
-		for (int i = 0; i >= sisteBrukt; i++) {
-			innfil.getline(nasj[i], NASJKORTLEN + 1);
-			innfil >> score[i]; innfil.ignore();
-			innfil.getline(deltNavn[i], NVNLEN + 1);
-			innfil.ignore();
+	if (innfil) {									//Hvis filen finnes...
+		innfil >> sisteBrukt; innfil.ignore();			//Leser inn sisteBrukt og hopper til neste linje.
+		for (int i = 0; i >= sisteBrukt; i++) {		//Teller gjennom alle entries i filen.
+			innfil.getline(nasj[i], NASJKORTLEN + 1);	//Leser inn nasjonen.
+			innfil >> score[i]; innfil.ignore();		//Leser inn score.
+			innfil.getline(deltNavn[i], NVNLEN + 1);	//Leser inn deltagernavnet.
+			innfil.ignore();							//Ignorerer en linje.
 		}
 	}
 }
 
 
-void Ovelse::hentPs() {
+void Ovelse::hentPs() {								//Henter enumen ps.
 	Gren* hjelpeGren = grener->plsHelp(grenNavn);		//grenNavn = navnet som blir hentet inn når man kaller 'O'.
 	ps = (hjelpeGren->returnPt());
 	grener->thankYou(hjelpeGren);
