@@ -120,7 +120,7 @@ void Ovelse::nyDeltager(){
 			finnes = true;						//Om listen ikke er tom
 		}
 	}
-	if(finnes == false) {						//Lager ny liste
+	if(!startListe) {						//Lager ny liste
 		char kommando = 'N';
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
@@ -129,7 +129,7 @@ void Ovelse::nyDeltager(){
 				cout << "\nDenne deltageren finnes ikke!";
 				cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
 			}
-			if(startListe[MAXDELTAGERE] != 0){				// Om listen er full
+			if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
 				cout << "\nListen er nå full";
 				kommando = 'Y';
 			}
@@ -140,8 +140,10 @@ void Ovelse::nyDeltager(){
 				kommando = lesKommando();
 			}
 		}
-		//Skrives så til fil
-		finnes = true;
+		ofstream utfil(filnavnSTA(number));
+		for(int i = 0; i < antDeltagere; ){
+			utfil << startListe[i] << "\n";					//Skriver ID til fil
+		}
 	}
 	else{
 		cout << "\nDet finnes allerede en startliste!";
@@ -166,6 +168,22 @@ void Ovelse::endreListe() {
 	}
 	else{
 		cout << "\nDet finnes allerede en resultatliste. Det er ikke mulig å endre på deltagerlisten!";
+	}
+}
+
+void Ovelse::lesInnStartListe() {
+	ifstream innfil(filnavnSTA(number));
+	if(innfil){
+		for(int i = 0; i <=antDeltagere; i++){
+			innfil >> startListe[i];
+		}
+	}
+}
+
+void Ovelse::skrivStartListe() {
+	lesInnStartListe();
+	for(int i = 0; i <= antDeltagere; i++){
+		deltagere->skrivForOvelse(startListe[i]);
 	}
 }
 
@@ -276,7 +294,18 @@ void Ovelse::makeTime(int s, int m, int t){ //
 }
 
 
-char* Ovelse::filnavn(int id) {				//Funksjon som genererer filnavn for en ovelse.
+char* Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ovelse.
+	char filnavn[FILLEN];					//Filnavnet.
+	char buffer[FILLEN];					//Mellomlagring.
+
+	_itoa(id, buffer, 10);					//Skriver om inten id til char-mellomlagringa.
+	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
+	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
+	strcat(filnavn, ".STA");				//appender '.RES' på slutten av filnavn.
+	return(filnavn);						//Returnerer filnavn.
+}
+
+char* Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ovelse.
 	char filnavn[FILLEN];					//Filnavnet.
 	char buffer[FILLEN];					//Mellomlagring.
 
@@ -289,7 +318,7 @@ char* Ovelse::filnavn(int id) {				//Funksjon som genererer filnavn for en ovels
 
 void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
 	int tempSiste;							//Mellomlagring.
-	ifstream innfil(filnavn(id));			//Henter inn riktig fil.
+	ifstream innfil(filnavnRES(id));			//Henter inn riktig fil.
 
 	innfil >> tempSiste;					//Leser inn sistebrukt.
 	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
@@ -305,8 +334,54 @@ void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
 		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);
 		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());
 		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());
+
+		switch(ps) {
+			case(poengH):
+				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] <<  " ? (x) ";
+				cin >> score[i];
+				break;
+			case(poengK): 
+				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] << " ? (x): ";
+				cin >> score[i];
+				break;
+			case(tidTi):
+				cout << "\nHvilken tid fikk " << deltNavn[i]
+					 << " fra " << nasj[i] << "? (på formen mmsst): ";
+				cin >> score[i];
+				break;
+			case(tidHu):
+				cout << "\nHvilken tid fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] << "? (på formen mmssth): ";
+				cin >> score[i];
+				break;
+			case(tidTu):
+				cout << "\nHvilken tid fikk " << deltNavn[i] 
+					 << " fra " << nasj[i] << "? (på formen mmsstht): ";
+				cin >> score[i];
+				break;
+		}
+		sisteBrukt++;
+		sorter();
+		deltagere->thankYou(hjelpeObjekt);
 	}
 }
+
+void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
+	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
+		if (score[i] >= score[i - 1]) {					//Sjekker om i-1 er større.
+			char temp[NASJKORTLEN];						//Mellomlagring nasjonsforkortelse.
+			char tempNvn[NVNLEN];						//Mellomlagring navn.
+			int tempi;									//Mellomlagring score.b
+
+			strcpy(temp, deltNavn[i]); strcpy(tempNvn, nasj[i]); tempi = score[i];						//Kopierer i inn i mellomlagring.
+			strcpy(deltNavn[i], deltNavn[i - 1]); strcpy(nasj[i], nasj[i - 1]); score[i] = score[i - 1];	//Setter i til i-1.
+			strcpy(deltNavn[i - 1], temp); strcpy(nasj[i-1], temp); score[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
+		}
+	}
+}
+
 
 void Ovelse::hentPs() {
 	Gren* hjelpeGren = grener->plsHelp(grenNavn);		//grenNavn = navnet som blir hentet inn når man kaller 'O'.

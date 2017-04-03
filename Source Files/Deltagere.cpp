@@ -112,6 +112,14 @@ void Deltagere::skrivDeltager() {
 	}
 }
 
+void Deltagere::skrivForOvelse(int id) {
+	if (deltagerliste->inList(id)) {
+		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);
+		hjelpeobjekt->ovelseDisplay();
+		deltagerliste->add(hjelpeobjekt);
+	}
+}
+
 void Deltagere::skrivDeltagerliste() {
 	deltagerliste->displayList();
 }

@@ -67,6 +67,10 @@ void Deltager::display() {	//Skriver ut deltagers data
 	cout << "\nKjonn: " << kjonn;
 }
 
+void Deltager::ovelseDisplay() {
+	cout << "\nNavn: " << dnavn;
+	cout << "\nNasjonalitet: " << nasjonalitet;
+}
 char* Deltager::returnKortNavn() {
 	return (nasjonalitet);
 }

@@ -8,8 +8,8 @@ class Ovelse : public NumElement {
 		char tidspunkt[8];
 		char dato[8];
 		int antDeltagere;
-		int startListe[MAXDELTAGERE] = {0};
-		// insert resultater liste
+		int startListe[MAXDELTAGERE];
+		char fil[FILLEN];
 		char* grenNavn;
 		int sisteBrukt;
 		poengSystem ps;
@@ -30,9 +30,15 @@ class Ovelse : public NumElement {
 		int returnID();
 		void nyDeltager();
 		void endreListe();
-		char* filnavn(int id);
+		void lesInnStartListe();
+		void skrivStartListe();
+		char* filnavnRES(int id);
+		char* filnavnSTA(int id);
 		void finnes(int id);
 		void nyResList(int id);
 		void hentPs();
+		void sorter();	
+		void lesResFraFil();
+		void skrivResTilFil();
 };
 #endif
