@@ -348,27 +348,27 @@ void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
 			case(poengH):						//Poengtype: hopp. Form: x.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
 					 << " fra " << nasj[i] <<  " ? (x) ";				//Spør hvor mange poeng deltager fra land fikk.
-				cin >> score[i];										//Leser inn poeng.
+				score[i] = les(" ", 0, 99); 							//Leser inn poeng.
 				break;
 			case(poengK):						//Poengtype: kunstløp. Form: xx.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
 					 << " fra " << nasj[i] << " ? (x): ";				//Spør hvor mange poeng deltager fra land fikk.
-				cin >> score[i];										//Leser inn poeng.
+				score[i] = les("", 0, 99);										//Leser inn poeng.
 				break;
 			case(tidTi):						//Tid med tideler.
 				cout << "\nHvilken tid fikk " << deltNavn[i]			
 					 << " fra " << nasj[i] << "? (på formen mmsst): ";	//Spør hvilken tid deltager fra land fikk.
-				cin >> score[i];										//Leser inn tid.
+				score[i] = les("",0,59599);								//Leser inn tid.
 				break;
 			case(tidHu):						//Tid med hundredeler.
 				cout << "\nHvilken tid fikk " << deltNavn[i]			
 					 << " fra " << nasj[i] << "? (på formen mmssth): ";	//Spør hvilken tid deltager fra land fikk.
-				cin >> score[i];										//Leser inn tid.
+				score[i] = les("",0,595999);							//Leser inn tid.
 				break;
 			case(tidTu):						//Tid med tusendeler.
 				cout << "\nHvilken tid fikk " << deltNavn[i] 
 					 << " fra " << nasj[i] << "? (på formen mmsstht): ";//Spør hvilken tid deltager fra land fikk.
-				cin >> score[i];										//Leser inn tid.
+				score[i] = les("",0,5959999);							//Leser inn tid.
 				break;
 		}
 		sisteBrukt++;								//Teller opp sisteBrukt.
