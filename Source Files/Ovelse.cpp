@@ -141,10 +141,17 @@ void Ovelse::nyDeltager(){
 			}
 			antDeltagere++;
 		}
+		//Skrives så til fil
 		finnes = true;
 	}
 	else{
-		bool done = false;
+		cout << "\nDet finnes allerede en startliste!";
+	}
+}
+
+void Ovelse::endreListe() {
+	bool done = false;
+	if(!resultatliste){
 		for(int i = 0; i <= MAXDELTAGERE; i++) {
 			if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
 				startListe[i] = id;
@@ -156,6 +163,9 @@ void Ovelse::nyDeltager(){
 				done = true;
 			}
 		}
+	}
+	else{
+		cout << "\nDet finnes allerede en resultatliste. Det er ikke mulig å endre på deltagerlisten!";
 	}
 }
 bool Ovelse::checkDate(int day, int month, int year){
