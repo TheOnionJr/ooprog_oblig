@@ -33,9 +33,9 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 
 	int ss, mm, tt;
 	do{
-		cout << "\nSekund: ";cin >> ss;		//Leser sekund
-		cout << "\nMinutt: ";cin >> mm;		//Leser minutt
-		cout << "\nTimer: "; cin >> tt;		//Leser timer
+		ss = les("\nSekund: ",0,60);		//Leser sekund
+		mm = les("\nMinutt: ",0,60);		//Leser minutt
+		tt = les("\nTimer: ",0,24); 		//Leser timer
 		if(!checkTime(ss, mm, tt)){
 			cout << "\nUgyldig tidspunkt!";
 		}
@@ -47,9 +47,9 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 
 	int month, day, year;
 	do{
-		cout << "\nDag: ";cin >> day;		//Leser hvilken dag
-		cout << "\nMåned: "; cin >> month;	//Leser hvilken måned
-		cout << "\nÅr: "; cin >> year;		//Leser hvilket år
+		day = les("\nDag: ", 1,31);		    //Leser hvilken dag
+		month = les("\nMåned: ",1,12);		//Leser hvilken måned
+		year = les("\nÅr: ",0,9999);		//Leser hvilket år
 		year = year % 100;				   //year ikke overskriver 2 karakterer
 		if(!checkDate(month, day, year)) {	//Sjekker om datoen er gyldig
 			cout << "\nUgyldig dato!";		//Gir beskjed om ugyldig
@@ -71,9 +71,9 @@ void Ovelse::endre() {
 
 	int ss, mm, tt;
 	do{
-		cout << "\nSekund: ";cin >> ss;		//Leser sekund
-		cout << "\nMinutt: ";cin >> mm;		//Leser minutt
-		cout << "\nTimer: "; cin >> tt;		//Leser timer
+		ss = les("\nSekund: ",0,60);		//Leser sekund
+		mm = les("\nMinutt: ",0,60);		//Leser minutt
+		tt = les("\nTimer: ",0,24); 		//Leser timer
 		if(!checkTime(ss, mm, tt)){
 			cout << "\nUgyldig tidspunkt!";
 		}
@@ -85,9 +85,9 @@ void Ovelse::endre() {
 
 	int month, day, year;
 	do{
-		cout << "\nDag: ";cin >> day;		//Leser hvilken dag
-		cout << "\nMåned: "; cin >> month;	//Leser hvilken måned
-		cout << "\nÅr: "; cin >> year;		//Leser hvilket år
+		day = les("\nDag: ", 1,31);		    //Leser hvilken dag
+		month = les("\nMåned: ",1,12);		//Leser hvilken måned
+		year = les("\nÅr: ",0,9999);		//Leser hvilket år
 		year = year % 100;				   //year ikke overskriver 2 karakterer
 		if(!checkDate(month, day, year)) {	//Sjekker om datoen er gyldig
 			cout << "\nUgyldig dato!";		//Gir beskjed om ugyldig
@@ -124,10 +124,10 @@ void Ovelse::nyDeltager(){
 		char kommando = 'N';
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
-			cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
+			startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			while(!deltagere->finnesDeltager(startListe[i]) && startListe[MAXDELTAGERE] != 0){	//Om deltageren ikke finnes
 				cout << "\nDenne deltageren finnes ikke!";
-				cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
+				startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			}
 			if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
 				cout << "\nListen er nå full";
