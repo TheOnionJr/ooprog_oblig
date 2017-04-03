@@ -39,6 +39,6 @@ class Ovelse : public NumElement {
 		void hentPs();
 		void sorter();	
 		void lesResFraFil();
-		void skrivRestIlFil();
+		void skrivResTilFil();
 };
 #endif
