@@ -109,7 +109,6 @@ void Ovelse::display() {
 	cout << "\nTidspunkt: " << tidspunkt;
 	cout << "\nDato: " << dato;
 	cout << "Antall Deltagere: " << antDeltagere;
-	// Display deltagere
 	// Display resultater
 }
 
@@ -121,28 +120,30 @@ void Ovelse::nyDeltager(){
 			finnes = true;						//Om listen ikke er tom
 		}
 	}
-	if(finnes == false) {						//Lager ny liste
+	if(!startListe) {						//Lager ny liste
 		char kommando = 'N';
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
 			cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
-			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
+			while(!deltagere->finnesDeltager(startListe[i]) && startListe[MAXDELTAGERE] != 0){	//Om deltageren ikke finnes
 				cout << "\nDenne deltageren finnes ikke!";
 				cout << "\nSkriv inn deltagerens ID: "; cin >> startListe[i];
 			}
-			if(startListe[MAXDELTAGERE] != 0){				// Om listen er full
+			if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
 				cout << "\nListen er nå full";
 				kommando = 'Y';
 			}
 			else{											//Om listen ikke er full
 				i++;
+				antDeltagere++;
 				cout << "\nVil du avslutte? (y/n): ";
 				kommando = lesKommando();
 			}
-			antDeltagere++;
 		}
-		//Skrives så til fil
-		finnes = true;
+		ofstream utfil(filnavnSTA(number));
+		for(int i = 0; i < antDeltagere; ){
+			utfil << startListe[i] << "\n";					//Skriver ID til fil
+		}
 	}
 	else{
 		cout << "\nDet finnes allerede en startliste!";
@@ -150,8 +151,9 @@ void Ovelse::nyDeltager(){
 }
 
 void Ovelse::endreListe() {
+	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool done = false;
-	if(!resultatliste){
+	if(!score){
 		for(int i = 0; i <= MAXDELTAGERE; i++) {
 			if((startListe[i] == 0) && (done == false) && (deltagere->finnesDeltager(id))) {
 				startListe[i] = id;
@@ -168,6 +170,7 @@ void Ovelse::endreListe() {
 		cout << "\nDet finnes allerede en resultatliste. Det er ikke mulig å endre på deltagerlisten!";
 	}
 }
+
 bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
 	bool gyldigDato = true;
@@ -275,7 +278,18 @@ void Ovelse::makeTime(int s, int m, int t){ //
 }
 
 
-char* Ovelse::filnavn(int id) {				//Funksjon som genererer filnavn for en ovelse.
+char* Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ovelse.
+	char filnavn[FILLEN];					//Filnavnet.
+	char buffer[FILLEN];					//Mellomlagring.
+
+	_itoa(id, buffer, 10);					//Skriver om inten id til char-mellomlagringa.
+	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
+	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
+	strcat(filnavn, ".STA");				//appender '.RES' på slutten av filnavn.
+	return(filnavn);						//Returnerer filnavn.
+}
+
+char* Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ovelse.
 	char filnavn[FILLEN];					//Filnavnet.
 	char buffer[FILLEN];					//Mellomlagring.
 
@@ -288,7 +302,7 @@ char* Ovelse::filnavn(int id) {				//Funksjon som genererer filnavn for en ovels
 
 void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
 	int tempSiste;							//Mellomlagring.
-	ifstream innfil(filnavn(id));			//Henter inn riktig fil.
+	ifstream innfil(filnavnRES(id));			//Henter inn riktig fil.
 
 	innfil >> tempSiste;					//Leser inn sistebrukt.
 	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
