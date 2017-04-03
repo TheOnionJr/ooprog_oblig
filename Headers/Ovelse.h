@@ -30,6 +30,8 @@ class Ovelse : public NumElement {
 		int returnID();
 		void nyDeltager();
 		void endreListe();
+		void lesInnStartListe();
+		void skrivStartListe();
 		char* filnavn(int id);
 		void finnes(int id);
 		void nyResList(int id);

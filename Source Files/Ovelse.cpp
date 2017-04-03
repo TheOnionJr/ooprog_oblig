@@ -171,6 +171,22 @@ void Ovelse::endreListe() {
 	}
 }
 
+void Ovelse::lesInnStartListe() {
+	ifstream innfil(filnavnSTA(number));
+	if(innfil){
+		for(int i = 0; i <=antDeltagere; i++){
+			innfil >> startListe[i];
+		}
+	}
+}
+
+void Ovelse::skrivStartListe() {
+	lesInnStartListe();
+	for(int i = 0; i <= antDeltagere; i++){
+		deltagere->skrivForOvelse(startListe[i]);
+	}
+}
+
 bool Ovelse::checkDate(int day, int month, int year){
 	int maxDager;
 	bool gyldigDato = true;
