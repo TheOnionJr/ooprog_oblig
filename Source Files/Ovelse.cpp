@@ -150,11 +150,11 @@ void Ovelse::nyDeltager(){
 	}
 }
 
-void fjernStartliste(){
+void Ovelse::fjernStartliste(){
 	remove(filSTA);
 }
 
-void fjernRESlist(){
+void Ovelse::fjernRESlist(){
 	remove(filRES);
 }
 
