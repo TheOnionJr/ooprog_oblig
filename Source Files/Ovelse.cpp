@@ -150,6 +150,14 @@ void Ovelse::nyDeltager(){
 	}
 }
 
+void fjernStartliste(){
+	remove(filSTA);
+}
+
+void fjernRESlist(){
+	remove(filRES);
+}
+
 void Ovelse::endreListe() {
 	lesInnStartListe();
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);

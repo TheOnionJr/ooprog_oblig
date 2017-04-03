@@ -42,5 +42,6 @@ class Ovelse : public NumElement {
 		void lesResFraFil();
 		void skrivResTilFil();
 		void fjernStartliste();
+		void fjernRESlist();
 };
 #endif
