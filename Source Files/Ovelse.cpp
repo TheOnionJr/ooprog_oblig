@@ -384,7 +384,7 @@ void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter 
 }
 
 void Ovelse::skrivResTilFil() {
-	ofstream utfil(fil);
+	ofstream utfil(filRES);
 
 	if (utfil) {
 		utfil << sisteBrukt;
@@ -397,7 +397,7 @@ void Ovelse::skrivResTilFil() {
 }
 
 void Ovelse::lesResFraFil() {
-	ifstream innfil(fil);
+	ifstream innfil(filRES);
 
 	if (innfil) {
 		innfil >> sisteBrukt; innfil.ignore();
