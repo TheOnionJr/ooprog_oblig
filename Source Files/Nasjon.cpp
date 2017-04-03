@@ -65,9 +65,9 @@ void Nasjon::endre(char hva) { // TRENGER CASE FOR DELTAGERE
 }
 
 void Nasjon::display() {	//Skriver hoveddata om nasjonen
-	cout << "\nForkortelse: " << text;
-	cout << "Navn: " << fulltNavn;
-	cout << "Antall deltagere: " << antDeltagere;
+	cout << "\nForkortelse:\t\t" << text;
+	cout << "\nNavn:\t\t\t" << fulltNavn;
+	cout << "\nAntall deltagere:\t" << antDeltagere;
 }
 
 void Nasjon::displayDeltagere() {
@@ -76,6 +76,8 @@ void Nasjon::displayDeltagere() {
 
 void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
 	display();
+	cout << "\nKontaktperson:\t\t" << kontaktNavn;
+	cout << "\nTelefonnummer:\t\t" << kontaktNr;
 	displayDeltagere();
 }
 

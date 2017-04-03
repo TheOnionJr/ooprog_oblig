@@ -94,7 +94,9 @@ void Nasjoner::visNasjonsInfo() {
 	while (!nasjonsliste->inList(id)) { //Sjekker om nasjon finnes
 		les("\nLandets forkortelse", id, NASJKORTLEN);
 	}
-	nasjonsliste->displayElement(id);	//Skriver ut data
+	Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(id);
+	hjelpeobjekt->displayAll();
+	nasjonsliste->add(hjelpeobjekt);
 }
 
 bool Nasjoner::inList(const char* t) {
