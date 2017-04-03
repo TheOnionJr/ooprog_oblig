@@ -10,10 +10,11 @@ public:
 	Medaljer();
 	void display(int i);
 	void displayAll();
-	void leggTilMedaljer();
+	void leggTilMedaljer(char fil[FILLEN]);
 	void trekkFraMedaljer();
 	void sorter();
 	void lesArrayFraFil();
 	void skrivArrayTilFil();
+	int finnNasjon(char nasjon[NASJKORTLEN]);
 };
 #endif

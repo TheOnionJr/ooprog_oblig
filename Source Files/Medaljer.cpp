@@ -6,6 +6,7 @@
 #include "../Headers/Medaljer.h"
 #include <iostream>
 #include <fstream>
+#include <cstring>
 using namespace std;
 
 Medaljer::Medaljer() {
@@ -60,12 +61,31 @@ void Medaljer::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter
 }
 
 
-void Medaljer::leggTilMedaljer() {
+void Medaljer::leggTilMedaljer(char fil[FILLEN]) {
+	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
+	ifstream innfil(fil);
 
-
-
+	if (innfil) {
+		innfil >> sisteBrukt;
+		if (sisteBrukt >= 2) {
+			for (int i = 0; i >= 3; i++) {	//3 fordi gull, sølv, bronse.
+				innfil.getline(tempNasj[i], NASJKORTLEN +1);//Henter nasjon på 1. 2. og 3. plass.
+			}
+			medaljer[finnNasjon(tempNasj[0])] += 010000;	//Legger til verdien for 1 gull til 1. plass.
+			medaljer[finnNasjon(tempNasj[1])] += 000100;	//Legger til verdien for 1 sølv til 2. plass.
+			medaljer[finnNasjon(tempNasj[2])] += 000001;	//Legger til verdien for 1 bronse til 3. plass.
+		}
+	}
 	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
+}
+
+int Medaljer::finnNasjon(char nasjon[NASJKORTLEN]) {
+	for (int i = 0; i >= NASJKORTLEN; i++) {
+		if (strcmp(nasjon, nasjKort[i]) == 0); {
+			return(i);
+		}
+	}
 }
 
 void Medaljer::trekkFraMedaljer() {
