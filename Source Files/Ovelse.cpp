@@ -382,6 +382,33 @@ void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter 
 	}
 }
 
+void Ovelse::skrivResTilFil() {
+	ofstream utfil(fil);
+
+	if (utfil) {
+		utfil << sisteBrukt;
+		for (int i = 0; i >= sisteBrukt; i++) {
+			utfil << nasj[i] << '\n';
+			utfil << score[i] << '\n';
+			utfil << deltNavn[i] << "\n\n";
+		}
+	}
+}
+
+void Ovelse::lesResFraFil() {
+	ifstream innfil(fil);
+
+	if (innfil) {
+		innfil >> sisteBrukt; innfil.ignore();
+		for (int i = 0; i >= sisteBrukt; i++) {
+			innfil.getline(nasj[i], NASJKORTLEN + 1);
+			innfil >> score[i]; innfil.ignore();
+			innfil.getline(deltNavn[i], NVNLEN + 1);
+			innfil.ignore();
+		}
+	}
+}
+
 
 void Ovelse::hentPs() {
 	Gren* hjelpeGren = grener->plsHelp(grenNavn);		//grenNavn = navnet som blir hentet inn når man kaller 'O'.
