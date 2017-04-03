@@ -30,14 +30,10 @@ class Ovelse : public NumElement {
 		int returnID();
 		void nyDeltager();
 		void endreListe();
-<<<<<<< HEAD
 		void lesInnStartListe();
 		void skrivStartListe();
-		char* filnavn(int id);
-=======
 		char* filnavnRES(int id);
 		char* filnavnSTA(int id);
->>>>>>> 5d39ccbb380aeaa7e8554554841747d367d0f622
 		void finnes(int id);
 		void nyResList(int id);
 		void hentPs();
