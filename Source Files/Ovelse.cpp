@@ -151,6 +151,7 @@ void Ovelse::nyDeltager(){
 }
 
 void Ovelse::endreListe() {
+	lesInnStartListe();
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool done = false;
 	if(!score){
