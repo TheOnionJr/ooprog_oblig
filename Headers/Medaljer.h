@@ -7,7 +7,7 @@ private:
 	int medaljer[MAXNASJONER];			//Medaljer G,S,B, 010101. <- Eks på en av hver.
 	int sisteBrukt;
 public:
-	Medaljer() {	};
+	Medaljer();
 	void display(int i);
 	void displayAll();
 	void leggTilMedaljer();

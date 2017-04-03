@@ -49,9 +49,15 @@ void Deltager::endre(char hva) { // Endrer deltagers data (ikke id)
 		strcpy(nasj, nasjonalitet);
 		nasjoner->fjernDeltager(nasj);
 		cout << "\nHva er deltagerens nye nasjonalitet (forkortelse på 3 bokstaver)?\t";
-		cin.getline(nasjonalitet, (NASJKORTLEN));
-		strcpy(nasj, nasjonalitet);
-		nasjoner->leggTilDeltager(nasj);
+		cin.getline(nasj, (NASJKORTLEN));
+		if (nasjoner->inList(nasj)) {
+			strcpy(nasjonalitet, nasj);
+			nasjoner->leggTilDeltager(nasj);
+		}
+		else {
+			nasjoner->leggTilDeltager(nasjonalitet);
+			cout << "\nNasjonen eksisterer ikke.";
+		}
 	}
 }
 
@@ -59,7 +65,6 @@ void Deltager::display() {	//Skriver ut deltagers data
 	cout << "\nID: " << number;
 	cout << "\nNavn: " << dNavn;
 	cout << "\nKjonn: " << kjonn;
-	cout << "\nNasjonalitet: " << nasjonalitet;
 }
 
 char* Deltager::returnKortNavn() {

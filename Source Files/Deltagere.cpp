@@ -107,6 +107,7 @@ void Deltagere::skrivDeltager() {
 	if (deltagerliste->inList(id)) {
 		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);
 		hjelpeobjekt->display();
+		cout << "\nNasjonalitet: " << hjelpeobjekt->returnKortNavn();
 		deltagerliste->add(hjelpeobjekt);
 	}
 }

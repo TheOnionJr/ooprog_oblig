@@ -8,6 +8,10 @@
 #include <fstream>
 using namespace std;
 
+Medaljer::Medaljer() {
+	sisteBrukt = 0;
+}
+
 void Medaljer::lesArrayFraFil() {	//Funksjon for å oppdatere data (legge til)
 	ifstream innfil("MEDALJER.DTA");
 
