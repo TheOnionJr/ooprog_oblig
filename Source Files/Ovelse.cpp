@@ -63,8 +63,7 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 
 Ovelse::~Ovelse() {
 	fjernStartliste(); fjernRESlist();		//Sletter assosierte filer
-	delete[] fulltNavn, tidspunkt, dato, startListe, filRES, filSTA, grenNavn, score, deltNavn, nasj;
-	delete antDeltagere, sisteBrukt, ps;	//Sletter arrayer og variabler
+	delete[] fulltNavn, grenNavn;
 }
 
 void Ovelse::endre() {
@@ -173,10 +172,12 @@ void Ovelse::endreListe() {
 			cout << "\nN: Legge til ny deltager.";
 			cout << "\nE: Endre eksisterende deltager";
 			cout << "\nF: Fjerne en deltager";
-			cout << "\nX: Gå ut"
+			cout << "\nX: Gå ut";
 			char kommando = lesKommando();
 			while(kommando != 'X'){
 				switch(kommando){
+					int temp;
+					bool finnes;
 					case 'N':
 					while(kommando != 'Y'){					//Om bruker ikke vil avslutte
 							startListe[antDeltagere] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
@@ -196,8 +197,8 @@ void Ovelse::endreListe() {
 						}
 					break;
 					case 'E':
-						int temp = les("\nID til den du ønsker å endre: ", DIVMIN, DIVMAX);
-						bool finnes = false;
+						temp = les("\nID til den du ønsker å endre: ", DIVMIN, DIVMAX);
+						finnes = false;
 						for(int i = 0; i < antDeltagere; i++){
 							if(startListe[i] == temp){
 								finnes = true;
@@ -207,7 +208,7 @@ void Ovelse::endreListe() {
 								cout << "\nDenne deltageren finnes ikke!";
 								temp = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 						}
-						for(int i = 0; i < antDeltagere; i++;){
+						for(int i = 0; i < antDeltagere; i++){
 							if(temp == startListe[i]){				//Endrer deltagerID
 								temp = les("\nDen nye ID til deltager: ", DIVMIN, DIVMAX);
 								startListe[i] = temp;
@@ -215,8 +216,8 @@ void Ovelse::endreListe() {
 						}
 					break;
 					case 'F':
-						int temp = les("\nID til den du ønsker å fjerne: ", DIVMIN, DIVMAX);
-						bool finnes = false;
+						temp = les("\nID til den du ønsker å fjerne: ", DIVMIN, DIVMAX);
+						finnes = false;
 						int posisjon = 0;
 						while(!deltagere->finnesDeltager(temp) || !finnes){	//Om deltageren ikke finnes
 								for(int i = 0; i < antDeltagere; i++){
@@ -230,7 +231,7 @@ void Ovelse::endreListe() {
 									temp = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 								}
 						}
-						for(posisjon < antDeltagere; posisjon++){		//Sletter og sorterer listen
+						for (posisjon; posisjon < antDeltagere; posisjon++) {		//Sletter og sorterer listen
 							startListe[posisjon] = startListe[posisjon+1];
 						}
 						antDeltagere--;

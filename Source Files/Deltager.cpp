@@ -13,7 +13,7 @@ Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skri
 	// ID legges i numElement
 	char buffer[NVNLEN];					//Mellomlagring av navn
 	strcpy(nasjonalitet, nasj);
-	cout << "\nDeltagersdNavn: ";			
+	cout << "\nDeltagers Navn: ";			
 	cin.ignore();							
 	cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
 	dNavn = new char[strlen(buffer) + 1];	//Setter av nøyaktig så mye plass som trengs
@@ -37,25 +37,25 @@ void Deltager::endre(char hva) { // Endrer deltagers data (ikke id)
 		dNavn = new char[strlen(buffer) + 1];	//Setter av nøyaktig så mye plass som trengs
 		strcpy(dNavn, buffer);					//Setter navnet
 	}
-	else if (hva == 'C') {
+	else if (hva == 'C') {						//Endring av deltagers kjønn
 		cout << "\nDeltagers kjønn(m/k): ";
 		do {									//Spør om hvilket kjønn deltageren er til gyldig valg er gjort
 			cin >> kjonn;
 			kjonn = toupper(kjonn);
 		} while (kjonn != 'M' && kjonn != 'K');
 	}
-	else if (hva == 'B') {
+	else if (hva == 'B') {						//Endring av deltagers nasjonalitet
 		char nasj[NASJKORTLEN];
 		strcpy(nasj, nasjonalitet);
-		nasjoner->fjernDeltager(nasj);
+		nasjoner->fjernDeltager(nasj);			//Trekker fra 1 på antDeltagere i nasjonen deltageren var i før endring
 		cout << "\nHva er deltagerens nye nasjonalitet (forkortelse på 3 bokstaver)?\t";
-		cin.getline(nasj, (NASJKORTLEN));
-		if (nasjoner->inList(nasj)) {
-			strcpy(nasjonalitet, nasj);
-			nasjoner->leggTilDeltager(nasj);
+		cin.getline(nasj, (NASJKORTLEN));		//Henter brukerens ønskede nye nasjon
+		if (nasjoner->inList(nasj)) {			//Sjekker at den nye najonen eksisterer
+			strcpy(nasjonalitet, nasj);			//Endrer deltagerens nasjonalitet
+			nasjoner->leggTilDeltager(nasj);	//Legger til 1 i nasjonens antDeltagere
 		}
-		else {
-			nasjoner->leggTilDeltager(nasjonalitet);
+		else {									//Den innskrevne nasjonen eksisterer ikke
+			nasjoner->leggTilDeltager(nasjonalitet);	//Legger til 1 i deltagerens originale nasjonalitet, da den ikke ble endret
 			cout << "\nNasjonen eksisterer ikke.";
 		}
 	}
@@ -67,14 +67,15 @@ void Deltager::display() {	//Skriver ut deltagers data
 	cout << "\nKjonn: " << kjonn;
 }
 
-void Deltager::ovelseDisplay() {
+void Deltager::ovelseDisplay() {	//Skriver nasjonsnavnet og nasjonsforkortelsen på skjermen
 	cout << "\nNavn: " << dNavn;
 	cout << "\nNasjonalitet: " << nasjonalitet;
 }
-char* Deltager::returnKortNavn() {
+
+char* Deltager::returnKortNavn() {		//Returnerer nasjonsforkortelsen til bruk andre steder
 	return (nasjonalitet);
 }
 
-char* Deltager::returnNavn() {
+char* Deltager::returnNavn() {			//Returnerer nasjonens fulle navn til bruk andre steder
 	return (dNavn);
 }

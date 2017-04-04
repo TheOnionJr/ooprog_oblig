@@ -20,12 +20,12 @@ using namespace std;
 #endif 
 
 
-char kommando;
-Nasjoner* nasjoner = new Nasjoner();
-Deltagere* deltagere = new Deltagere();
-Grener* grener = new Grener();
-Medaljer* medaljer = new Medaljer();
-Poeng* poeng = new Poeng();
+char kommando;							//brukerens valg av kommando
+Nasjoner* nasjoner = new Nasjoner();	//Initierer globale objekter
+Deltagere* deltagere = new Deltagere();	//
+Grener* grener = new Grener();			//
+Medaljer* medaljer = new Medaljer();	//
+Poeng* poeng = new Poeng();				//
 
 int main() {						
 
@@ -44,17 +44,20 @@ int main() {
 		case 'G':						//Valg for Gren.
 			grener->grenerMeny();
 			break;
-		case 'O':	
+		case 'O':						//Valg for øvelser
 			grener->ovelsemeny();
 			break;
 		case 'M':						//Skriver ut hele medaljestatistikken.
 			medaljer->displayAll();
 			break;
-		case 'P':	break;
-		case 'X':	break;
-		default:	skrivMeny();        break;
+		case 'P':						//Skriver ut hele poengstatistikken.
+			break;
+		case 'X':						//Avslutter programmet
+			break;
+		default:
+			break;
 		}
-		skrivMeny();
+		skrivMeny();					//Skriver hovedmenyen
 		kommando = lesKommando();		//  Får inn brukers ønske.
 	}
 	return 0;

@@ -6,92 +6,92 @@
 #include "../Headers/main.h"
 #include <iostream>
 
-void Deltagere::deltagermeny() {
+void Deltagere::deltagermeny() {		//Menyen for deltagere
 	char kommando;
-	deltagerMeny();
+	deltagerMeny();						//Skriver deltagermeny
 	kommando = lesKommando();
 	while (kommando != 'X') {
 		switch (kommando) {
 		case 'N':
-			nyDeltager();
+			nyDeltager();				//Lager en ny deltager
 			break;
 		case 'E':
-			endreDeltager();
+			endreDeltager();			//Endrer en eksisterende deltager
 			break;
 		case 'A':
-			skrivDeltagerliste();
+			skrivDeltagerliste();		//Skriver hoveddataene om alle deltagere
 			break;
 		case 'S':
-			skrivDeltager();
+			skrivDeltager();			//Skriver all data om en deltager
 			break;
 		default:
 			break;
 		}
-		deltagerMeny();
+		deltagerMeny();					//Skriver deltagermeny
 		kommando = lesKommando();
 	}
 }
 
-void Deltagere::nyDeltager() {
+void Deltagere::nyDeltager() {			//Lager ny deltager
 	char nasjonalitet[NASJKORTLEN];
 	int nummer;
 	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
-	cin.getline(nasjonalitet, (NASJKORTLEN));
-	if (nasjoner->inList(nasjonalitet)) {
+	cin.getline(nasjonalitet, (NASJKORTLEN));		//Henter ønsket nasjonalitet på deltageren
+	if (nasjoner->inList(nasjonalitet)) {			//Sjekker om nasjonen finnes
 		cout << "\nHvilket nummer har deltageren?\t";
-		cin >> nummer;
-		if (!deltagerliste->inList(nummer)) {
-			Deltager* hjelpeobjekt = new Deltager(nummer, nasjonalitet);
-			deltagerliste->add(hjelpeobjekt);
-			nasjoner->leggTilDeltager(nasjonalitet);
+		cin >> nummer;								//Henter ønsket id på deltageren
+		if (!deltagerliste->inList(nummer)) {		//Sjekker at id'en ikke er tatt
+			Deltager* hjelpeobjekt = new Deltager(nummer, nasjonalitet);	//Lager deltageren
+			deltagerliste->add(hjelpeobjekt);		//Legger til deltageren i lista
+			nasjoner->leggTilDeltager(nasjonalitet);		//Legger til 1 i nasjonens antDeltagere
 		}
-		else
+		else										//Hvis id'en er i bruk allerede
 			cout << "\nDeltager finnes allerede.";
 	}
 }
 
-void Deltagere::endreDeltager() {
+void Deltagere::endreDeltager() {		//Endrer en deltager
 	char kommando = '0';
 	int nummer;
 	cout << "\nHva er nummeret til deltageren du vil endre på?\t";
-	cin >> nummer;
-	if (deltagerliste->inList(nummer)) {	//Om landet finnes
-		Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(nummer);
-		while (kommando != 'X') {
+	cin >> nummer;		//Henter ønsket deltagers id fra brukeren
+	if (deltagerliste->inList(nummer)) {	//Om deltageren finnes
+		Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(nummer);		//Henter deltageren fra liste
+		while (kommando != 'X') {		//Utføres til brukeren skriver 'X'
 			endreDeltagerMeny();			//Endringsmeny
 			kommando = lesKommando();		//Leser kommando
 			hjelpeobjekt->endre(kommando);	//UtfÃ¸rer kommando
 											//Looper til bruker skriver kommando 'X'
 		}
-		deltagerliste->add(hjelpeobjekt);
+		deltagerliste->add(hjelpeobjekt);	//Legger deltageren tilbake i deltagerlista
 		kommando = 'V';		//Så bruker kan velge nye ting
 	}
-	else
+	else		//Hvis deltageren ikke blir funnet
 		cout << "\nFant ikke deltageren.";
 }
 
-void Deltagere::skrivDeltagerListe(const char* t) {
-	if (deltagerliste->noOfElements() > 0) {
-		for (int i = 1; i <= deltagerliste->noOfElements(); i++) {
-			Deltager* hjelpeobjekt = (Deltager*)deltagerliste->removeNo(i);
-			if (strcmp(t, hjelpeobjekt->returnKortNavn()) == 0) {
-				hjelpeobjekt->display();
+void Deltagere::skrivDeltagerListe(const char* t) {		//Skriver all info om deltagere i en viss nasjon
+	if (deltagerliste->noOfElements() > 0) {			//Sjekker at det faktisk eksisterer deltagere
+		for (int i = 1; i <= deltagerliste->noOfElements(); i++) {		//Går gjennom alle deltagere
+			Deltager* hjelpeobjekt = (Deltager*)deltagerliste->removeNo(i);	//Henter deltager fra lista
+			if (strcmp(t, hjelpeobjekt->returnKortNavn()) == 0) {	//Sjekker om deltageren er i valgt nasjon
+				hjelpeobjekt->display();		//Viser deltagerens info
 			}
-			deltagerliste->add(hjelpeobjekt);
+			deltagerliste->add(hjelpeobjekt);	//Legger deltageren tilbake i lista
 		}
 	}
-	else
+	else		//Hvis nasjonen ikke eksisterer
 		cout << "\nNasjonen har ingen deltagere.";
 }
 
-void Deltagere::endreDeltagerMeny() {
+void Deltagere::endreDeltagerMeny() {			//Skriver meny for endring av deltagere
 	cout << "\nHva vil du endre på?" << endl
 		<< "Navn:\t\t\tA" << endl
 		<< "Nasjonalitet:\tB" << endl
 		<< "Kjønn:\t\t\tC" << endl
 		<< "Gå tilbake:\t\tX";
 }
-bool Deltagere::finnesDeltager(int id){
+bool Deltagere::finnesDeltager(int id){			//Returnerer om en deltager eksisterer i den private lista deltagerliste
 	if(deltagerliste->inList(id)){
 		return true;
 	}
@@ -100,35 +100,35 @@ bool Deltagere::finnesDeltager(int id){
 	}
 }
 
-void Deltagere::skrivDeltager() {
+void Deltagere::skrivDeltager() {				//Skriver all info om en gitt deltager
 	int id;
 	cout << "\nHva er nummeret til deltageren du vil se info om?: ";
-	cin >> id;
-	if (deltagerliste->inList(id)) {
-		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);
-		hjelpeobjekt->display();
-		cout << "\nNasjonalitet: " << hjelpeobjekt->returnKortNavn();
-		deltagerliste->add(hjelpeobjekt);
+	cin >> id;									//Henter brukerens ønskede deltager-id
+	if (deltagerliste->inList(id)) {			//Sjekker at deltageren eksisterer i lista
+		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);	//Henter deltageren fra lista
+		hjelpeobjekt->display();										//Viser informasjonen
+		cout << "\nNasjonalitet: " << hjelpeobjekt->returnKortNavn();	//Viser informasjonen
+		deltagerliste->add(hjelpeobjekt);		//Legger deltageren tilbake i lista
 	}
 }
 
-void Deltagere::skrivForOvelse(int id) {
-	if (deltagerliste->inList(id)) {
-		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);
-		hjelpeobjekt->ovelseDisplay();
-		deltagerliste->add(hjelpeobjekt);
+void Deltagere::skrivForOvelse(int id) {		//Skriver ut informasjonen om en deltager som er nødvendig i en øvelse
+	if (deltagerliste->inList(id)) {			//Sjekker at deltageren eksisterer
+		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);		//Henter deltageren fra lista
+		hjelpeobjekt->ovelseDisplay();			//Viser informasjon
+		deltagerliste->add(hjelpeobjekt);		//Legger deltageren tilbake i lista
 	}
 }
 
-void Deltagere::skrivDeltagerliste() {
+void Deltagere::skrivDeltagerliste() {			//Skriver ut hele deltagerlista
 	deltagerliste->displayList();
 }
 
-Deltager* Deltagere::plsHelp(int id) {
-	Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(id);
-	return (hjelpeobjekt);
+Deltager* Deltagere::plsHelp(int id) {			//Returnerer et deltagerobjekt som kan brukes i ovelse
+	Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(id);		//Henter deltageren fra lista
+	return (hjelpeobjekt);						//Returnerer objektet
 }
 
-void Deltagere::thankYou(Deltager* hjelpeobjekt) {
+void Deltagere::thankYou(Deltager* hjelpeobjekt) {		//Legger tilbake deltageren i lista
 	deltagerliste->add(hjelpeobjekt);
 }
