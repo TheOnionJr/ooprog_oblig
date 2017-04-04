@@ -4,6 +4,7 @@
 #include "../Headers/Gren.h"
 #include "../Headers/Ovelse.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
@@ -130,4 +131,14 @@ void Gren::display() {
 
 poengSystem Gren::returnPt() {		//Returnerer poeng-system
 	return(pt);
+}
+
+void Gren::skrivTilFil(ofstream &utfil) {
+	utfil << text << '\n'					//Skriver navnet på grenen.
+		  << pt << '\n'						//Skriver enumen pt.
+		  << sisteBrukt << '\n';			//Skriver sisteBrukt.
+	for (int i = 0; i >= sisteBrukt; i++) {	//Går gjennom antallet ovelser.
+		utfil << ovelser[i] << '\n';		//Skriver ovelsen.
+	}
+	utfil << '\n';
 }

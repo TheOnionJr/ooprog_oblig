@@ -20,6 +20,7 @@ public:
 	Gren* plsHelp(char* id);
 	void thankYou(Gren* hjelpeobjekt);
 	void displayAllGren();
+	void skrivTilFil();
 };
 
 #endif
