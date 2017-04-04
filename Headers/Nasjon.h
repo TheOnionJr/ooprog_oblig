@@ -14,6 +14,7 @@ class Nasjon : public TextElement {
 	public:
 		Nasjon();			//Constructor
 		Nasjon(char* navn);
+		Nasjon(char* id, ifstream &innfil);
 		~Nasjon();			//Deconstructor
 		void endre(char hva); // Valget følger med fra en meny
 		void display();

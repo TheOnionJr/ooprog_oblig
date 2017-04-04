@@ -37,7 +37,7 @@ Nasjon::Nasjon(char* navn) : TextElement(navn){
 	antDeltagere = 0;
 }
 
-Nasjon::Nasjon(int id, ifstream &innfil) : TextElement(id) {
+Nasjon::Nasjon(char* id, ifstream &innfil) : TextElement(id) {
 	char midNavn[NVNLEN];
 	innfil.ignore();
 	innfil.getline(midNavn, NVNLEN);
