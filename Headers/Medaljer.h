@@ -11,7 +11,7 @@ public:
 	void display(int i);
 	void displayAll();
 	void leggTilMedaljer(char fil[FILLEN]);
-	void trekkFraMedaljer();
+	void trekkFraMedaljer(char fil[FILLEN]);
 	void sorter();
 	void lesArrayFraFil();
 	void skrivArrayTilFil();
