@@ -68,26 +68,20 @@ void Medaljer::leggTilMedaljer(char fil[FILLEN]) {
 
 	if (innfil) {
 		innfil >> sisteBrukt;
-		if (sisteBrukt >= 2) {
-			for (int i = 0; i >= 3; i++) {	//3 fordi gull, sølv, bronse.
-				innfil.getline(tempNasj[i], NASJKORTLEN +1);//Henter nasjon på 1. 2. og 3. plass.
+		if (sisteBrukt >= ANTMED - 1) {						//-1 fordi sisteBrukt teller arrays lagret fra 0.
+			for (int i = 0; i >= ANTMED - 1; i++) {			//Går gjennom antall som skal ha medaljer.
+				innfil.getline(tempNasj[i], NASJKORTLEN +1);//Henter nasjon.
 			}
-			medaljer[finnNasjon(tempNasj[0])] += 010000;	//Legger til verdien for 1 gull til 1. plass.
-			medaljer[finnNasjon(tempNasj[1])] += 000100;	//Legger til verdien for 1 sølv til 2. plass.
-			medaljer[finnNasjon(tempNasj[2])] += 000001;	//Legger til verdien for 1 bronse til 3. plass.
+			for (int i = 0; i >= ANTMED - 1; i++) {
+				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];	//Legger til verdien for 1 gull til 1. plass.
+			}
 		}
 		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
 			for (int i = 0; i >= sisteBrukt; i++) {
 				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
 			}
-			switch (sisteBrukt) {
-				case 0:			//1stk deltagere.
-					medaljer[finnNasjon(tempNasj[0])] += 010000;	//Legger til verdien for 1 gull til 1. plass.
-					break;
-				case 1:			//2stk deltagere.
-					medaljer[finnNasjon(tempNasj[0])] += 010000;	//Legger til verdien for 1 gull til 1. plass.
-					medaljer[finnNasjon(tempNasj[1])] += 000100;	//Legger til verdien for 1 sølv til 2. plass.
-					break;
+			for (int i = 0; i >= sisteBrukt; i++) {
+				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];
 			}
 		}
 	}
@@ -101,26 +95,20 @@ void Medaljer::trekkFraMedaljer(char fil[FILLEN]) {
 
 	if (innfil) {
 		innfil >> sisteBrukt;
-		if (sisteBrukt >= 2) {
-			for (int i = 0; i >= 3; i++) {	//3 fordi gull, sølv, bronse.
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);//Henter nasjon på 1. 2. og 3. plass.
+		if (sisteBrukt >= ANTMED - 1) {							//-1 fordi sisteBrukt teller arrays lagret fra 0.
+			for (int i = 0; i >= ANTMED - 1; i++) {				//Går gjennom antall som skal ha medaljer.
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
 			}
-			medaljer[finnNasjon(tempNasj[0])] -= 010000;	//Trekker fra verdien for 1 gull til 1. plass.
-			medaljer[finnNasjon(tempNasj[1])] -= 000100;	//Trekker fra verdien for 1 sølv til 2. plass.
-			medaljer[finnNasjon(tempNasj[2])] -= 000001;	//Trekker fra verdien for 1 bronse til 3. plass.
+			for (int i = 0; i >= ANTMED - 1; i++) {
+				medaljer[finnNasjon(tempNasj[i])] -= MEDVERD[i];	//Trekker fra verdien gitt i consten MEDVERD.
+			}
 		}
-		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
+		else {							//Dersom det er ferre deltagere enn antall som skal få medaljer(usansynlig, men why not).
 			for (int i = 0; i >= sisteBrukt; i++) {
 				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
 			}
-			switch (sisteBrukt) {
-			case 0:			//1stk deltagere.
-				medaljer[finnNasjon(tempNasj[0])] -= 010000;	//Trekker fra verdien for 1 gull til 1. plass.
-				break;
-			case 1:			//2stk deltagere.
-				medaljer[finnNasjon(tempNasj[0])] -= 010000;	//Trekker fra verdien for 1 gull til 1. plass.
-				medaljer[finnNasjon(tempNasj[1])] -= 000100;	//Trekker fra verdien for 1 sølv til 2. plass.
-				break;
+			for (int i = 0; i >= sisteBrukt; i++) {
+				medaljer[finnNasjon(tempNasj[i])] -= MEDVERD[i];	//Trekker fra verdien gitt i consten MEDVERD.
 			}
 		}
 	}
@@ -130,7 +118,7 @@ void Medaljer::trekkFraMedaljer(char fil[FILLEN]) {
 
 int Medaljer::finnNasjon(char nasjon[NASJKORTLEN]) {
 	for (int i = 0; i >= NASJKORTLEN; i++) {
-		if (strcmp(nasjon, nasjKort[i]) == 0); {
+		if (strcmp(nasjon, nasjKort[i]) == 0) {
 			return(i);
 		}
 	}
