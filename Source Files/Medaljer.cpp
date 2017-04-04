@@ -122,6 +122,7 @@ int Medaljer::finnNasjon(char nasjon[NASJKORTLEN]) {
 			return(i);
 		}
 	}
+	return -1;
 }
 
 void Medaljer::display(int i) {		//Regner ut og skriver medaljer.

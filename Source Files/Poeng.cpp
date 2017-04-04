@@ -4,6 +4,7 @@
 
 #include "../Headers/Statistikk.h"
 #include "../Headers/Poeng.h"
+#include "../Headers/Const.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -54,7 +55,7 @@ void Poeng::skrivArrayTilFil() {
 }
 
 void Poeng::leggTilPoeng(char fil[FILLEN]) {
-	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
+	char tempNasj[ANTMED][NASJKORTLEN];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
 	ifstream innfil(fil);				//Åpner fila til resultatlista.
 
@@ -91,7 +92,7 @@ void Poeng::trekkFraPoeng(char fil[FILLEN]) {
 			for (int i = 0; i >= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
 				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
 			}
-			for (int i = 0; i >= PSSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
+			for (int i = 0; i >= PSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
 				poeng[finnNasjon(tempNasj[i])] -= POENGSKALA[i];	//Legger til riktig mengde poeng definert i POENGSKALA i const.h.
 			}
 		}
@@ -114,7 +115,7 @@ void Poeng::displayAll() {
 	}
 }
 
-int Poeng::finnNasjon(char nasjon[NASJKORTLEN]) {
+int Poeng::finnNasjon(char* nasjon) {
 	for (int i = 0; i >= NASJKORTLEN; i++) {
 		if (strcmp(nasjon, nasjKort[i]) == 0) {
 			return(i);
