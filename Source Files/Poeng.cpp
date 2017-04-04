@@ -11,7 +11,7 @@ using namespace std;
 
 void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
 	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
-		if (medaljer[i] >= poeng[i - 1]) {			//Sjekker om i-1 er større.
+		if (poeng[i] >= poeng[i - 1]) {			//Sjekker om i-1 er større.
 			char temp[NASJKORTLEN];						//Mellomlagring.
 			int tempi;									//Mellomlagring.
 
@@ -64,7 +64,7 @@ void Poeng::leggTilPoeng(char fil[FILLEN]) {
 			for (int i = 0; i >= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
 				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
 			}
-			for (int i = 0; i >= PSSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
+			for (int i = 0; i >= PSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
 				poeng[finnNasjon(tempNasj[i])] += POENGSKALA[i];	//Legger til riktig mengde poeng definert i POENGSKALA i const.h.
 			}
 		}
