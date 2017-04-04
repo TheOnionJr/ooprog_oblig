@@ -13,6 +13,7 @@ class Deltager : public NumElement {
 		
 	public:
 		Deltager(int id, char* nasj);
+		Deltager(int id, ifstream &innfil);
 		~Deltager();
 		void endre(char hva);
 		void display();
@@ -20,6 +21,5 @@ class Deltager : public NumElement {
 		char* returnKortNavn();
 		char* returnNavn();
 		void skrivTilFil(ofstream &utfil);
-		void lesFraFil(innstream &innfil);
 };
 #endif

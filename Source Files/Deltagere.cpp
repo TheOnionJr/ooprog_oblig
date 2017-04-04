@@ -150,11 +150,12 @@ void Deltagere::skrivTilFil() {
 
 void Deltagere::lesFraFil() {
 	ifstream innfil("DELTAGERE.DTA");
-	if (innfil {
+	if (innfil) {
+		int antDeltagere;
 		innfil >> antDeltagere;
 		for(int i = 0; i < antDeltagere; i++) {
 			int id; innfil >> id;
-			deltagerliste->add(new deltager(id, innfil));
+			deltagerliste->add(new Deltager(id, innfil));
 		}
-	})
+	}
 }
