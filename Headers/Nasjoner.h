@@ -18,5 +18,6 @@ public:
 	void leggTilDeltager(char* t);
 	void fjernDeltager(char* t);
 	void skrivTilFil();
+	void lesFraFil();
 };
 #endif

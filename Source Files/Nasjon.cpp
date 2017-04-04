@@ -22,7 +22,7 @@ Nasjon::Nasjon(){
 	
 }
 
-Nasjon::Nasjon(char id[NASJKORTLEN]) : TextElement(id){
+Nasjon::Nasjon(char* navn) : TextElement(navn){
 	// Nasjonens fulle navn:
 	cout << "\nVennligst skriv inn det fulle navnet på nasjonen: ";
 	fulltNavn = lesPrivat();
@@ -35,6 +35,18 @@ Nasjon::Nasjon(char id[NASJKORTLEN]) : TextElement(id){
 	kontaktNr = les("\nVenligst skriv inn kontaktpersonens tlfnummer: ", MINTLF, MAXTLF);
 
 	antDeltagere = 0;
+}
+
+Nasjon::Nasjon(int id, ifstream &innfil) : TextElement(id) {
+	char midNavn[NVNLEN];
+	innfil.ignore();
+	innfil.getline(midNavn, NVNLEN);
+	fulltNavn = new char[strlen(midNavn) + 1];
+	innfil >> antDeltagere;
+	innfil.ignore();
+	innfil.getline(midNavn, NVNLEN);
+	kontaktNavn = new char[strlen(midNavn) + 1];
+	innfil >> kontaktNr;
 }
 
 Nasjon::~Nasjon(){

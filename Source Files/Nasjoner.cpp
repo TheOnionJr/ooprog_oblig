@@ -130,3 +130,15 @@ void Nasjoner::skrivTilFil() {
 		}
 	}
 }
+
+void Nasjoner::lesFraFil() {
+	ifstream innfil("NASJONER.DTA");
+	if (innfil) {
+		int natNasjoner;
+		innfil << antNasjoner;
+		for (int i = 0; i <= antNasjoner; i++) {
+			char id[NASJKORLEN]; innfil >> id;
+			deltagerliste->add(new Deltager(id, innfil));
+		}
+	}
+}
