@@ -7,11 +7,6 @@
 using namespace std;
 
 
-										//Constructor.
-/*Gren::Gren() : TextElement {
-
-}*/
-
 										//Constructor m/navn-parameter.
 Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	char svar;
@@ -72,48 +67,48 @@ void Gren :: endre() {
 	cout << "\nNavnet er endret, det er nå " << text << ".";
 }
 
-void Gren::nyOvelse() {
+void Gren::nyOvelse() {					//Lager ny øvelse
 	int id;
 	id = les("\nSkriv inn øvelsens ID: ", DIVMIN, DIVMAX);
-	if(finnesAllerede(id) != 0) {
+	if(finnesAllerede(id) != -1) {		//Sjekker om øvelses-id'en allerede eksisterer
 		cout << "\nDenne øvelsen finnes allerede!";
 	}
-	else if(sisteBrukt > 20) {
+	else if(sisteBrukt > 20) {			//Hvis arrayen allerede er full
 		cout << "\nDet er ikke plass til flere øvelser!";
 	}
-	else {
-		ovelser[sisteBrukt++] = new Ovelse(id);
+	else {								//Hvis det er plass
+		ovelser[sisteBrukt++] = new Ovelse(id);	//Lager ny øvelse
 	}
 }
 
-void Gren::endreOvelse(){
-	bool fant = false;
-	int id;
+void Gren::endreOvelse(){			//Endrer en øvelse
+	bool fant = false;				//Starter som false, endres hvis den faktisk finnes
+	int id;							//id som skal endres
 	id = les("\nSrkiv inn øvelsens ID: ", DIVMIN, DIVMAX);
-	for(int i = 0; i <= DIVMAX; i++){
-		if(ovelser[i] && ovelser[i]->returnID() == id){
-			ovelser[i]->endre();
+	for(int i = 0; i <= DIVMAX; i++){	//Går gjennom øvelses-lista
+		if(ovelser[i] && ovelser[i]->returnID() == id){		//Hvis id'en til ovelsen matcher
+			ovelser[i]->endre();		//Øvelsen blir endret
 			fant = true;
 		}
 	}
-	if(fant = false){
+	if(fant = false){		//Hvis ingen øvelser matchet id'en
 		cout << "\nFant ikke ovelsen.";
 	}
 }
 
-void Gren::displayOvelser() {
+void Gren::displayOvelser() {		//Displayer alle øvelser
 	for(int i = 0; i <= sisteBrukt; i++) {
 		ovelser[i]->display();
 	}
 }
 
-int Gren::finnesAllerede(int id) {
+int Gren::finnesAllerede(int id) {		//Sjekker om id'en eksisterer, og hvis den gjør det, returnerer plassen dens i arrayen
 	for(int i = 0; i <= sisteBrukt; i++) {
 		if(ovelser[i] && ovelser[i]->returnID() == id){
 			return i;
 		}
 	}
-	return 0;
+	return -1;			//Returneres dersom ingen id'er matchet, tilsvarer return false
 }
 
 										//Skriver alle data om en gren.
@@ -133,6 +128,6 @@ void Gren::display() {
 	cout << "\nAntall øvelser: " << sisteBrukt;		//Antall øvelser i grenen.
 }
 
-poengSystem Gren::returnPt() {
+poengSystem Gren::returnPt() {		//Returnerer poeng-system
 	return(pt);
 }

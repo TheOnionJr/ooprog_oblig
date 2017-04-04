@@ -10,9 +10,9 @@
 #include <iostream>
 using namespace std;
 
-void Grener::grenerMeny() {
+void Grener::grenerMeny() {			//Menyvalg for grener
 	char kommando;
-	grenMeny();
+	grenMeny();						//Skriver grenmeny
 	kommando = lesKommando();		//Leser kommando.
 	while (kommando != 'X') {
 		switch (kommando) {
@@ -25,7 +25,9 @@ void Grener::grenerMeny() {
 		case 'A':				//Skriver hoveddata om alle grener.
 			skrivHovedGren();
 			break;
-		case 'S': break;
+		case 'S': 
+			displayAllGren();
+			break;
 		case 'X': break;
 		default:  cout << "Ukjent svar, prøv igjen!"; break;	//Feilmelding.
 		}
@@ -115,5 +117,17 @@ Gren* Grener::plsHelp(char* id) {
 }
 
 void Grener::thankYou(Gren* hjelpeobjekt) {
+	grenliste->add(hjelpeobjekt);
+}
+
+void Grener::displayAllGren() {
+	char* navn;
+	char buffer[STRLEN];
+	les("\nHvilken gren vil du se info om?:\t", buffer, STRLEN);
+	navn = new char[strlen(buffer + 1)];
+	strcpy(navn, buffer);
+	Gren* hjelpeobjekt = (Gren*)grenliste->remove(navn);
+	hjelpeobjekt->display();
+	hjelpeobjekt->displayOvelser();
 	grenliste->add(hjelpeobjekt);
 }

@@ -19,6 +19,7 @@ public:
 	void ovelseMeny();
 	Gren* plsHelp(char* id);
 	void thankYou(Gren* hjelpeobjekt);
+	void displayAllGren();
 };
 
 #endif
