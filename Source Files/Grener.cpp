@@ -8,6 +8,7 @@
 #include "../Headers/Grener.h"
 #include "../Headers/Gren.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 void Grener::grenerMeny() {			//Menyvalg for grener
@@ -130,4 +131,16 @@ void Grener::displayAllGren() {
 	hjelpeobjekt->display();
 	hjelpeobjekt->displayOvelser();
 	grenliste->add(hjelpeobjekt);
+}
+
+void Grener::skrivTilFil() {
+	ofstream utfil("GREN.DTA");
+	if (utfil) {
+		utfil << grenliste->noOfElements() << endl;
+		for (int i = 1; i <= grenliste->noOfElements(); i++) {
+			Gren* hjelpeobjekt = (Gren*)grenliste->removeNo(i);
+			hjelpeobjekt->skrivTilFil(utfil);
+			grenliste->add(hjelpeobjekt);
+		}
+	}
 }

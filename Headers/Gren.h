@@ -3,6 +3,7 @@
 #include "enumer.h"
 #include "ListTool2B.h"
 #include "Ovelse.h"
+#include <fstream>
 
 using namespace std;
 
@@ -22,5 +23,6 @@ class Gren : public TextElement {
 		void displayOvelser();
 		int finnesAllerede(int id);
 		poengSystem returnPt();
+		void skrivTilFil(ofstream &utfil);
 };
 #endif
