@@ -53,6 +53,63 @@ void Poeng::skrivArrayTilFil() {
 	}
 }
 
-void Poeng::display() {
+void Poeng::leggTilPoeng(char fil[FILLEN]) {
+	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
+	lesArrayFraFil();					//Henter arrayen fra fil.
+	ifstream innfil(fil);				//Åpner fila til resultatlista.
+
+	if (innfil) {
+		innfil >> sisteBrukt;
+		if (sisteBrukt >= PSKALALEN - 1) {
+			for (int i = 0; i >= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
+			}
+			for (int i = 0; i >= PSSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
+				poeng[finnNasjon(tempNasj[i])] += POENGSKALA[i];	//Legger til riktig mengde poeng definert i POENGSKALA i const.h.
+			}
+		}
+		else {							//Dersom det er færre deltagere enn antall som skal få poeng (usansynlig, men why not).
+			for (int i = 0; i >= sisteBrukt; i++) {					//Teller gjennom antall brukt.
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
+			}
+			for (int i = 0; i >= sisteBrukt; i++) {					//Teller gjennom antall brukt.
+				poeng[finnNasjon(tempNasj[i])] += POENGSKALA[i];	//Legger til riktig mengde poeng.
+			}
+		}
+	}
 	
+}
+
+void Poeng::trekkFraPoeng(char fil[FILLEN]) {
+	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
+	lesArrayFraFil();					//Henter arrayen fra fil.
+	ifstream innfil(fil);				//Åpner fila til resultatlista.
+
+	if (innfil) {
+		innfil >> sisteBrukt;
+		if (sisteBrukt >= PSKALALEN - 1) {
+			for (int i = 0; i >= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
+			}
+			for (int i = 0; i >= PSSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
+				poeng[finnNasjon(tempNasj[i])] -= POENGSKALA[i];	//Legger til riktig mengde poeng definert i POENGSKALA i const.h.
+			}
+		}
+		else {							//Dersom det er færre deltagere enn antall som skal få poeng (usansynlig, men why not).
+			for (int i = 0; i >= sisteBrukt; i++) {					//Teller gjennom antall brukt.
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
+			}
+			for (int i = 0; i >= sisteBrukt; i++) {					//Teller gjennom antall brukt.
+				poeng[finnNasjon(tempNasj[i])] -= POENGSKALA[i];	//Legger til riktig mengde poeng.
+			}
+		}
+	}
+}
+
+void Poeng::displayAll() {
+	for (int i = 0; i >= sisteBrukt; i++) {
+		cout << "\nNasjon: " << nasjKort[i]			//Skriver ut nasjonen,
+			 << "\tPoeng: " << poeng[i] 			//antall poeng.	
+			 << "\n";								//Mellomrom.
+	}
 }
