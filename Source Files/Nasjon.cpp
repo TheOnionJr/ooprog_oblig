@@ -88,3 +88,7 @@ void Nasjon::leggTilDeltager() {
 void Nasjon::fjernDeltager() {
 	antDeltagere--;
 }
+
+int Nasjon::returnAntDeltagere() {
+	return(antDeltagere);
+}

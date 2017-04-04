@@ -95,7 +95,7 @@ void Nasjoner::visNasjonsInfo() {
 		les("\nLandets forkortelse", id, NASJKORTLEN);
 	}
 	Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(id);
-	hjelpeobjekt->displayAll();
+	cout << "\nNasjonen har " << hjelpeobjekt->returnAntDeltagere() << " deltager(e).";
 	nasjonsliste->add(hjelpeobjekt);
 }
 
