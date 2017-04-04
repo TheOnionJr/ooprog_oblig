@@ -26,6 +26,15 @@ Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skri
 	}
 }
 
+Deltager::Deltager(int id, ifstream &innfil) : NumElement(id) {
+	char midNavn[NVNLEN];
+	innfil.ignore();
+	innfil.getline(midNavn, NVNLEN);
+	dNavn = new char[strlen(midNavn) + 1];
+	innfil.getline(nasjonalitet, NASJKORTLEN);
+	innfil >> kjonn;
+}
+
 Deltager::~Deltager() {
 	// Må lages
 }

@@ -1,6 +1,9 @@
 #if !defined(nasjon_h)
 #define nasjon_h
 #include "ListTool2B.h"
+#include <fstream>
+
+using namespace std;
 
 class Nasjon : public TextElement {
 	private:
@@ -20,6 +23,7 @@ class Nasjon : public TextElement {
 		void leggTilDeltager();
 		void fjernDeltager();
 		int returnAntDeltagere();
+		void skrivTilFil(ofstream &utfil);
 };
 
 #endif
