@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
+void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter poeng.
 	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
 		if (poeng[i] >= poeng[i - 1]) {			//Sjekker om i-1 er større.
 			char temp[NASJKORTLEN];						//Mellomlagring.
@@ -24,20 +24,20 @@ void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter me
 
 
 void Poeng::lesArrayFraFil() {
-	ifstream innfil("MEDALJER.DTA");
+	ifstream innfil("POENG.DTA");
 
 	if (innfil) {											//Sjekker om filen ble funnet.
 		innfil >> sisteBrukt; innfil.ignore();				//Leser inn sisteBrukt fra starten av filen.
 		for (int i = 0; i < sisteBrukt; i++) {				//Kjører for antall nasjoner som er skrevet til filen.
 			innfil.getline(nasjKort[i], MAXNASJONER + 1);	//Leser inn nasjKort, og setter i riktig arraynr.
-			innfil >> poeng[i]; innfil.ignore();			//Leser inn medalje-verdien.
+			innfil >> poeng[i]; innfil.ignore();			//Leser inn poeng-verdien.
 			innfil.ignore();								//Blank spacer.
 		}
 	}
 }
 
 void Poeng::skrivArrayTilFil() {
-	ofstream utfil("MEDALJER.DTA");
+	ofstream utfil("POENG.DTA");
 
 	if (utfil) {											//Sjekker om filen ble funnet.
 		utfil << sisteBrukt << '\n';						//Skriver sisteBrukt helt i starten av filen.
@@ -111,5 +111,13 @@ void Poeng::displayAll() {
 		cout << "\nNasjon: " << nasjKort[i]			//Skriver ut nasjonen,
 			 << "\tPoeng: " << poeng[i] 			//antall poeng.	
 			 << "\n";								//Mellomrom.
+	}
+}
+
+int Poeng::finnNasjon(char nasjon[NASJKORTLEN]) {
+	for (int i = 0; i >= NASJKORTLEN; i++) {
+		if (strcmp(nasjon, nasjKort[i]) == 0) {
+			return(i);
+		}
 	}
 }
