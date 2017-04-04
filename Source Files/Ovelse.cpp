@@ -240,6 +240,9 @@ void Ovelse::endreListe() {
 			}
 		}
 		ofstream utfil(filnavnSTA(number));
+		for(int i = 0; i < antDeltagere; ){
+			utfil << startListe[i] << "\n";					//Skriver ID til fil
+		}
 	}
 }
 
