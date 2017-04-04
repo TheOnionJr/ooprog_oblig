@@ -64,7 +64,7 @@ void Medaljer::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter
 void Medaljer::leggTilMedaljer(char fil[FILLEN]) {
 	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
-	ifstream innfil(fil);
+	ifstream innfil(fil);				//Åpner fila til resultatlista.
 
 	if (innfil) {
 		innfil >> sisteBrukt;
@@ -76,9 +76,57 @@ void Medaljer::leggTilMedaljer(char fil[FILLEN]) {
 			medaljer[finnNasjon(tempNasj[1])] += 000100;	//Legger til verdien for 1 sølv til 2. plass.
 			medaljer[finnNasjon(tempNasj[2])] += 000001;	//Legger til verdien for 1 bronse til 3. plass.
 		}
+		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
+			for (int i = 0; i >= sisteBrukt; i++) {
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
+			}
+			switch (sisteBrukt) {
+				case 0:			//1stk deltagere.
+					medaljer[finnNasjon(tempNasj[0])] += 010000;	//Legger til verdien for 1 gull til 1. plass.
+					break;
+				case 1:			//2stk deltagere.
+					medaljer[finnNasjon(tempNasj[0])] += 010000;	//Legger til verdien for 1 gull til 1. plass.
+					medaljer[finnNasjon(tempNasj[1])] += 000100;	//Legger til verdien for 1 sølv til 2. plass.
+					break;
+			}
+		}
 	}
 	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
 }
+
+void Medaljer::trekkFraMedaljer(char fil[FILLEN]) {
+	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
+	lesArrayFraFil();					//Henter arrayen fra fil.
+	ifstream innfil(fil);				//Åpner fila til resultatlista.
+
+	if (innfil) {
+		innfil >> sisteBrukt;
+		if (sisteBrukt >= 2) {
+			for (int i = 0; i >= 3; i++) {	//3 fordi gull, sølv, bronse.
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);//Henter nasjon på 1. 2. og 3. plass.
+			}
+			medaljer[finnNasjon(tempNasj[0])] -= 010000;	//Trekker fra verdien for 1 gull til 1. plass.
+			medaljer[finnNasjon(tempNasj[1])] -= 000100;	//Trekker fra verdien for 1 sølv til 2. plass.
+			medaljer[finnNasjon(tempNasj[2])] -= 000001;	//Trekker fra verdien for 1 bronse til 3. plass.
+		}
+		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
+			for (int i = 0; i >= sisteBrukt; i++) {
+				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
+			}
+			switch (sisteBrukt) {
+			case 0:			//1stk deltagere.
+				medaljer[finnNasjon(tempNasj[0])] -= 010000;	//Trekker fra verdien for 1 gull til 1. plass.
+				break;
+			case 1:			//2stk deltagere.
+				medaljer[finnNasjon(tempNasj[0])] -= 010000;	//Trekker fra verdien for 1 gull til 1. plass.
+				medaljer[finnNasjon(tempNasj[1])] -= 000100;	//Trekker fra verdien for 1 sølv til 2. plass.
+				break;
+			}
+		}
+	}
+	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
+}
+
 
 int Medaljer::finnNasjon(char nasjon[NASJKORTLEN]) {
 	for (int i = 0; i >= NASJKORTLEN; i++) {
@@ -86,14 +134,6 @@ int Medaljer::finnNasjon(char nasjon[NASJKORTLEN]) {
 			return(i);
 		}
 	}
-}
-
-void Medaljer::trekkFraMedaljer() {
-	lesArrayFraFil();					//Henter arrayen fra fil.
-
-
-
-	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
 }
 
 void Medaljer::display(int i) {		//Regner ut og skriver medaljer.
