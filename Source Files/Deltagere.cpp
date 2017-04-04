@@ -147,3 +147,14 @@ void Deltagere::skrivTilFil() {
 		}
 	}
 }
+
+void lesFraFil() {
+	ifstream innfil("DELTAGERE.DTA");
+	if (innfil {
+		innfil >> antDeltagere;
+		for(int i = 0; i < antDeltagere; i++) {
+			int id; innfil >> id;
+			deltagerliste->add(new deltager(id, innfil));
+		}
+	})
+}
