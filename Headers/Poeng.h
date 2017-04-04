@@ -4,7 +4,7 @@
 
 class Poeng : public Statistikk {
 private:
-	int poeng;			//Antall poeng en nasjon har.
+	int poeng[MAXNASJONER];			//Antall poeng en nasjon har.
 	int sisteBrukt;
 public:
 	Poeng() { };

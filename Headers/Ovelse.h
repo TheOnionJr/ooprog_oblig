@@ -43,5 +43,7 @@ class Ovelse : public NumElement {
 		void skrivResTilFil();
 		void fjernStartliste();
 		void fjernRESlist();
+		void displayRes();
+		void displayScore(int t);
 };
 #endif
