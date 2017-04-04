@@ -5,6 +5,9 @@
 #include "../Headers/Enumer.h"
 #include "../Headers/main.h"
 #include <iostream>
+#include <fstream>
+
+using namespace std;
 
 void Deltagere::deltagermeny() {		//Menyen for deltagere
 	char kommando;
@@ -131,4 +134,16 @@ Deltager* Deltagere::plsHelp(int id) {			//Returnerer et deltagerobjekt som kan 
 
 void Deltagere::thankYou(Deltager* hjelpeobjekt) {		//Legger tilbake deltageren i lista
 	deltagerliste->add(hjelpeobjekt);
+}
+
+void Deltagere::skrivTilFil() {
+	ofstream utfil("DELTAGERE.DTA");
+	if (utfil) {
+		utfil << deltagerliste->noOfElements() << endl;
+		for (int i = 1; i <= deltagerliste->noOfElements(); i++) {
+			Deltager* hjelpeobjekt = (Deltager*)deltagerliste->removeNo(i);
+			hjelpeobjekt->skrivTilFil(utfil);
+			deltagerliste->add(hjelpeobjekt);
+		}
+	}
 }

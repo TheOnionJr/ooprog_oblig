@@ -2,6 +2,7 @@
 #define Deltagere_h
 #include "ListTool2B.h"
 #include "Deltager.h"
+
 class Deltagere {
 private:
 	List* deltagerliste;
@@ -20,6 +21,7 @@ public:
 	bool finnesDeltager(int id);
 	Deltager* plsHelp(int id);
 	void thankYou(Deltager* hjelpeobjekt);
+	void skrivTilFil();
 };
 
 #endif

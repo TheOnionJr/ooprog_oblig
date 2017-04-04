@@ -2,6 +2,8 @@
 #define deltager_h
 #include "ListTool2B.h"
 #include "../Headers/Const.h"
+#include <fstream>
+using namespace std;
 
 class Deltager : public NumElement {
 	private:
@@ -17,5 +19,6 @@ class Deltager : public NumElement {
 		void ovelseDisplay();
 		char* returnKortNavn();
 		char* returnNavn();
+		void skrivTilFil(ofstream &utfil);
 };
 #endif
