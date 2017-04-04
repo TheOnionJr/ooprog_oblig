@@ -110,7 +110,7 @@ void Ovelse::display() {					//Skriver ut info om øvelsen
 	cout << "\nTidspunkt: " << tidspunkt;
 	cout << "\nDato: " << dato;
 	cout << "Antall Deltagere: " << antDeltagere;
-	// Display resultater
+	displayRes();							//Skriver ut resultatlisten
 }
 
 void Ovelse::nyDeltager(){

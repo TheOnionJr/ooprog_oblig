@@ -85,3 +85,8 @@ void Deltager::skrivTilFil(ofstream &utfil) {
 	utfil << number << endl << dNavn << endl
 		<< nasjonalitet << endl << kjonn;
 }
+
+void Deltager::lesFraFil(ofstream &innfil) {
+	innfil >> number >> endl >> dNavn >> endl
+		   >> nasjonalitet >> kjonn;
+}

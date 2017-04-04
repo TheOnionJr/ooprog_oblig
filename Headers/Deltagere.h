@@ -22,6 +22,7 @@ public:
 	Deltager* plsHelp(int id);
 	void thankYou(Deltager* hjelpeobjekt);
 	void skrivTilFil();
+	void lesFraFil();
 };
 
 #endif
