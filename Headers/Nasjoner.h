@@ -17,5 +17,6 @@ public:
 	bool inList(const char* t);
 	void leggTilDeltager(char* t);
 	void fjernDeltager(char* t);
+	void skrivTilFil();
 };
 #endif

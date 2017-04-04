@@ -5,6 +5,7 @@
 #include "../Headers/Nasjon.h"
 #include "../Headers/main.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -116,4 +117,16 @@ void Nasjoner::fjernDeltager(char* t) {		//Forteller et nasjonsobjekt at det ska
 	Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(t);
 	hjelpeobjekt->fjernDeltager();
 	nasjonsliste->add(hjelpeobjekt);
+}
+
+void Nasjoner::skrivTilFil() {
+	ofstream utfil("NASJONER.DTA");
+	if (utfil) {
+		utfil << nasjonsliste->noOfElements() << endl;
+		for (int i = 0; i <= nasjonsliste->noOfElements(); i++) {
+			Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->removeNo(i);
+			hjelpeobjekt->skrivTilFil(utfil);
+			nasjonsliste->add(hjelpeobjekt);
+		}
+	}
 }

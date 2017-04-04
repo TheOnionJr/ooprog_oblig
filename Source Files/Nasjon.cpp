@@ -5,6 +5,9 @@
 #include "../Headers/Deltager.h"
 #include "../Headers/main.h"
 #include "../Headers/Deltagere.h"
+#include <fstream>
+
+using namespace std;
 
 
 Nasjon::Nasjon(){
@@ -95,4 +98,9 @@ void Nasjon::fjernDeltager() {
 
 int Nasjon::returnAntDeltagere() {
 	return(antDeltagere);
+}
+
+void Nasjon::skrivTilFil(ofstream &utfil) {
+	utfil << text << endl << fulltNavn << endl << antDeltagere
+		<< endl << kontaktNavn << endl << kontaktNr;
 }
