@@ -2,6 +2,7 @@
 #define _CRT_NONSTDC_NO_DEPRECATE
 
 #include <iostream>
+#include <fstream>
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Deltager.h"
 #include "../Headers/Const.h"
@@ -78,4 +79,9 @@ char* Deltager::returnKortNavn() {		//Returnerer nasjonsforkortelsen til bruk an
 
 char* Deltager::returnNavn() {			//Returnerer nasjonens fulle navn til bruk andre steder
 	return (dNavn);
+}
+
+void Deltager::skrivTilFil(ofstream &utfil) {
+	utfil << number << endl << dNavn << endl
+		<< nasjonalitet << endl << kjonn;
 }
