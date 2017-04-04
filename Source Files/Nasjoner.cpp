@@ -36,15 +36,14 @@ void Nasjoner::nasjonsmeny() {
 			break;
 		case 'X': break;			//GÃ¥ tilbake
 		default:
-			nasjonerMeny();
 			break;
 		}
-		nasjonerMeny();
-		kommando = lesKommando(); //Bruker skriver her kommando for nasjonsmeny
+		nasjonerMeny();				//Skriver nasjonsmeny
+		kommando = lesKommando();	//Bruker skriver her kommando for nasjonsmeny
 	}
 }
 
-void Nasjoner::nyNasjon() {
+void Nasjoner::nyNasjon() {			//Lager en ny nasjon, og legger den til i lista
 	char id[NASJKORTLEN];
 	char* nasjkort;
 	les("\nVennligst skriv landets forkortelse: ", id, NASJKORTLEN);
@@ -58,9 +57,9 @@ void Nasjoner::nyNasjon() {
 	}
 }
 
-void Nasjoner::endreNasjon() {
+void Nasjoner::endreNasjon() {		//Endrer en nasjons informasjon
 	char id[NASJKORTLEN];
-	char kommando = '0';
+	char kommando = '0';			//Initierer for å kunne entre while-løkke
 	les("\nForkortelsen til den nasjonen du vil endre: ", id, NASJKORTLEN);
 	if (nasjonsliste->inList(id)) {	//Om landet finnes
 		Nasjon* hjelpenasjon = (Nasjon*)nasjonsliste->remove(id);
@@ -71,45 +70,49 @@ void Nasjoner::endreNasjon() {
 											//Looper til bruker skriver kommando 'X'
 		}
 		nasjonsliste->add(hjelpenasjon);
-		kommando = 'V';		//Så bruker kan velge nye ting
 	}
 	else
 		cout << "\nFant ikke nasjonen.";
 }
 
-void Nasjoner::visNasjonsDeltagere() {
+void Nasjoner::visNasjonsDeltagere() {		//Viser alle deltagere til en nasjon
 	char id[NASJKORTLEN];
 	les("\nForkortelsen til den nasjoner du vil vise: ", id, NASJKORTLEN);
-	if (nasjonsliste->inList(id)) {
-		Nasjon* hjelpenasjon = (Nasjon*)nasjonsliste->remove(id);
-		hjelpenasjon->displayDeltagere();
-		nasjonsliste->add(hjelpenasjon);
+	if (nasjonsliste->inList(id)) {			//Hvis nasjonen eksisterer
+		Nasjon* hjelpenasjon = (Nasjon*)nasjonsliste->remove(id);	//Henter nasjonen fra lista
+		hjelpenasjon->displayDeltagere();	//Skriver alle deltagerene til nasjonen på skjermen
+		nasjonsliste->add(hjelpenasjon);	//Legger nasjonen tilbake i lista
 	}
 	else
 		cout << "\nFant ikke nasjonen.";
 }
 
-void Nasjoner::visNasjonsInfo() {
+void Nasjoner::visNasjonsInfo() {			//Viser detaljert informasjon om en nasjon, 
+											//og hvor mange deltagere nasjonen har
 	char id[NASJKORTLEN];
-	while (!nasjonsliste->inList(id)) { //Sjekker om nasjon finnes
-		les("\nLandets forkortelse", id, NASJKORTLEN);
+	les("\nLandets forkortelse", id, NASJKORTLEN);	//Leser brukerens valg
+	if (nasjonsliste->inList(id)) {			//Sjekker at nasjonen eksisterer
+		Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(id);	//Henter nasjonen fra lista
+		hjelpeobjekt->display();			//Viser hovedinfo
+		hjelpeobjekt->displayKontakt();		//Viser info om kontaktperson
+		cout << "\nNasjonen har " << hjelpeobjekt->returnAntDeltagere() << " deltager(e).";
+		nasjonsliste->add(hjelpeobjekt);	//Viser antall deltagere
 	}
-	Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(id);
-	cout << "\nNasjonen har " << hjelpeobjekt->returnAntDeltagere() << " deltager(e).";
-	nasjonsliste->add(hjelpeobjekt);
+	else									//Dersom nasjonen ikke blir funnet
+		cout << "\nFant ikke nasjonen.";
 }
 
-bool Nasjoner::inList(const char* t) {
+bool Nasjoner::inList(const char* t) {		//Returnerer om nasjonen eksisterer i den private lista, da man ikke kan sjekke dette globalt
 	return(nasjonsliste->inList(t));
 }
 
-void Nasjoner::leggTilDeltager(char* t) {
+void Nasjoner::leggTilDeltager(char* t) {	//Forteller et nasjonsobjekt at det skal plusse på 1 i sin private "antDeltagere"
 	Nasjon* hjelpeobjekt = (Nasjon*) nasjonsliste->remove(t);
 	hjelpeobjekt->leggTilDeltager();
 	nasjonsliste->add(hjelpeobjekt);
 }
 
-void Nasjoner::fjernDeltager(char* t) {
+void Nasjoner::fjernDeltager(char* t) {		//Forteller et nasjonsobjekt at det skal trekkes fra 1 i sin private "antDeltagere"
 	Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->remove(t);
 	hjelpeobjekt->fjernDeltager();
 	nasjonsliste->add(hjelpeobjekt);

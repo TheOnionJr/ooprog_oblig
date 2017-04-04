@@ -55,13 +55,13 @@ int les(const char * t, const int min, const int max)
 	return tall;
 }
 
-void les(const char t[], char s[], const int LEN) {
+void les(const char t[], char s[], const int LEN) {		//Leser en array inn i s
 	do {
 		cout << '\t' << t << ": ";	cin.getline(s, LEN); //  Ledetekst og leser.
 	} while (strlen(s) == 0);           //  Sjekker at tekstlengden er ulik 0.
 }
 
-char* lesPrivat() {
+char* lesPrivat() {			//Returnerer en char-array
 	char* retur;
 	char buffer[NVNLEN];
 	cin.getline(buffer, NVNLEN);
@@ -82,7 +82,7 @@ void nasjonerMeny() {
 	cout << "\n\tX: Tilbake til hovedmeny.";
 }
 
-void endreNasjonerMeny(){
+void endreNasjonerMeny(){		//Meny for endring av nasjon
 	cout << "\n\nTING SOM KAN ENDRES:";
 	cout << "\n\nN: Nasjonens navn.";
 	cout << "\n\nK: Kontakt navn.";
@@ -143,35 +143,3 @@ void resultatlisteMeny() {
 	cout << "\n\tF: Fjern resultatliste.";
 	cout << "\n\tX: Tilbake til hovedmeny.";
 }
-
-										//Registrerer ny deltager
-/*void nyDeltager() {
-	char nasjonalitet[NASJKORTLEN];	
-	int nummer;
-	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
-	cin.getline(nasjonalitet, (NASJKORTLEN - 1));
-	if (nasjoner->inList(nasjonalitet)) {
-		cout << "\nHvilket nummer har deltageren?\t";
-		cin >> nummer;
-		if (!deltagere->inList(nummer)) {
-			Deltager* hjelpeobjekt = new Deltager(nummer);
-		}
-		else
-			cout << "\nDeltager finnes allerede.";
-	}
-}
-
-										//Endrer en deltager
-void endreDeltager() {
-
-}
-
-										//Skriver info om alle deltagere
-void skrivDeltagerliste() {
-
-}
-
-										//Skriver info om en deltager
-void skrivDeltager() {
-
-}*/

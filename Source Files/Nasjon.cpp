@@ -70,14 +70,18 @@ void Nasjon::display() {	//Skriver hoveddata om nasjonen
 	cout << "\nAntall deltagere:\t" << antDeltagere;
 }
 
+void Nasjon::displayKontakt() {
+	cout << "\nKontaktperson:\t\t" << kontaktNavn;
+	cout << "\nTelefonnummer:\t\t" << kontaktNr;
+}
+
 void Nasjon::displayDeltagere() {
 	deltagere->skrivDeltagerListe(text);
 }
 
 void Nasjon::displayAll() {  //Skriver all data om en gitt nasjon
 	display();
-	cout << "\nKontaktperson:\t\t" << kontaktNavn;
-	cout << "\nTelefonnummer:\t\t" << kontaktNr;
+	displayKontakt();
 	displayDeltagere();
 }
 

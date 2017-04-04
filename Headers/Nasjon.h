@@ -14,6 +14,7 @@ class Nasjon : public TextElement {
 		~Nasjon();			//Deconstructor
 		void endre(char hva); // Valget følger med fra en meny
 		void display();
+		void displayKontakt();
 		void displayAll();
 		void displayDeltagere();
 		void leggTilDeltager();
