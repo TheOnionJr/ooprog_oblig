@@ -148,7 +148,7 @@ void Deltagere::skrivTilFil() {
 	}
 }
 
-void lesFraFil() {
+void Deltagere::lesFraFil() {
 	ifstream innfil("DELTAGERE.DTA");
 	if (innfil {
 		innfil >> antDeltagere;

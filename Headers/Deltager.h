@@ -20,5 +20,6 @@ class Deltager : public NumElement {
 		char* returnKortNavn();
 		char* returnNavn();
 		void skrivTilFil(ofstream &utfil);
+		void lesFraFil(innstream &innfil);
 };
 #endif
