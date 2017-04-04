@@ -62,7 +62,9 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 }
 
 Ovelse::~Ovelse() {
-
+	fjernStartliste(); fjernRESlist();		//Sletter assosierte filer
+	delete[] fulltNavn, tidspunkt, dato, startListe, filRES, filSTA, grenNavn, score, deltNavn, nasj;
+	delete antDeltagere, sisteBrukt, ps;	//Sletter arrayer og variabler
 }
 
 void Ovelse::endre() {
@@ -74,11 +76,11 @@ void Ovelse::endre() {
 		ss = les("\nSekund: ",0,60);		//Leser sekund
 		mm = les("\nMinutt: ",0,60);		//Leser minutt
 		tt = les("\nTimer: ",0,24); 		//Leser timer
-		if(!checkTime(ss, mm, tt)){
+		if(!checkTime(ss, mm, tt)){			//Om tidspunktet er ulovlig
 			cout << "\nUgyldig tidspunkt!";
 		}
 		else {
-			makeTime(ss, mm, tt);
+			makeTime(ss, mm, tt);			//Lager dette om til et tidspunkt som kan skrives ut
 			cout << "\nTidspunktet er registrert.";
 		}
 	}while(checkTime(ss, mm, tt));
@@ -99,11 +101,11 @@ void Ovelse::endre() {
 	} while (!checkDate(day, month, year));
 }
 
-int Ovelse::returnID(){
+int Ovelse::returnID(){						// Returnerer id
 	return number;
 }
 
-void Ovelse::display() {
+void Ovelse::display() {					//Skriver ut info om øvelsen
 	cout << "\nID: " << number;
 	cout << "\nFullt Navn: " << fulltNavn;
 	cout << "\nTidspunkt: " << tidspunkt;
@@ -236,9 +238,7 @@ void Ovelse::endreListe() {
 				}
 			}
 		}
-	}
-	else{
-		cout << "\nDet finnes allerede en resultatliste. Det er ikke mulig å endre på deltagerlisten!";
+		ofstream utfil(filnavnSTA(number));
 	}
 }
 
