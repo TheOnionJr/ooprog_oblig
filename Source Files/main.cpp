@@ -51,6 +51,7 @@ int main() {
 			medaljer->displayAll();
 			break;
 		case 'P':						//Skriver ut hele poengstatistikken.
+			poeng->displayAll();
 			break;
 		case 'X':						//Avslutter programmet
 			break;
