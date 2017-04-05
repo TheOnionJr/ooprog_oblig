@@ -11,8 +11,8 @@ class Ovelse : public NumElement {
 		char dato[8];
 		int antDeltagere;
 		int startListe[MAXDELTAGERE];
-		char filRES[FILLEN];
-		char filSTA[FILLEN];
+		char* filRES;
+		char* filSTA;
 		char* grenNavn;
 		int sisteBrukt;
 		poengSystem ps;
@@ -36,8 +36,8 @@ class Ovelse : public NumElement {
 		void endreListe();
 		void lesInnStartListe();
 		void skrivStartListe();
-		char* filnavnRES(int id);
-		char* filnavnSTA(int id);
+		void filnavnRES(int id);
+		void filnavnSTA(int id);
 		void finnes(int id);
 		void nyResList(int id);
 		void hentPs();

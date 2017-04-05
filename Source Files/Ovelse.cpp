@@ -34,8 +34,8 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 	fulltNavn = new char[strlen(midNavn) + 1];
 	strcpy(fulltNavn, midNavn);
 
-	strcpy(filRES, filnavnRES(id));
-	strcpy(filSTA, filnavnSTA(id));
+	filnavnRES(id);
+	filnavnSTA(id);
 	int ss, mm, tt;
 	do{
 		tt = les("\nTimer: ",0,24); 		//Leser timer
@@ -71,8 +71,8 @@ Ovelse::Ovelse(int id, ifstream &innfil) : NumElement(id) {
 	innfil.getline(dato, 8);
 	innfil >> antDeltagere;
 	innfil.ignore();
-	strcpy(filRES, filnavnRES(id));
-	strcpy(filSTA, filnavnSTA(id));
+	filnavnRES(id);
+	filnavnSTA(id);
 }
 
 Ovelse::~Ovelse() {
@@ -155,7 +155,7 @@ void Ovelse::nyDeltager(){
 				kommando = lesKommando();
 			}
 		}
-		ofstream utfil(filnavnSTA(number));
+		ofstream utfil(filSTA);
 		for(int i = 0; i < antDeltagere; ){
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
 		}
@@ -253,7 +253,7 @@ void Ovelse::endreListe() {
 				}
 			}
 		}
-		ofstream utfil(filnavnSTA(number));
+		ofstream utfil(filSTA);
 		for(int i = 0; i < antDeltagere; ){
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
 		}
@@ -261,7 +261,7 @@ void Ovelse::endreListe() {
 }
 
 void Ovelse::lesInnStartListe() {					//Leser inn starlisten
-	ifstream innfil(filnavnSTA(number));			//Inn-stream
+	ifstream innfil(filSTA);						//Inn-stream
 	if(innfil){										//Om instream
 		for(int i = 0; i <=antDeltagere; i++){		//Leser inn alle verdiene
 			innfil >> startListe[i];
@@ -384,7 +384,7 @@ void Ovelse::makeTime(int s, int m, int t){ //
 }
 
 
-char* Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ovelse.
+void Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ovelse.
 	char filnavn[FILLEN];					//Filnavnet.
 	char buffer[FILLEN];					//Mellomlagring.
 
@@ -392,10 +392,10 @@ char* Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ov
 	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
 	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
 	strcat(filnavn, ".STA");				//appender '.RES' på slutten av filnavn.
-	return(filnavn);						//Returnerer filnavn.
+	strcpy(filRES, filnavn);				//Returnerer filnavn.
 }
 
-char* Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ovelse.
+void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ovelse.
 	char filnavn[FILLEN];					//Filnavnet.
 	char buffer[FILLEN];					//Mellomlagring.
 
@@ -403,12 +403,12 @@ char* Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ov
 	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
 	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
 	strcat(filnavn, ".RES");				//appender '.RES' på slutten av filnavn.
-	return(filnavn);						//Returnerer filnavn.
+	strcpy(filRES, filnavn);				//Returnerer filnavn.
 }
 
 void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
 	int tempSiste;							//Mellomlagring.
-	ifstream innfil(filnavnRES(id));			//Henter inn riktig fil.
+	ifstream innfil(filRES);			//Henter inn riktig fil.
 
 	innfil >> tempSiste;					//Leser inn sistebrukt.
 	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
