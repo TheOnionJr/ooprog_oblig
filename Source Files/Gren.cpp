@@ -164,7 +164,7 @@ void Gren::skrivTilFil(ofstream &utfil) {
 	utfil << text << '\n'					//Skriver navnet på grenen.
 		  << pt << '\n'						//Skriver enumen pt.
 		  << sisteBrukt << '\n';			//Skriver sisteBrukt.
-	for (int i = 0; i >= sisteBrukt; i++) {	//Går gjennom antallet ovelser.
+	for (int i = 0; i < sisteBrukt; i++) {	//Går gjennom antallet ovelser.
 		ovelser[i]->skrivTilFil(utfil);
 	}
 	utfil << '\n';
