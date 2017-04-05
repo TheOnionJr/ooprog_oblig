@@ -1,6 +1,8 @@
 #if !defined(Ovelse_h)
 #define Ovelse_h
 #include "ListTool2B.h"
+#include <fstream>
+using namespace std;
 
 class Ovelse : public NumElement {
 	private:
@@ -21,6 +23,7 @@ class Ovelse : public NumElement {
 	public:
 		Ovelse();
 		Ovelse(int id);
+		Ovelse(int id, ifstream &innfil);
 		~Ovelse();
 		void endre();
 		void display();
@@ -45,5 +48,6 @@ class Ovelse : public NumElement {
 		void fjernRESlist();
 		void displayRes();
 		void displayScore(int t);
+		void skrivTilFil(ofstream &utfil);
 };
 #endif

@@ -61,6 +61,13 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 	} while (!checkDate(day, month, year));
 }
 
+Ovelse::Ovelse(int id, ifstream &innfil) : NumElement(id) {
+	innfil.getline(tidspunkt, 8);
+	innfil.getline(dato, 8);
+	innfil >> antDeltagere;
+	innfil.ignore();
+}
+
 Ovelse::~Ovelse() {
 	fjernStartliste(); fjernRESlist();		//Sletter assosierte filer
 	delete[] fulltNavn, grenNavn;
@@ -542,4 +549,9 @@ void Ovelse::displayScore(int t) {
 			cout << mm << ":" << ss << ":" << d;
 			break;
 	}
+}
+
+void Ovelse::skrivTilFil(ofstream &utfil) {
+	utfil << number << endl << tidspunkt << endl << dato
+		<< endl << antDeltagere << endl << sisteBrukt;
 }

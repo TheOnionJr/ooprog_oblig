@@ -8,12 +8,14 @@
 using namespace std;
 
 Gren::Gren(char* text, ifstream &innfil) : TextElement(text) {
-	int tempEnum;
+	int tempEnum, tempId;
 	innfil >> tempEnum; innfil.ignore();
 	pt = (poengSystem)tempEnum ;
-	innfil >> sisteBrukt; innfil.ignore;
+	innfil >> sisteBrukt; innfil.ignore();
 	for (int i = 0; i < sisteBrukt; i++) {
-		ovelser[i]->lesFraFil(innfil);
+		innfil >> tempId;
+		innfil.ignore();
+		ovelser[i] = new Ovelse(tempId, innfil);
 	}
 	innfil.ignore();
 }
