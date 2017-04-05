@@ -12,7 +12,7 @@ Gren::Gren(char* text, ifstream &innfil) : TextElement(text) {
 	innfil >> tempEnum; innfil.ignore();
 	pt = (poengSystem)tempEnum ;
 	innfil >> sisteBrukt; innfil.ignore();
-	for (int i = 0; i < sisteBrukt; i++) {
+	for (int i = 0; i <= sisteBrukt; i++) {
 		innfil >> tempId;
 		innfil.ignore();
 		ovelser[i] = new Ovelse(tempId, innfil);
@@ -86,11 +86,12 @@ void Gren::nyOvelse() {					//Lager ny øvelse
 	if(finnesAllerede(id) != -1) {		//Sjekker om øvelses-id'en allerede eksisterer
 		cout << "\nDenne øvelsen finnes allerede!";
 	}
-	else if(sisteBrukt > 20) {			//Hvis arrayen allerede er full
+	else if(sisteBrukt >= 19) {			//Hvis arrayen allerede er full
 		cout << "\nDet er ikke plass til flere øvelser!";
 	}
 	else {								//Hvis det er plass
-		ovelser[sisteBrukt++] = new Ovelse(id);	//Lager ny øvelse
+		sisteBrukt++;
+		ovelser[sisteBrukt] = new Ovelse(id);	//Lager ny øvelse
 	}
 }
 
@@ -98,7 +99,7 @@ void Gren::endreOvelse(){			//Endrer en øvelse
 	bool finnes = false;				//Starter som false, endres hvis den faktisk finnes
 	int id;							//id som skal endres
 	id = les("\nSrkiv inn øvelsens ID: ", DIVMIN, DIVMAX);
-	for(int i = 0; i <= DIVMAX; i++){	//Går gjennom øvelses-lista
+	for(int i = 0; i <= sisteBrukt; i++){	//Går gjennom øvelses-lista
 		if(ovelser[i] && ovelser[i]->returnID() == id){		//Hvis id'en til ovelsen matcher
 			ovelser[i]->endre();		//Øvelsen blir endret
 			finnes = true;
@@ -126,8 +127,9 @@ void Gren::slettOvelse(){
 }
 
 void Gren::displayOvelser() {		//Displayer alle øvelser
-	for(int i = 0; i < sisteBrukt; i++) {
-		ovelser[i]->display();
+	for(int i = 0; i <= sisteBrukt; i++) {
+		if(ovelser[i] != nullptr)
+			ovelser[i]->display();
 	}
 }
 
@@ -165,8 +167,9 @@ void Gren::skrivTilFil(ofstream &utfil) {
 	utfil << text << '\n'					//Skriver navnet på grenen.
 		  << pt << '\n'						//Skriver enumen pt.
 		  << sisteBrukt << '\n';			//Skriver sisteBrukt.
-	for (int i = 0; i < sisteBrukt; i++) {	//Går gjennom antallet ovelser.
-		ovelser[i]->skrivTilFil(utfil);
+	for (int i = 0; i <= sisteBrukt; i++) {	//Går gjennom antallet ovelser.
+		if(ovelser[i] != nullptr)
+			ovelser[i]->skrivTilFil(utfil);
 	}
 	utfil << '\n';
 }

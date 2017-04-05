@@ -119,5 +119,5 @@ int Nasjon::returnAntDeltagere() {
 
 void Nasjon::skrivTilFil(ofstream &utfil) {
 	utfil << text << endl << fulltNavn << endl << antDeltagere
-		<< endl << kontaktNavn << endl << kontaktNr;
+		<< endl << kontaktNavn << endl << kontaktNr << endl;
 }

@@ -29,7 +29,7 @@ Ovelse::Ovelse(){
 
 Ovelse::Ovelse(int id) : NumElement(id) {
 	char midNavn[NVNLEN];
-	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
+	cout << "\nVennligst skriv inn øvelsens fulle navn: ";
 	cin.ignore(); cin.getline(midNavn, NVNLEN);
 	fulltNavn = new char[strlen(midNavn) + 1];
 	strcpy(fulltNavn, midNavn);
@@ -67,10 +67,14 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 }
 
 Ovelse::Ovelse(int id, ifstream &innfil) : NumElement(id) {
+	char midNavn[NVNLEN];
 	innfil.getline(tidspunkt, 8);
 	innfil.getline(dato, 8);
 	innfil >> antDeltagere;
 	innfil.ignore();
+	innfil.getline(midNavn, NVNLEN);
+	fulltNavn = new char[strlen(midNavn) + 1];
+	strcpy(fulltNavn, midNavn);
 	filnavnRES(id);
 	filnavnSTA(id);
 }
@@ -81,8 +85,11 @@ Ovelse::~Ovelse() {
 }
 
 void Ovelse::endre() {
-	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
-	fulltNavn = lesPrivat();
+	char midNavn[NVNLEN];
+	cout << "\nVennligst skriv inn øvelsens fulle navn: ";
+	cin.ignore(); cin.getline(midNavn, NVNLEN);
+	fulltNavn = new char[strlen(midNavn) + 1];
+	strcpy(fulltNavn, midNavn);
 
 	int ss, mm, tt;
 	do{
@@ -96,7 +103,7 @@ void Ovelse::endre() {
 			makeTime(ss, mm, tt);			//Lager dette om til et tidspunkt som kan skrives ut
 			cout << "\nTidspunktet er registrert.";
 		}
-	}while(checkTime(ss, mm, tt));
+	}while(!checkTime(ss, mm, tt));
 
 	int month, day, year;
 	do{
@@ -104,7 +111,7 @@ void Ovelse::endre() {
 		month = les("\nMåned: ",1,12);		//Leser hvilken måned
 		year = les("\nÅr: ",0,9999);		//Leser hvilket år
 		year = year % 100;				   //year ikke overskriver 2 karakterer
-		if(!checkDate(month, day, year)) {	//Sjekker om datoen er gyldig
+		if(!checkDate(day, month, year)) {	//Sjekker om datoen er gyldig
 			cout << "\nUgyldig dato!";		//Gir beskjed om ugyldig
 		}
 		else {
@@ -123,7 +130,7 @@ void Ovelse::display() {					//Skriver ut info om øvelsen
 	cout << "\nFullt Navn: " << fulltNavn;
 	cout << "\nTidspunkt: " << tidspunkt;
 	cout << "\nDato: " << dato;
-	cout << "Antall Deltagere: " << antDeltagere;
+	cout << "\nAntall Deltagere: " << antDeltagere;
 	displayRes();							//Skriver ut resultatlisten
 }
 
@@ -325,31 +332,31 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 	char buffer[3];		//Buffer
 
 	if(day < 10) {
-		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
+		strcpy(dato, "0");			//legger til '0' for å holde formatet
 		_itoa(day, buffer, 10);			//int -> char
 	}
 	else if(day >= 10){
 		_itoa(day, buffer, 10);			//Legger sekund til buffer
 	}
-	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
-	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
+	strcpy(dato, buffer);			//Legger over fra buffer til char array
+	strcat(dato, ":");				//Legger til ':' for format SS:MM:TT
 	if(month < 10) {
-		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
+		strcat(dato, "0");			//legger til '0' for å holde formatet
 		_itoa(month, buffer, 10);			//int -> char
 	}
 	else{
 		_itoa(month, buffer, 10);		//Legger til minutt i buffer
 	}
-	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
-	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
+	strcat(dato, buffer);			//Legger over fra buffer til char array
+	strcat(dato, ":");				//Legger til ':' for format SS:MM:TT
 	if(year < 10) {
-		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
+		strcat(dato, "0");			//Legger til '0' for å holde formatet
 		_itoa(year, buffer, 10);			//int -> char
 	}
 	else{
 		_itoa(year, buffer, 10);			//Legger til timer i buffer
 	}
-	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(dato, buffer);			//Legger over fra buffer til char array
 }
 
 void Ovelse::makeTime(int s, int m, int t){ //
@@ -391,8 +398,8 @@ void Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ove
 	_itoa(id, buffer, 10);					//Skriver om inten id til char-mellomlagringa.
 	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
 	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
-	strcat(filnavn, ".STA");				//appender '.RES' på slutten av filnavn.
-	strcpy(filRES, filnavn);				//Returnerer filnavn.
+	strcat(filnavn, ".STA");				//appender '.STA' på slutten av filnavn.
+	strcpy(filSTA, filnavn);				//Setter filnavnet.
 }
 
 void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ovelse.
@@ -403,7 +410,7 @@ void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ove
 	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
 	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
 	strcat(filnavn, ".RES");				//appender '.RES' på slutten av filnavn.
-	strcpy(filRES, filnavn);				//Returnerer filnavn.
+	strcpy(filRES, filnavn);				//Setter filnavnet.
 }
 
 void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
@@ -560,5 +567,5 @@ void Ovelse::displayScore(int t) {
 
 void Ovelse::skrivTilFil(ofstream &utfil) {
 	utfil << number << endl << tidspunkt << endl << dato
-		<< endl << antDeltagere << endl << sisteBrukt;
+		<< endl << antDeltagere << endl << fulltNavn << endl;
 }

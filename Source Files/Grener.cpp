@@ -104,11 +104,11 @@ void Grener::ovelsemeny() {
 				break;
 			default:
 				break;
-				ovelseMeny();
-				kommando = lesKommando();
 			}
-			grenliste->add(hjelpeobjekt);
+			ovelseMeny();
+			kommando = lesKommando();
 		}
+		grenliste->add(hjelpeobjekt);
 	}
 	else
 		cout << "\nFant ikke grenen.";
