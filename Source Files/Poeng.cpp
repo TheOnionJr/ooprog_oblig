@@ -108,11 +108,15 @@ void Poeng::trekkFraPoeng(char fil[FILLEN]) {
 }
 
 void Poeng::displayAll() {
-	for (int i = 0; i >= sisteBrukt; i++) {
+	bool fant = false;
+	for (int i = 0; i < sisteBrukt; i++) {
 		cout << "\nNasjon: " << nasjKort[i]			//Skriver ut nasjonen,
 			 << "\tPoeng: " << poeng[i] 			//antall poeng.	
 			 << "\n";								//Mellomrom.
+		fant = true;
 	}
+	if (!fant)
+		cout << "\nFant ingen poeng-statistikk.";
 }
 
 int Poeng::finnNasjon(char* nasjon) {

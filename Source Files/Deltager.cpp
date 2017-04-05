@@ -11,12 +11,12 @@
 using namespace std;
 
 Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skrives inn
-	// ID legges i numElement
+	// ID legges i numElement								// Deltagers nasjonalitet sendes som parameter fordi det må sjekkes før den lages om nasjonen i det hele tatt lages
 	char buffer[NVNLEN];					//Mellomlagring av navn
 	strcpy(nasjonalitet, nasj);
 	cout << "\nDeltagers Navn: ";			
 	cin.ignore();							
-	cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn
+	cin.getline(buffer, NVNLEN);			//Henter brukerens ønskede navn på deltageren
 	dNavn = new char[strlen(buffer) + 1];	//Setter av nøyaktig så mye plass som trengs
 	strcpy(dNavn, buffer);					//Setter navnet
 	cout << "\nDeltagers kjønn(m/k): ";		
