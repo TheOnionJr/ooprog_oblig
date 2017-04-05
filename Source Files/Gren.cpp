@@ -83,17 +83,33 @@ void Gren::nyOvelse() {					//Lager ny øvelse
 }
 
 void Gren::endreOvelse(){			//Endrer en øvelse
-	bool fant = false;				//Starter som false, endres hvis den faktisk finnes
+	bool finnes = false;				//Starter som false, endres hvis den faktisk finnes
 	int id;							//id som skal endres
 	id = les("\nSrkiv inn øvelsens ID: ", DIVMIN, DIVMAX);
 	for(int i = 0; i <= DIVMAX; i++){	//Går gjennom øvelses-lista
 		if(ovelser[i] && ovelser[i]->returnID() == id){		//Hvis id'en til ovelsen matcher
 			ovelser[i]->endre();		//Øvelsen blir endret
-			fant = true;
+			finnes = true;
 		}
 	}
-	if(fant = false){		//Hvis ingen øvelser matchet id'en
+	if(!finnes){		//Hvis ingen øvelser matchet id'en
 		cout << "\nFant ikke ovelsen.";
+	}
+}
+
+void Gren::slettOvelse(){
+	int id = les("\nID til øvelsen du ønsker å fjerne: ", DIVMIN, DIVMAX);	//Leser inn hvilken id
+	bool finnes = false;
+	for(int i = 0; i <= sisteBrukt; i++) {							//Finner øvelse med tilsvarende id
+		if(ovelser[i] && ovelser[i]->returnID() == id){				//Om den finnes
+			finnes = true;											//Forteller at den finnes
+			ovelser[i] = ovelser[sisteBrukt];						//Setter siste brukte lik ovelser[i]
+			sisteBrukt--;											//Fjerner ett element
+			cout << "Ovelsen er slettet."							//Bekrefter at øvelsen er slettet
+		}
+	}
+	if(!finnes) {													//Om øvelsen ikke finnes
+		cout << "\nFant ikke ovelsen.";								//Git beskjed om at den ikke finnes
 	}
 }
 
