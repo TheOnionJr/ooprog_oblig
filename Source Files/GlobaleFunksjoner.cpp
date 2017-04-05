@@ -70,6 +70,17 @@ char* lesPrivat() {			//Returnerer en char-array
 	return retur;
 }
 
+void lesFraFiler() {
+	deltagere->lesFraFil();
+	nasjoner-> lesFraFil();
+	grener->   lesFraFil();
+}
+
+void skrivTilFiler() {
+	deltagere->skrivTilFil();
+	nasjoner-> skrivTilFil();
+	grener->   skrivTilFil();
+}
 
 //Nasjoner-funksjoner.
 void nasjonerMeny() {
