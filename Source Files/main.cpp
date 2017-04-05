@@ -28,6 +28,7 @@ Medaljer* medaljer = new Medaljer();	//
 Poeng* poeng = new Poeng();				//
 
 int main() {						
+	lesFraFiler();
 
 	skrivMeny();                        //  Skriver brukermeny.
 
@@ -53,13 +54,12 @@ int main() {
 		case 'P':						//Skriver ut hele poengstatistikken.
 			poeng->displayAll();
 			break;
-		case 'X':						//Avslutter programmet
-			break;
 		default:
 			break;
 		}
 		skrivMeny();					//Skriver hovedmenyen
 		kommando = lesKommando();		//  Får inn brukers ønske.
 	}
+	skrivTilFiler();
 	return 0;
 }

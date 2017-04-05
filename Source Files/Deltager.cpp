@@ -28,11 +28,11 @@ Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skri
 
 Deltager::Deltager(int id, ifstream &innfil) : NumElement(id) {
 	char midNavn[NVNLEN];
-	innfil.ignore();
 	innfil.getline(midNavn, NVNLEN);
 	dNavn = new char[strlen(midNavn) + 1];
+	strcpy(dNavn, midNavn);
 	innfil.getline(nasjonalitet, NASJKORTLEN);
-	innfil >> kjonn;
+	innfil >> kjonn; innfil.ignore(); innfil.ignore();
 }
 
 Deltager::~Deltager() {
@@ -92,5 +92,5 @@ char* Deltager::returnNavn() {			//Returnerer nasjonens fulle navn til bruk andr
 
 void Deltager::skrivTilFil(ofstream &utfil) {
 	utfil << number << endl << dNavn << endl
-		<< nasjonalitet << endl << kjonn;
+		<< nasjonalitet << endl << kjonn << endl << endl;
 }

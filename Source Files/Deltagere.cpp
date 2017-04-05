@@ -153,8 +153,8 @@ void Deltagere::lesFraFil() {
 	if (innfil) {
 		int antDeltagere;
 		innfil >> antDeltagere;
-		for(int i = 0; i < antDeltagere; i++) {
-			int id; innfil >> id;
+		for(int i = 1; i <= antDeltagere; i++) {
+			int id; innfil >> id; innfil.ignore();
 			deltagerliste->add(new Deltager(id, innfil));
 		}
 	}

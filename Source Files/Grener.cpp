@@ -144,7 +144,7 @@ void Grener::displayAllGren() {
 }
 
 void Grener::skrivTilFil() {
-	ofstream utfil("GREN.DTA");
+	ofstream utfil("GRENER.DTA");
 	if (utfil) {
 		utfil << grenliste->noOfElements() << endl;
 		for (int i = 1; i <= grenliste->noOfElements(); i++) {

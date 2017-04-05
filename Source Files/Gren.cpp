@@ -141,9 +141,9 @@ int Gren::finnesAllerede(int id) {		//Sjekker om id'en eksisterer, og hvis den g
 
 										//Skriver alle data om en gren.
 void Gren::display() {
-	cout << "\nNavn: \t" << text;		//Navn.
+	cout << "\nNavn: \t\t" << text;		//Navn.
 
-	cout << "\nTid/poeng: \n";			//Om prestasjonsmåling er tid/poeng.
+	cout << "\nTid/poeng: \t";			//Om prestasjonsmåling er tid/poeng.
 	switch (pt) {						//Og hvilken type det er.
 		case tidTi: cout << "Tid med tideler (Min:Sek:Tidel).";			break;
 		case tidHu: cout << "Tid med hundredeler (Min:Sek:Hundredel)."; break;

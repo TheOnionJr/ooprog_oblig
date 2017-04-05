@@ -137,7 +137,7 @@ void Nasjoner::lesFraFil() {
 		int antNasjoner;
 		innfil >> antNasjoner;
 		innfil.ignore();
-		for (int i = 0; i <= antNasjoner; i++) {
+		for (int i = 1; i <= antNasjoner; i++) {
 			char id[NASJKORTLEN]; 
 			innfil.getline(id, NASJKORTLEN);
 			nasjonsliste->add(new Nasjon(id, innfil));
