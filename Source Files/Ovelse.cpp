@@ -28,9 +28,9 @@ Ovelse::Ovelse(){
 }
 
 Ovelse::Ovelse(int id) : NumElement(id) {
-	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
 	char midNavn[NVNLEN];
-	strcpy(midNavn, lesPrivat());
+	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
+	cin.ignore(); cin.getline(midNavn, NVNLEN);
 	fulltNavn = new char[strlen(midNavn) + 1];
 	strcpy(fulltNavn, midNavn);
 
@@ -48,7 +48,7 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 			makeTime(ss, mm, tt);
 			cout << "\nTidspunktet er registrert.";
 		}
-	}while(checkTime(ss, mm, tt));
+	}while(!checkTime(ss, mm, tt));
 
 	int month, day, year;
 	do{
@@ -322,65 +322,65 @@ bool Ovelse::checkTime(int ss, int mm, int tt) {
 }
 
 void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short medium og long
-	char buffer[2];		//Buffer
+	char buffer[3];		//Buffer
 
 	if(day < 10) {
-		strcpy_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
-		_itoa_s(day, buffer, 2, 10);			//int -> char
+		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
+		_itoa(day, buffer, 10);			//int -> char
 	}
 	else if(day >= 10){
-		_itoa_s(day, buffer, 2, 10);			//Legger sekund til buffer
+		_itoa(day, buffer, 10);			//Legger sekund til buffer
 	}
-	strcpy_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
-	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
+	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(month < 10) {
-		strcat_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
-		_itoa_s(month, buffer, 2, 10);			//int -> char
+		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
+		_itoa(month, buffer, 10);			//int -> char
 	}
 	else{
-		_itoa_s(month, buffer, 2, 10);		//Legger til minutt i buffer
+		_itoa(month, buffer, 10);		//Legger til minutt i buffer
 	}
-	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
-	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(year < 10) {
-		strcat_s(tidspunkt, 8, "0");			//Legger til '0' for å holde formatet
-		_itoa_s(year, buffer, 2, 10);			//int -> char
+		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
+		_itoa(year, buffer, 10);			//int -> char
 	}
 	else{
-		_itoa_s(year, buffer, 2, 10);			//Legger til timer i buffer
+		_itoa(year, buffer, 10);			//Legger til timer i buffer
 	}
-	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
 }
 
 void Ovelse::makeTime(int s, int m, int t){ //
-	char buffer[2];		//Buffer
+	char buffer[3];		//Buffer
 
 	if(s < 10) {
-		strcpy_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
-		_itoa_s(s, buffer, 2, 10);			//int -> char
+		strcpy(tidspunkt, "0");			//legger til '0' for å holde formatet
+		_itoa(s, buffer, 10);			//int -> char
 	}
 	else if(s > 10){
-		_itoa_s(s, buffer, 2, 10);			//Legger sekund til buffer
+		_itoa(s, buffer, 10);			//Legger sekund til buffer
 	}
-	strcpy_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
-	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
+	strcpy(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(m < 10) {
-		strcat_s(tidspunkt, 8, "0");			//legger til '0' for å holde formatet
-		_itoa_s(m, buffer, 2, 10);			//int -> char
+		strcat(tidspunkt, "0");			//legger til '0' for å holde formatet
+		_itoa(m, buffer, 10);			//int -> char
 	}
 	else{
-		_itoa_s(m, buffer, 2, 10);			//Legger til minutt i buffer
+		_itoa(m, buffer, 10);			//Legger til minutt i buffer
 	}
-	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
-	strcat_s(tidspunkt, 8, ":");				//Legger til ':' for format SS:MM:TT
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, ":");				//Legger til ':' for format SS:MM:TT
 	if(t < 10) {
-		strcat_s(tidspunkt, 8, "0");			//Legger til '0' for å holde formatet
-		_itoa_s(t, buffer, 2, 10);			//int -> char
+		strcat(tidspunkt, "0");			//Legger til '0' for å holde formatet
+		_itoa(t, buffer, 10);			//int -> char
 	}
 	else{
-		_itoa_s(t, buffer, 2, 10);			//Legger til timer i buffer
+		_itoa(t, buffer, 10);			//Legger til timer i buffer
 	}
-	strcat_s(tidspunkt, 8, buffer);			//Legger over fra buffer til char array
+	strcat(tidspunkt, buffer);			//Legger over fra buffer til char array
 }
 
 
