@@ -123,7 +123,7 @@ void Nasjoner::skrivTilFil() {
 	ofstream utfil("NASJONER.DTA");
 	if (utfil) {
 		utfil << nasjonsliste->noOfElements() << endl;
-		for (int i = 0; i <= nasjonsliste->noOfElements(); i++) {
+		for (int i = 1; i <= nasjonsliste->noOfElements(); i++) {
 			Nasjon* hjelpeobjekt = (Nasjon*)nasjonsliste->removeNo(i);
 			hjelpeobjekt->skrivTilFil(utfil);
 			nasjonsliste->add(hjelpeobjekt);
