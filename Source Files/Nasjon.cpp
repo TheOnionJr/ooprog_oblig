@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif 
+
 #include "../Headers/Nasjon.h"
 #include "../Headers/Const.h"
 #include <iostream>
@@ -42,10 +46,12 @@ Nasjon::Nasjon(char* id, ifstream &innfil) : TextElement(id) {
 	innfil.ignore();
 	innfil.getline(midNavn, NVNLEN);					//Getliner temp navn
 	fulltNavn = new char[strlen(midNavn) + 1];			//Setter fullt navn
+	strcpy(fulltNavn, midNavn);
 	innfil >> antDeltagere;								//Setter antall deltagere
 	innfil.ignore();							
 	innfil.getline(midNavn, NVNLEN);					//Henter nytt temp navn
 	kontaktNavn = new char[strlen(midNavn) + 1];		//Setter kontaktens navn
+	strcpy(kontaktNavn, midNavn);
 	innfil >> kontaktNr;								//Setter kontaktens tlf
 }
 
