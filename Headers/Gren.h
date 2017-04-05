@@ -25,5 +25,7 @@ class Gren : public TextElement {
 		poengSystem returnPt();
 		void skrivTilFil(ofstream &utfil);
 		void slettOvelse();
+		void startListe();
+		void resultatListe();
 };
 #endif

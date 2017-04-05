@@ -29,8 +29,13 @@ Ovelse::Ovelse(){
 
 Ovelse::Ovelse(int id) : NumElement(id) {
 	cout << "\nVenligst skriv inn øvelsens fulle navn: ";
-	fulltNavn = lesPrivat();
+	char midNavn[NVNLEN];
+	strcpy(midNavn, lesPrivat());
+	fulltNavn = new char[strlen(midNavn) + 1];
+	strcpy(fulltNavn, midNavn);
 
+	strcpy(filRES, filnavnRES(id));
+	strcpy(filSTA, filnavnSTA(id));
 	int ss, mm, tt;
 	do{
 		ss = les("\nSekund: ",0,60);		//Leser sekund
@@ -66,6 +71,8 @@ Ovelse::Ovelse(int id, ifstream &innfil) : NumElement(id) {
 	innfil.getline(dato, 8);
 	innfil >> antDeltagere;
 	innfil.ignore();
+	strcpy(filRES, filnavnRES(id));
+	strcpy(filSTA, filnavnSTA(id));
 }
 
 Ovelse::~Ovelse() {

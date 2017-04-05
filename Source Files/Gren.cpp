@@ -169,3 +169,64 @@ void Gren::skrivTilFil(ofstream &utfil) {
 	}
 	utfil << '\n';
 }
+
+void Gren::startListe() {
+	int id;
+	char kommando;
+	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
+	if (finnesAllerede(id) != -1) {
+		deltagerlisteMeny();
+		kommando = lesKommando();
+		while (kommando != 'X') {
+			switch (kommando) {
+			case 'S':
+				ovelser[finnesAllerede(id)]->skrivStartListe();
+				break;
+			case 'N':
+				ovelser[finnesAllerede(id)]->nyDeltager();
+				break;
+			case 'E':
+				ovelser[finnesAllerede(id)]->endreListe();
+				break;
+			case 'F':
+				ovelser[finnesAllerede(id)]->fjernStartliste();
+				break;
+			default:
+				break;
+			}
+			deltagerlisteMeny();
+			kommando = lesKommando();
+		}
+	}
+	else
+		cout << "\nId-en ble ikke funnet.";
+}
+
+void Gren::resultatListe() {
+	int id;
+	char kommando;
+	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
+	if (finnesAllerede(id) != -1) {
+		deltagerlisteMeny();
+		kommando = lesKommando();
+		while (kommando != 'X') {
+			switch (kommando) {
+			case 'S':
+				ovelser[finnesAllerede(id)]->displayRes();
+				break;
+			case 'N':
+				ovelser[finnesAllerede(id)]->nyResList(id);
+				break;
+			case 'F':
+				ovelser[finnesAllerede(id)]->fjernRESlist();
+				break;
+			default:
+				break;
+			}
+			resultatlisteMeny();
+			kommando = lesKommando();
+		}
+	}
+	else
+		cout << "\nId-en ble ikke funnet.";
+}

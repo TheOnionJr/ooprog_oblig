@@ -85,24 +85,30 @@ void Grener::ovelsemeny() {
 		while (kommando != 'X') {
 			switch (kommando) {
 			case 'N':
+				hjelpeobjekt->nyOvelse();
 				break;
 			case 'E':
+				hjelpeobjekt->endreOvelse();
 				break;
 			case 'F':
+				hjelpeobjekt->slettOvelse();
 				break;
 			case 'A':
+				hjelpeobjekt->displayOvelser();
 				break;
 			case 'L':
+				hjelpeobjekt->startListe();
 				break;
 			case 'R':
+				hjelpeobjekt->resultatListe();
 				break;
 			default:
 				break;
+				ovelseMeny();
+				kommando = lesKommando();
 			}
-			ovelseMeny();
-			kommando = lesKommando();
+			grenliste->add(hjelpeobjekt);
 		}
-		grenliste->add(hjelpeobjekt);
 	}
 	else
 		cout << "\nFant ikke grenen.";
