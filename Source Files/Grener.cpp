@@ -74,32 +74,38 @@ void Grener::ovelsemeny() {
 	char kommando;
 	char* navn;
 	char buffer[NVNLEN];
-	cout << "\nHva er ovelsens navn?:\t";
+	cout << "\nHva er grenens navn?:\t";
 	cin >> buffer;
 	navn = new char[strlen(buffer) + 1];
 	strcpy(navn, buffer);
-	ovelseMeny();
-	kommando = lesKommando();
-	while (kommando != 'X') {
-		switch (kommando) {
-		case 'N':
-			break;
-		case 'E':
-			break;
-		case 'F':
-			break;
-		case 'A':
-			break;
-		case 'L':
-			break;
-		case 'R':
-			break;
-		default:
-			break;
-		}
+	if (grenliste->inList(navn)) {
+		Gren* hjelpeobjekt = (Gren*)grenliste->remove(navn);
 		ovelseMeny();
 		kommando = lesKommando();
+		while (kommando != 'X') {
+			switch (kommando) {
+			case 'N':
+				break;
+			case 'E':
+				break;
+			case 'F':
+				break;
+			case 'A':
+				break;
+			case 'L':
+				break;
+			case 'R':
+				break;
+			default:
+				break;
+			}
+			ovelseMeny();
+			kommando = lesKommando();
+		}
+		grenliste->add(hjelpeobjekt);
 	}
+	else
+		cout << "\nFant ikke grenen.";
 }
 
 void Grener::ovelseMeny() {
