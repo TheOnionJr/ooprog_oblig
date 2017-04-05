@@ -43,7 +43,6 @@ Nasjon::Nasjon(char* navn) : TextElement(navn){
 
 Nasjon::Nasjon(char* id, ifstream &innfil) : TextElement(id) {
 	char midNavn[NVNLEN];								//Temp navn
-	innfil.ignore();
 	innfil.getline(midNavn, NVNLEN);					//Getliner temp navn
 	fulltNavn = new char[strlen(midNavn) + 1];			//Setter fullt navn
 	strcpy(fulltNavn, midNavn);
