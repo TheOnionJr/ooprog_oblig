@@ -13,7 +13,7 @@ class Gren : public TextElement {
 		Ovelse* ovelser[20];
 		int sisteBrukt;
 	public:
-		//Gren();
+		Gren(char* text, ifstream &innfil);
 		Gren(char tempNvn[NVNLEN]);
 		//~Gren();
 		void endre();

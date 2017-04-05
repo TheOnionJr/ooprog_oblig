@@ -144,3 +144,15 @@ void Grener::skrivTilFil() {
 		}
 	}
 }
+
+void Grener::lesFraFil() {
+	ifstream innfil("GRENER.DTA");
+	if (innfil) {
+		int sisteBrukt;
+		innfil >> sisteBrukt;
+		for (int i = 0; i < sisteBrukt; i++) {
+			char text[NVNLEN]; innfil >> text;
+			grenliste->add(new Gren(text, innfil));
+		}
+	}
+}

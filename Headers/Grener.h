@@ -21,6 +21,7 @@ public:
 	void thankYou(Gren* hjelpeobjekt);
 	void displayAllGren();
 	void skrivTilFil();
+	void lesFraFil();
 };
 
 #endif

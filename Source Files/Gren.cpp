@@ -7,7 +7,16 @@
 #include <fstream>
 using namespace std;
 
-
+Gren::Gren(char* text, ifstream &innfil) : TextElement(text) {
+	int tempEnum;
+	innfil >> tempEnum; innfil.ignore();
+	pt = (poengSystem)tempEnum ;
+	innfil >> sisteBrukt; innfil.ignore;
+	for (int i = 0; i < sisteBrukt; i++) {
+		ovelser[i]->lesFraFil(innfil);
+	}
+	innfil.ignore();
+}
 										//Constructor m/navn-parameter.
 Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	char svar;
@@ -138,7 +147,7 @@ void Gren::skrivTilFil(ofstream &utfil) {
 		  << pt << '\n'						//Skriver enumen pt.
 		  << sisteBrukt << '\n';			//Skriver sisteBrukt.
 	for (int i = 0; i >= sisteBrukt; i++) {	//Går gjennom antallet ovelser.
-		utfil << ovelser[i] << '\n';		//Skriver ovelsen.
+		ovelser[i]->skrivTilFil(utfil);
 	}
 	utfil << '\n';
 }
