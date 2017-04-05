@@ -41,8 +41,7 @@ void Deltagere::nyDeltager() {			//Lager ny deltager
 	cout << "\nHva er deltagerens nasjonalitet (forkortelse på 3 bokstaver)?\t";
 	cin.getline(nasjonalitet, (NASJKORTLEN));		//Henter ønsket nasjonalitet på deltageren
 	if (nasjoner->inList(nasjonalitet)) {			//Sjekker om nasjonen finnes
-		cout << "\nHvilket nummer har deltageren?\t";
-		cin >> nummer;								//Henter ønsket id på deltageren
+		nummer = les("\nHvilket nummer har deltageren?\t", DIVMIN, DIVMAX);	//Henter ønsket id på deltageren
 		if (!deltagerliste->inList(nummer)) {		//Sjekker at id'en ikke er tatt
 			Deltager* hjelpeobjekt = new Deltager(nummer, nasjonalitet);	//Lager deltageren
 			deltagerliste->add(hjelpeobjekt);		//Legger til deltageren i lista
