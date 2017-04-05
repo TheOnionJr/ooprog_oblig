@@ -22,6 +22,7 @@ Gren::Gren(char* text, ifstream &innfil) : TextElement(text) {
 										//Constructor m/navn-parameter.
 Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 	char svar;
+	sisteBrukt = -1;
 										//Spør om hvordan prestasjon måles.
 	cout << "Hvordan måles prestasjon i grenen? 't'=tid, 'p'=poeng: ";
 	
