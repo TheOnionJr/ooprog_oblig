@@ -38,9 +38,9 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 	strcpy(filSTA, filnavnSTA(id));
 	int ss, mm, tt;
 	do{
-		ss = les("\nSekund: ",0,60);		//Leser sekund
-		mm = les("\nMinutt: ",0,60);		//Leser minutt
 		tt = les("\nTimer: ",0,24); 		//Leser timer
+		mm = les("\nMinutt: ",0,60);		//Leser minutt
+		ss = les("\nSekund: ",0,60);		//Leser sekund
 		if(!checkTime(ss, mm, tt)){
 			cout << "\nUgyldig tidspunkt!";
 		}
