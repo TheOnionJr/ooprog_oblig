@@ -105,7 +105,7 @@ void Gren::slettOvelse(){
 			finnes = true;											//Forteller at den finnes
 			ovelser[i] = ovelser[sisteBrukt];						//Setter siste brukte lik ovelser[i]
 			sisteBrukt--;											//Fjerner ett element
-			cout << "Ovelsen er slettet."							//Bekrefter at øvelsen er slettet
+			cout << "Ovelsen er slettet.";							//Bekrefter at øvelsen er slettet
 		}
 	}
 	if(!finnes) {													//Om øvelsen ikke finnes
