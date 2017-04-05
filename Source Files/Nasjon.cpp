@@ -72,7 +72,7 @@ void Nasjon::endre(char hva) { // TRENGER CASE FOR DELTAGERE
 		cout << "\nNavnet er oppdatert. Det er nå: " << kontaktNavn << endl;
 		break;
 	case 'T':		//Endre kontaktpersons nummer
-		les("\nKontaktpersonens nye tlfnummer: ", MINTLF, MAXTLF);
+		kontaktNr = les("\nKontaktpersonens nye tlfnummer: ", MINTLF, MAXTLF);
 		cout << "\nTlfnummeret er oppdatert. Det er nå: " << kontaktNr << endl;
 		break;
 	case 'X':
