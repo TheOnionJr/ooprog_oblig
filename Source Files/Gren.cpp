@@ -125,7 +125,7 @@ void Gren::slettOvelse(){
 }
 
 void Gren::displayOvelser() {		//Displayer alle øvelser
-	for(int i = 0; i <= sisteBrukt; i++) {
+	for(int i = 0; i < sisteBrukt; i++) {
 		ovelser[i]->display();
 	}
 }

@@ -133,10 +133,14 @@ void Grener::displayAllGren() {
 	les("\nHvilken gren vil du se info om?:\t", buffer, STRLEN);
 	navn = new char[strlen(buffer + 1)];
 	strcpy(navn, buffer);
-	Gren* hjelpeobjekt = (Gren*)grenliste->remove(navn);
-	hjelpeobjekt->display();
-	hjelpeobjekt->displayOvelser();
-	grenliste->add(hjelpeobjekt);
+	if (grenliste->inList(navn)) {
+		Gren* hjelpeobjekt = (Gren*)grenliste->remove(navn);
+		hjelpeobjekt->display();
+		hjelpeobjekt->displayOvelser();
+		grenliste->add(hjelpeobjekt);
+	}
+	else
+		cout << "\nFant ikke gren.";
 }
 
 void Grener::skrivTilFil() {
