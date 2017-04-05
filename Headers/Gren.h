@@ -24,5 +24,6 @@ class Gren : public TextElement {
 		int finnesAllerede(int id);
 		poengSystem returnPt();
 		void skrivTilFil(ofstream &utfil);
+		void slettOvelse();
 };
 #endif

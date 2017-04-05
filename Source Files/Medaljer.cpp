@@ -10,7 +10,7 @@
 using namespace std;
 
 Medaljer::Medaljer() {
-	sisteBrukt = 0;
+	sisteBrukt = -1;
 }
 
 void Medaljer::lesArrayFraFil() {	//Funksjon for å oppdatere data (legge til)
@@ -138,6 +138,8 @@ void Medaljer::display(int i) {		//Regner ut og skriver medaljer.
 }
 
 void Medaljer::displayAll() {	//Skriver ut alle medaljeverdiene.
-	for (int i = 1; i >= sisteBrukt; i++)				//Går gjennom alle.
+	for (int i = 1; i < sisteBrukt; i++)				//Går gjennom alle.
 		display(i);										//Kaller displayfunksjon for i.
+	if (sisteBrukt == -1)
+		cout << "\nIngen medaljer å vise.";
 }

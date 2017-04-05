@@ -38,15 +38,15 @@ Nasjon::Nasjon(char* navn) : TextElement(navn){
 }
 
 Nasjon::Nasjon(char* id, ifstream &innfil) : TextElement(id) {
-	char midNavn[NVNLEN];
+	char midNavn[NVNLEN];								//Temp navn
 	innfil.ignore();
-	innfil.getline(midNavn, NVNLEN);
-	fulltNavn = new char[strlen(midNavn) + 1];
-	innfil >> antDeltagere;
-	innfil.ignore();
-	innfil.getline(midNavn, NVNLEN);
-	kontaktNavn = new char[strlen(midNavn) + 1];
-	innfil >> kontaktNr;
+	innfil.getline(midNavn, NVNLEN);					//Getliner temp navn
+	fulltNavn = new char[strlen(midNavn) + 1];			//Setter fullt navn
+	innfil >> antDeltagere;								//Setter antall deltagere
+	innfil.ignore();							
+	innfil.getline(midNavn, NVNLEN);					//Henter nytt temp navn
+	kontaktNavn = new char[strlen(midNavn) + 1];		//Setter kontaktens navn
+	innfil >> kontaktNr;								//Setter kontaktens tlf
 }
 
 Nasjon::~Nasjon(){
