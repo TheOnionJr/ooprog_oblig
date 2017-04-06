@@ -294,7 +294,7 @@ void Ovelse::endreListe() {
 void Ovelse::lesInnStartListe() {					//Leser inn starlisten
 	ifstream innfil(filSTA);						//Inn-stream
 	if(innfil){										//Om instream
-		for(int i = 0; i <=antDeltagere; i++){		//Leser inn alle verdiene
+		for(int i = 0; i < antDeltagere; i++){		//Leser inn alle verdiene
 			innfil >> startListe[i];
 		}
 	}
@@ -492,9 +492,9 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 		sisteBrukt++;								//Teller opp sisteBrukt.
 		if(i != 0)
 			sorter();								//Sorterer array.
-		medaljer->leggTilMedaljer(filRES);
-		poeng->leggTilPoeng(filRES);
 	}
+	medaljer->leggTilMedaljer(filRES);
+	poeng->leggTilPoeng(filRES);
 }
 
 void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
