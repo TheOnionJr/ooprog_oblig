@@ -70,7 +70,7 @@ void Medaljer::leggTilMedaljer(char* fil) {
 		innfil.ignore();
 		if (sisteBrukt >= ANTMED - 1) {						//-1 fordi sisteBrukt teller arrays lagret fra 0.
 			for (int i = 0; i <= ANTMED - 1; i++) {			//Går gjennom antall som skal ha medaljer.
-				innfil.getline(tempNasj[i], NASJKORTLEN +1);//Henter nasjon.
+				innfil.getline(tempNasj[i], NASJKORTLEN);	//Henter nasjon.
 			}
 			for (int i = 0; i <= ANTMED - 1; i++) {
 				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];	//Legger til verdien for 1 gull til 1. plass.
@@ -78,7 +78,7 @@ void Medaljer::leggTilMedaljer(char* fil) {
 		}
 		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
 			for (int i = 0; i <= sisteBrukt; i++) {
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
+				innfil.getline(tempNasj[i], NASJKORTLEN);		//Henter nasjon så langt 
 			}
 			for (int i = 0; i <= sisteBrukt; i++) {
 				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];
