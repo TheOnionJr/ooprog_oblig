@@ -25,7 +25,6 @@ void Medaljer::lesArrayFraFil() {	//Funksjon for å oppdatere data (legge til)
 		}
 	}
 	else {
-		cout << "Fant ikke filen MEDALJER.DTA!";		//Feilmelding.
 	}
 }
 
