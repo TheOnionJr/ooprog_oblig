@@ -148,7 +148,16 @@ void Ovelse::nyDeltager(){
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
 			startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
-			while(!deltagere->finnesDeltager(startListe[i]) && startListe[MAXDELTAGERE] != 0){	//Om deltageren ikke finnes
+			for(int k = 0; k <= MAXDELTAGERE; k++) {
+				if(startListe[k] == startListe[i]){
+					finnes = true;
+				}
+			}
+			while(finnes == true){
+				cout << "\nDenne deltageren finnes allerede!";
+				startListe[i] = les("\nSkriv deltagerens ID: ", DIVMAX, DIVMIN);
+			}
+			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
 				cout << "\nDenne deltageren finnes ikke!";
 				startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			}
