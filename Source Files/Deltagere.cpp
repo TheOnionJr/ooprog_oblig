@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "../Headers/Deltagere.h"
 #include "../Headers/Deltager.h"
 #include "../Headers/GlobaleFunksjoner.h"
@@ -126,13 +130,20 @@ void Deltagere::skrivDeltagerliste() {			//Skriver ut hele deltagerlista
 	deltagerliste->displayList();
 }
 
-Deltager* Deltagere::plsHelp(int id) {			//Returnerer et deltagerobjekt som kan brukes i ovelse
+char* Deltagere::returnDeltakersNavn(int id) {			//Returnerer et deltagerobjekt som kan brukes i ovelse
+	char temp[NVNLEN];
 	Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(id);		//Henter deltageren fra lista
-	return (hjelpeobjekt);						//Returnerer objektet
+	strcpy(temp, hjelpeobjekt->returnNavn());						//Returnerer objektet
+	deltagerliste->add(hjelpeobjekt);
+	return(temp);
 }
 
-void Deltagere::thankYou(Deltager* hjelpeobjekt) {		//Legger tilbake deltageren i lista
+char* Deltagere::returnDeltakersKortNavn(int id) {		//Legger tilbake deltageren i lista
+	char temp[NASJKORTLEN];
+	Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(id);		//Henter deltageren fra lista
+	strcpy(temp, hjelpeobjekt->returnKortNavn());
 	deltagerliste->add(hjelpeobjekt);
+	return(temp);
 }
 
 void Deltagere::skrivTilFil() {

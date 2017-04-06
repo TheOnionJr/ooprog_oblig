@@ -440,8 +440,8 @@ void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ove
 void Ovelse::finnes(int id, poengSystem pd) {				//Funksjon som sjekker om fil finnes/er i bruk.
 	int tempSiste;							//Mellomlagring.
 	ifstream innfil(filRES);			//Henter inn riktig fil.
-
-	innfil >> tempSiste;					//Leser inn sistebrukt.
+	if(innfil)
+		innfil >> tempSiste;					//Leser inn sistebrukt.
 	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
 		nyResList(id, pd);						//Kaller funksjon for å lage ny liste.
 	else
@@ -449,12 +449,13 @@ void Ovelse::finnes(int id, poengSystem pd) {				//Funksjon som sjekker om fil f
 }
 
 void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
-	ps = pt;								//Kaller funksjon som henter inn enumen 'ps'.
+	ps = pt;								//Setter poengsystemet
+	sisteBrukt = 0;
 
-	for (int i = 1; i >= antDeltagere; i++) {	//Teller gjennom antall deltagere.
-		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);	//Lager hjelpeobjekt.
-		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());			//Henter ut nasjonaliteten til deltager nr i.
-		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());			//Henter ut navnet til deltager i.
+	for (int i = 0; i < antDeltagere; i++) {	//Teller gjennom antall deltagere.
+
+		strcpy(nasj[i], deltagere->returnDeltakersKortNavn(startListe[i]));			//Henter ut nasjonaliteten til deltager nr i.
+		strcpy(deltNavn[i], deltagere->returnDeltakersNavn(startListe[i]));			//Henter ut navnet til deltager i.
 
 		switch(ps) {							//Switch etter hvilken enum som er i bruk.
 			case(poengH):						//Poengtype: hopp. Form: x.
@@ -482,10 +483,14 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 					 << " fra " << nasj[i] << "? (på formen mmsstht): ";//Spør hvilken tid deltager fra land fikk.
 				score[i] = les("",0,5959999);							//Leser inn tid.
 				break;
+			default:
+				cout << "shit's fuck'd";
+				break;
 		}
 		sisteBrukt++;								//Teller opp sisteBrukt.
 		sorter();									//Sorterer array.
-		deltagere->thankYou(hjelpeObjekt);			//Legger tilbake hjelpeobjektet i deltagerlista.
+		medaljer->leggTilMedaljer(filRES);
+		poeng->leggTilPoeng(filRES);
 	}
 }
 
@@ -553,7 +558,7 @@ void Ovelse::hentPs() {								//Henter enumen ps.
 }
 
 void Ovelse::displayRes() {
-	for (int i = 0; i <= sisteBrukt; i++) {
+	for (int i = 0; i < sisteBrukt; i++) {
 		cout << "\n Navn: " << deltNavn[i]
 		 	 << "\n Nasjon: " << nasj[i]
 			 << "\t Poeng: "; displayScore(i);

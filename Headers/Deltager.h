@@ -18,8 +18,8 @@ class Deltager : public NumElement {
 		void endre(char hva);
 		void display();
 		void ovelseDisplay();
-		char* returnKortNavn();
-		char* returnNavn();
+		const char* returnKortNavn();
+		const char* returnNavn();
 		void skrivTilFil(ofstream &utfil);
 };
 #endif

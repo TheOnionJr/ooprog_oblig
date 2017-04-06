@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "../Headers/ListTool2B.h"
 #include "../Headers/Deltager.h"
 #include "../Headers/Const.h"
@@ -82,11 +83,11 @@ void Deltager::ovelseDisplay() {	//Skriver nasjonsnavnet og nasjonsforkortelsen 
 	cout << "\nNasjonalitet: " << nasjonalitet;
 }
 
-char* Deltager::returnKortNavn() {		//Returnerer nasjonsforkortelsen til bruk andre steder
+const char* Deltager::returnKortNavn() {		//Returnerer nasjonsforkortelsen til bruk andre steder
 	return (nasjonalitet);
 }
 
-char* Deltager::returnNavn() {			//Returnerer nasjonens fulle navn til bruk andre steder
+const char* Deltager::returnNavn() {			//Returnerer nasjonens fulle navn til bruk andre steder
 	return (dNavn);
 }
 

@@ -19,8 +19,8 @@ public:
 	void skrivForOvelse(int id);
 	void endreDeltagerMeny();
 	bool finnesDeltager(int id);
-	Deltager* plsHelp(int id);
-	void thankYou(Deltager* hjelpeobjekt);
+	char* returnDeltakersNavn(int id);
+	char* returnDeltakersKortNavn(int id);
 	void skrivTilFil();
 	void lesFraFil();
 };
