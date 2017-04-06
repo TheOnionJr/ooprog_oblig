@@ -114,17 +114,6 @@ void Grener::ovelsemeny() {
 		cout << "\nFant ikke grenen.";
 }
 
-void Grener::ovelseMeny() {
-	cout << "\n\nMENYVALG FOR ØVELSER:";
-	cout << "\n\tN: Registrer ny øvelse.";
-	cout << "\n\tE:	Endre en øvelse.";
-	cout << "\n\tF: Fjern en øvelse.";
-	cout << "\n\tA: Skriv hoveddata om alle øvelser.";
-	cout << "\n\tL: Deltagerlister.";
-	cout << "\n\tR: Resusltatlister.";
-	cout << "\n\tX: Gå tilbake.";
-}
-
 Gren* Grener::plsHelp(char* id) {
 	return((Gren*)grenliste->remove(id));
 }

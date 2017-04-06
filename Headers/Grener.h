@@ -16,7 +16,6 @@ public:
 	void skrivHovedGren();
 	void skrivGren();
 	void ovelsemeny();
-	void ovelseMeny();
 	Gren* plsHelp(char* id);
 	void thankYou(Gren* hjelpeobjekt);
 	void displayAllGren();
