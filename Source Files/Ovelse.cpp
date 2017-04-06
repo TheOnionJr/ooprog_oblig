@@ -363,7 +363,7 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 		_itoa(day, buffer, 10);			//Legger sekund til buffer
 	}
 	strcpy(dato, buffer);			//Legger over fra buffer til char array
-	strcat(dato, ":");				//Legger til ':' for format SS:MM:TT
+	strcat(dato, ".");				//Legger til ':' for format SS:MM:TT
 	if(month < 10) {
 		strcat(dato, "0");			//legger til '0' for å holde formatet
 		_itoa(month, buffer, 10);			//int -> char
@@ -372,7 +372,7 @@ void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short
 		_itoa(month, buffer, 10);		//Legger til minutt i buffer
 	}
 	strcat(dato, buffer);			//Legger over fra buffer til char array
-	strcat(dato, ":");				//Legger til ':' for format SS:MM:TT
+	strcat(dato, ".");				//Legger til ':' for format SS:MM:TT
 	if(year < 10) {
 		strcat(dato, "0");			//Legger til '0' for å holde formatet
 		_itoa(year, buffer, 10);			//int -> char
