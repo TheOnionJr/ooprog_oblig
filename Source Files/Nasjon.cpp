@@ -52,6 +52,7 @@ Nasjon::Nasjon(char* id, ifstream &innfil) : TextElement(id) {
 	kontaktNavn = new char[strlen(midNavn) + 1];		//Setter kontaktens navn
 	strcpy(kontaktNavn, midNavn);
 	innfil >> kontaktNr;								//Setter kontaktens tlf
+	innfil.ignore();
 }
 
 Nasjon::~Nasjon(){

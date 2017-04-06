@@ -423,6 +423,7 @@ void Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ove
 	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
 	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
 	strcat(filnavn, ".STA");				//appender '.STA' på slutten av filnavn.
+	filSTA = new char[strlen(filnavn) + 1];
 	strcpy(filSTA, filnavn);				//Setter filnavnet.
 }
 
@@ -434,6 +435,7 @@ void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ove
 	strcpy(filnavn, "OV");					//Kopierer OV i starten av filnavn.
 	strcat(filnavn, buffer);				//appender nummeret til ovelsen bak 'OV' i filnavn.
 	strcat(filnavn, ".RES");				//appender '.RES' på slutten av filnavn.
+	filRES = new char[strlen(filnavn) + 1];
 	strcpy(filRES, filnavn);				//Setter filnavnet.
 }
 
