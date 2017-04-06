@@ -175,7 +175,7 @@ void Ovelse::nyDeltager(){
 		}
 		innfil.close();
 		ofstream utfil(filSTA);
-		for(int i = 0; i < antDeltagere; ){
+		for(int i = 0; i < antDeltagere; i++){
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
 		}
 	}
