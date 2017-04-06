@@ -135,6 +135,7 @@ void Ovelse::display() {					//Skriver ut info om øvelsen
 }
 
 void Ovelse::nyDeltager(){
+	bool finnes = false;
 	cout << "\nLag en ny deltagerliste:\n";
 	ifstream innfil(filSTA);
 	if(!innfil) {						//Lager ny liste
@@ -156,7 +157,7 @@ void Ovelse::nyDeltager(){
 				cout << "\nDenne deltageren finnes allerede!";
 				startListe[i] = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);
 				for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
-					if(startListe[k] == startListe[i]){
+					if((startListe[k] == startListe[i]) &&(startListe[k] != startListe[i])){
 						finnes = true;
 					}
 				}		
