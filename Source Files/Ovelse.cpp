@@ -503,6 +503,7 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 			sorter();								//Sorterer array.
 	}
 	skrivResTilFil();
+	medaljer->leggTilMedaljer(filRES);
 }
 
 void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
