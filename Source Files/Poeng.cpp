@@ -60,7 +60,7 @@ void Poeng::leggTilPoeng(char* fil) {
 	ifstream innfil(fil);				//Åpner fila til resultatlista.
 
 	if (innfil) {
-		innfil >> sisteBrukt;
+		innfil >> sisteBrukt; innfil.ignore();
 		if (sisteBrukt >= PSKALALEN - 1) {
 			for (int i = 0; i <= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
 				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
@@ -91,7 +91,7 @@ void Poeng::trekkFraPoeng(char* fil) {
 	ifstream innfil(fil);				//Åpner fila til resultatlista.
 
 	if (innfil) {
-		innfil >> sisteBrukt;
+		innfil >> sisteBrukt; innfil.ignore();
 		if (sisteBrukt >= PSKALALEN - 1) {
 			for (int i = 0; i <= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
 				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
