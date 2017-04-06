@@ -66,31 +66,31 @@ Ovelse::Ovelse(int id) : NumElement(id) {
 }
 
 Ovelse::Ovelse(int id, ifstream &innfil) : NumElement(id) {
-	char midNavn[NVNLEN];
-	innfil.getline(tidspunkt, 8);
-	innfil.getline(dato, 8);
-	innfil >> antDeltagere;
-	innfil.ignore();
-	innfil.getline(midNavn, NVNLEN);
-	fulltNavn = new char[strlen(midNavn) + 1];
-	strcpy(fulltNavn, midNavn);
-	filnavnRES(id);
-	filnavnSTA(id);
+	char midNavn[NVNLEN];						//Lager temp navn
+	innfil.getline(tidspunkt, 8);				//Leser inn tidspunkt
+	innfil.getline(dato, 8);					//Leser inn dato
+	innfil >> antDeltagere;						//Leser inn antall deltagere
+	innfil.ignore();							//ignore
+	innfil.getline(midNavn, NVNLEN);			//Getliner navnet
+	fulltNavn = new char[strlen(midNavn) + 1];	//Setter navnet
+	strcpy(fulltNavn, midNavn);					//Stricopyer navnet
+	filnavnRES(id);								//Leser inn hvilken RES fil som skal jobbes med
+	filnavnSTA(id);								//Leser inn hvilken STA fil som skal jobbes med
 }
 
 Ovelse::~Ovelse() {
 	fjernStartliste(); fjernRESlist();		//Sletter assosierte filer
-	delete[] fulltNavn, grenNavn;
+	delete[] fulltNavn, grenNavn;			//Sletter arrays
 }
 
 void Ovelse::endre() {
-	char midNavn[NVNLEN];
+	char midNavn[NVNLEN];					//Temp navn
 	cout << "\nVennligst skriv inn øvelsens fulle navn: ";
-	cin.ignore(); cin.getline(midNavn, NVNLEN);
+	cin.ignore(); cin.getline(midNavn, NVNLEN);		//Leser inn temp navn
 	fulltNavn = new char[strlen(midNavn) + 1];
-	strcpy(fulltNavn, midNavn);
+	strcpy(fulltNavn, midNavn);						//Stringcopyer nytt navn
 
-	int ss, mm, tt;
+	int ss, mm, tt;							//Temp variabler for tid
 	do{
 		ss = les("\nSekund: ",0,60);		//Leser sekund
 		mm = les("\nMinutt: ",0,60);		//Leser minutt
@@ -104,7 +104,7 @@ void Ovelse::endre() {
 		}
 	}while(!checkTime(ss, mm, tt));
 
-	int month, day, year;
+	int month, day, year;					//Temp variabler for dato
 	do{
 		day = les("\nDag: ", 1,31);		    //Leser hvilken dag
 		month = les("\nMåned: ",1,12);		//Leser hvilken måned
@@ -125,36 +125,36 @@ int Ovelse::returnID(){						// Returnerer id
 }
 
 void Ovelse::display() {					//Skriver ut info om øvelsen
-	cout << "\nID: " << number;
-	cout << "\nFullt Navn: " << fulltNavn;
-	cout << "\nTidspunkt: " << tidspunkt;
-	cout << "\nDato: " << dato;
-	cout << "\nAntall Deltagere: " << antDeltagere;
+	cout << "\nID: " << number;				//Skriver ut id
+	cout << "\nFullt Navn: " << fulltNavn;	//Skriver ut fullt navn
+	cout << "\nTidspunkt: " << tidspunkt;	//Skriver ut tidspunkt
+	cout << "\nDato: " << dato;				//Skriver ut dato
+	cout << "\nAntall Deltagere: " << antDeltagere;	//Skriver ut antall deltagere
 	displayRes();							//Skriver ut resultatlisten
 }
 
 void Ovelse::nyDeltager(){
-	bool finnes = false;
+	bool finnes = false;					//Bool for sjekk
 	cout << "\nLag en ny deltagerliste:\n";
-	ifstream innfil(filSTA);
-	if(!innfil) {						//Lager ny liste
-		char kommando = 'N';
-		int i = 0;
+	ifstream innfil(filSTA);				//Leser inn fra fil
+	if(!innfil) {							//Lager ny liste
+		char kommando = 'N';				//Temp kommando for fortsettelse
+		int i = 0;							//Hvor det jobbes i i arrayet
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
 			if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
-				cout << "\nListen er nå full";
-				kommando = 'Y';
+				cout << "\nListen er nå full";	//Gir beskjed om full liste
+				kommando = 'Y';					//Exiter
 			}
-			do{
-				finnes = false;
-				int temp = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);
+			do{									
+				finnes = false;					//Resetter finnes bool
+				int temp = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);	//Spør om deltagers id
 				for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
-					if(temp == startListe[k]){
-						finnes = true;
-						cout << "\nDenne deltageren finnes allerede!";
+					if(temp == startListe[k]){					//Om finnes
+						finnes = true;							//Sier att det finnes
+						cout << "\nDenne deltageren finnes allerede!";	//Gir beskjed
 					}
 				}
-				if(!finnes){
+				if(!finnes){									//Om den ikke finnes
 					startListe[i] = temp;						//Legger til deltageren
 				}
 			}while(finnes);
@@ -163,30 +163,30 @@ void Ovelse::nyDeltager(){
 				startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			}
 			if(kommando != 'Y'){											//Om listen ikke er full
-				i++;
-				antDeltagere++;
-				cout << "\nVil du avslutte? (y/n): ";
-				kommando = lesKommando();
+				i++;														//Går til neste array
+				antDeltagere++;												//Øker antall deltagere
+				cout << "\nVil du avslutte? (y/n): ";						//Spør om bruker vil avslutte
+				kommando = lesKommando();									//Leser inn kommando
 			}
 		}
-		innfil.close();
-		ofstream utfil(filSTA);
-		for(int i = 0; i < antDeltagere; i++){
+		innfil.close();										//Lukker ifstream
+		ofstream utfil(filSTA);								//Åpner ofstream
+		for(int i = 0; i < antDeltagere; i++){				//Skriver ut for alle deltagere
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
 		}
 	}
-	else{
+	else{		//Gir beskjed om det allerede finnes en liste
 		cout << "\nDet finnes allerede en startliste!";
 	}
 }
 
-void Ovelse::fjernStartliste(){
-	antDeltagere = 0;
-	remove(filSTA);
+void Ovelse::fjernStartliste(){	//Fjerner den eksisterende startlisten
+	antDeltagere = 0;			//Setter antall deltagere til null
+	remove(filSTA);				//Sletter filen
 }
 
-void Ovelse::fjernRESlist(){
-	poeng->trekkFraPoeng(filRES);
+void Ovelse::fjernRESlist(){				//Fjerner resultatlisten
+	poeng->trekkFraPoeng(filRES);			
 	medaljer->trekkFraMedaljer(filRES);
 	sisteBrukt = -1;
 	remove(filRES);
@@ -195,82 +195,95 @@ void Ovelse::fjernRESlist(){
 void Ovelse::endreListe() {
 	lesInnStartListe();										//Leser inn starlisten fra fil
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);		//Leser inn deltagers id										
-	ifstream innfil(filSTA);
-	if(innfil){	
-		if(startListe) {
+	ifstream innfil(filSTA);								//Åpner ifstream
+	if(innfil){												//Om det er en ifstream
+		if(startListe) {									//Om startlisten finnes
 			cout << "\nDette er deltagerene som er i listen fra før: ";
-			for(int i = 0; i < MAXDELTAGERE; i++) {
+			for(int i = 0; i < MAXDELTAGERE; i++) {			//Viser de deltagerne som er i listen
 				cout << "\n" << startListe[i];
 			}
+			//Spør bruker om hva han/hun vil gjøre
 			cout << "\nHva vil du gjøre?";
 			cout << "\nN: Legge til ny deltager.";
 			cout << "\nE: Endre eksisterende deltager";
 			cout << "\nF: Fjerne en deltager";
 			cout << "\nX: Gå ut";
-			char kommando = lesKommando();
+			char kommando = lesKommando();		//Leser kommando
 			while(kommando != 'X'){
-				switch(kommando){
+				switch(kommando){				//Switch
 					int temp;
 					bool finnes;
-					case 'N':
+					case 'N':					//legge til deltager
 					while(kommando != 'Y'){					//Om bruker ikke vil avslutte
-							startListe[antDeltagere] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
-							while(!deltagere->finnesDeltager(startListe[antDeltagere]) && startListe[MAXDELTAGERE] != 0){	//Om deltageren ikke finnes
-								cout << "\nDenne deltageren finnes ikke!";
-								startListe[antDeltagere] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
-							}
-							if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
-								cout << "\nListen er nå full";
-								kommando = 'Y';
-							}
-							else{											//Om listen ikke er full
-								antDeltagere++;
-								cout << "\nVil du avslutte? (y/n): ";
-								kommando = lesKommando();
-							}
+						if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
+							cout << "\nListen er nå full";	//Gir beskjed om full liste
+							kommando = 'Y';					//Exiter
 						}
-					break;
+						do{									
+							finnes = false;					//Resetter finnes bool
+							int temp = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);	//Spør om deltagers id
+							for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
+								if(temp == startListe[k]){					//Om finnes
+									finnes = true;							//Sier att det finnes
+									cout << "\nDenne deltageren finnes allerede!";	//Gir beskjed
+								}
+							}
+							if(!finnes){									//Om den ikke finnes
+								startListe[antDeltagere] = temp;			//Legger til deltageren
+							}
+						}while(finnes);
+						while(!deltagere->finnesDeltager(startListe[antDeltagere])){	//Om deltageren ikke finnes
+							cout << "\nDenne deltageren finnes ikke!";
+							startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
+						}
+						if(kommando != 'Y'){											//Om listen ikke er full														//Går til neste array
+							antDeltagere++;												//Øker antall deltagere
+							cout << "\nVil du avslutte? (y/n): ";						//Spør om bruker vil avslutte
+							kommando = lesKommando();									//Leser inn kommando
+						}
+					};
 					case 'E':
-						temp = les("\nID til den du ønsker å endre: ", DIVMIN, DIVMAX);
-						finnes = false;
-						for(int i = 0; i < antDeltagere; i++){
-							if(startListe[i] == temp){
-								finnes = true;
+						temp = les("\nID til den du ønsker å endre: ", DIVMIN, DIVMAX);	//Leser deltagers ID
+						finnes = false;													//resetter finnes
+						for(int i = 0; i < antDeltagere; i++){							//Travasjerer for å finne evt match
+							if(startListe[i] == temp){									//Om det finnes match
+								finnes = true;											//Sier fra at det finnes en match
 							}
 						}
-						while(!deltagere->finnesDeltager(temp) || !finnes){	//Om deltageren ikke finnes
-								cout << "\nDenne deltageren finnes ikke!";
-								temp = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
+						while(!deltagere->finnesDeltager(temp) || !finnes){				//Om deltageren ikke finnes
+								cout << "\nDenne deltageren finnes ikke!";				//Gir besked om at deltageren ikke finnes
+								temp = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);//Leser inn deltager på nytt
 						}
-						for(int i = 0; i < antDeltagere; i++){
-							if(temp == startListe[i]){				//Endrer deltagerID
+						for(int i = 0; i < antDeltagere; i++){							//Finner deltageren
+							if(temp == startListe[i]){									//Endrer deltagerID
 								temp = les("\nDen nye ID til deltager: ", DIVMIN, DIVMAX);
 								startListe[i] = temp;
 							}
 						}
 					break;
 					case 'F':
-						temp = les("\nID til den du ønsker å fjerne: ", DIVMIN, DIVMAX);
-						finnes = false;
-						int posisjon = 0;
-						while(!deltagere->finnesDeltager(temp) || !finnes){	//Om deltageren ikke finnes
+						temp = les("\nID til den du ønsker å fjerne: ", DIVMIN, DIVMAX);//Leser inn deltager ID
+						finnes = false;													//Resetter finnes bool
+						int posisjon = 0;												//Hjelprevariabel for å holde styr på posisjon
+						while(!deltagere->finnesDeltager(temp) || !finnes){				//Om deltageren ikke finnes
 								for(int i = 0; i < antDeltagere; i++){
-									if(startListe[i] == temp){				//Finner hvilken posisjon iden er i
-										finnes = true;
-										posisjon = i;
+									if(startListe[i] == temp){							//Finner hvilken posisjon iden er i
+										finnes = true;									//Om deltageren finnes i den posisjonen
+										posisjon = i;									//Lagrer den posisjonen
 									}
 								}
-								if(!deltagere->finnesDeltager(temp) || !finnes) {
-									cout << "\nDenne deltageren finnes ikke!";
-									temp = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
+								if(!deltagere->finnesDeltager(temp) || !finnes) {		//Sjekker om deltageren finnes
+									cout << "\nDenne deltageren finnes ikke!";			//Gir beskjed om at deltageren ikke finnes
+									temp = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);//Leser inn på nytt
 								}
 						}
-						for (posisjon; posisjon < antDeltagere; posisjon++) {		//Sletter og sorterer listen
-							startListe[posisjon] = startListe[posisjon+1];
+						for (posisjon; posisjon < antDeltagere; posisjon++) {			//Sletter og sorterer listen
+							startListe[posisjon] = startListe[posisjon+1];				//Sorterer idere
 						}
-						antDeltagere--;
+						antDeltagere--;													//Sier at det nå finnes en mindre deltager
 					break;
 				}
+				//Leser på nytt hva brukeren ønsker
 				cout << "\nHva vil du gjøre?";
 				cout << "\nN: Legge til ny deltager.";
 				cout << "\nE: Endre eksisterende deltager";
@@ -279,9 +292,9 @@ void Ovelse::endreListe() {
 				kommando = lesKommando();
 			}
 		}
-		innfil.close();
-		ofstream utfil(filSTA);
-		for(int i = 0; i < antDeltagere; i++){
+		innfil.close();										//Lukker innstream
+		ofstream utfil(filSTA);								//Åpner utstream
+		for(int i = 0; i < antDeltagere; i++){				//Skriver ut alle ID'ene
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
 		}
 	}
