@@ -282,7 +282,7 @@ void Ovelse::lesInnStartListe() {					//Leser inn starlisten
 
 void Ovelse::skrivStartListe() {					//SKRIVER ALLE DELTAGERE I STARTLISTE
 	lesInnStartListe();								//Laster inn startlisten
-	for(int i = 0; i <= antDeltagere; i++){			//Går gjennom arrayen
+	for(int i = 0; i < antDeltagere; i++){			//Går gjennom arrayen
 		cout << "\nStartnummer: " << i+1;			//Skriver startnummeret
 		deltagere->skrivForOvelse(startListe[i]);	//Skriver ut data om deltageren
 	}
