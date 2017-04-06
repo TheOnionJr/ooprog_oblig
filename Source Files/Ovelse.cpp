@@ -146,7 +146,6 @@ void Ovelse::nyDeltager(){
 				cout << "\nListen er nå full";
 				kommando = 'Y';
 			}
-			startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			for(int k = 0; k <= MAXDELTAGERE; k++) {
 				if(startListe[k] == startListe[i]){
 					finnes = true;
