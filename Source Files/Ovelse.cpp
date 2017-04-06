@@ -148,6 +148,10 @@ void Ovelse::nyDeltager(){
 		char kommando = 'N';
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
+			if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
+				cout << "\nListen er nå full";
+				kommando = 'Y';
+			}
 			startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			for(int k = 0; k <= MAXDELTAGERE; k++) {
 				if(startListe[k] == startListe[i]){
@@ -157,7 +161,7 @@ void Ovelse::nyDeltager(){
 			while(finnes == true){
 				finnes = false;
 				cout << "\nDenne deltageren finnes allerede!";
-				startListe[i] = les("\nSkriv deltagerens ID: ", DIVMAX, DIVMIN);
+				startListe[i] = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);
 				for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
 					if(startListe[k] == startListe[i]){
 						finnes = true;
@@ -168,11 +172,7 @@ void Ovelse::nyDeltager(){
 				cout << "\nDenne deltageren finnes ikke!";
 				startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 			}
-			if(antDeltagere == MAXDELTAGERE-1){				// Om listen er full
-				cout << "\nListen er nå full";
-				kommando = 'Y';
-			}
-			else{											//Om listen ikke er full
+			if(kommando != 'Y'){											//Om listen ikke er full
 				i++;
 				antDeltagere++;
 				cout << "\nVil du avslutte? (y/n): ";
