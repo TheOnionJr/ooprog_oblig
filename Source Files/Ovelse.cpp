@@ -451,7 +451,7 @@ void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
 void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
 	hentPs();								//Kaller funksjon som henter inn enumen 'ps'.
 
-	for (int i = 0; i >= antDeltagere; i++) {	//Teller gjennom antall deltagere.
+	for (int i = 1; i >= antDeltagere; i++) {	//Teller gjennom antall deltagere.
 		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);	//Lager hjelpeobjekt.
 		strcpy(nasj[i], hjelpeObjekt->returnKortNavn());			//Henter ut nasjonaliteten til deltager nr i.
 		strcpy(deltNavn[i], hjelpeObjekt->returnNavn());			//Henter ut navnet til deltager i.
