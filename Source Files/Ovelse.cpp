@@ -294,7 +294,7 @@ void Ovelse::endreListe() {
 void Ovelse::lesInnStartListe() {					//Leser inn starlisten
 	ifstream innfil(filSTA);						//Inn-stream
 	if(innfil){										//Om instream
-		for(int i = 0; i <=antDeltagere; i++){		//Leser inn alle verdiene
+		for(int i = 0; i < antDeltagere; i++){		//Leser inn alle verdiene
 			innfil >> startListe[i];
 		}
 	}
