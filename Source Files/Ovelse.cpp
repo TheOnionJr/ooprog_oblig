@@ -559,8 +559,6 @@ void Ovelse::hentPs() {								//Henter enumen ps.
 }
 
 void Ovelse::displayRes() {
-	medaljer->lesArrayFraFil();
-	poeng->lesArrayFraFil();
 	for (int i = 0; i < sisteBrukt; i++) {
 		cout << "\n Navn: " << deltNavn[i]
 		 	 << "\n Nasjon: " << nasj[i]
