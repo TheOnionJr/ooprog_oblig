@@ -234,7 +234,7 @@ void Ovelse::endreListe() {
 						}while(finnes);
 						while(!deltagere->finnesDeltager(startListe[antDeltagere])){	//Om deltageren ikke finnes
 							cout << "\nDenne deltageren finnes ikke!";
-							startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
+							startListe[antDeltagere] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
 						}
 						if(kommando != 'Y'){											//Om listen ikke er full														//Går til neste array
 							antDeltagere++;												//Øker antall deltagere
