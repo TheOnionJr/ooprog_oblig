@@ -136,13 +136,6 @@ void Ovelse::display() {					//Skriver ut info om øvelsen
 
 void Ovelse::nyDeltager(){
 	cout << "\nLag en ny deltagerliste:\n";
-	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
-	bool finnes = false;
-	for(int i = 0; i <= MAXDELTAGERE; i++) {	// Sjekker om listen er tom
-		if(startListe[i] != NULL) {
-			finnes = true;						//Om listen ikke er tom
-		}
-	}
 	ifstream innfil(filSTA);
 	if(!innfil) {						//Lager ny liste
 		char kommando = 'N';
