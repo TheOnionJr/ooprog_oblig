@@ -15,6 +15,6 @@ public:
 	void sorter();
 	void lesArrayFraFil();
 	void skrivArrayTilFil();
-	int finnNasjon(char nasjon[NASJKORTLEN]);
+	int finnNasjon(char* nasjon);
 };
 #endif

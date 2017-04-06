@@ -11,6 +11,8 @@ using namespace std;
 
 Medaljer::Medaljer() {
 	sisteBrukt = -1;
+	for (int i = 0; i < MAXNASJONER; i++)
+		medaljer[i] = 0;
 }
 
 void Medaljer::lesArrayFraFil() {	//Funksjon for å oppdatere data (legge til)
@@ -71,6 +73,10 @@ void Medaljer::leggTilMedaljer(char* fil) {
 		if (sisteBrukt >= ANTMED - 1) {						//-1 fordi sisteBrukt teller arrays lagret fra 0.
 			for (int i = 0; i <= ANTMED - 1; i++) {			//Går gjennom antall som skal ha medaljer.
 				innfil.getline(tempNasj[i], NASJKORTLEN);	//Henter nasjon.
+				strcpy(tempNasj[i], nasjKort[i]);
+				innfil.ignore(256, '\n');	//
+				innfil.ignore(256, '\n');	//Flytter pekeren til neste nasjonsforkortelse
+				innfil.ignore();			//
 			}
 			for (int i = 0; i <= ANTMED - 1; i++) {
 				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];	//Legger til verdien for 1 gull til 1. plass.
@@ -79,6 +85,9 @@ void Medaljer::leggTilMedaljer(char* fil) {
 		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
 			for (int i = 0; i <= sisteBrukt; i++) {
 				innfil.getline(tempNasj[i], NASJKORTLEN);		//Henter nasjon så langt 
+				innfil.ignore(256, '\n');	//
+				innfil.ignore(256, '\n');	//Flytter pekeren til neste nasjonsforkortelse
+				innfil.ignore();			//
 			}
 			for (int i = 0; i <= sisteBrukt; i++) {
 				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];
@@ -116,7 +125,7 @@ void Medaljer::trekkFraMedaljer(char* fil) {
 }
 
 
-int Medaljer::finnNasjon(char nasjon[NASJKORTLEN]) {
+int Medaljer::finnNasjon(char* nasjon) {
 	for (int i = 0; i >= NASJKORTLEN; i++) {
 		if (strcmp(nasjon, nasjKort[i]) == 0) {
 			return(i);
