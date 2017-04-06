@@ -135,6 +135,7 @@ void Ovelse::display() {					//Skriver ut info om øvelsen
 }
 
 void Ovelse::nyDeltager(){
+	cout << "\nLag en ny deltagerliste:\n";
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool finnes = false;
 	for(int i = 0; i <= MAXDELTAGERE; i++) {	// Sjekker om listen er tom
@@ -163,6 +164,7 @@ void Ovelse::nyDeltager(){
 				kommando = lesKommando();
 			}
 		}
+		innfil.close();
 		ofstream utfil(filSTA);
 		for(int i = 0; i < antDeltagere; ){
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
