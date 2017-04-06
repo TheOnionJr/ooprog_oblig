@@ -192,7 +192,7 @@ void Ovelse::fjernStartliste(){
 void Ovelse::fjernRESlist(){
 	poeng->trekkFraPoeng(filRES);
 	medaljer->trekkFraMedaljer(filRES);
-	sisteBrukt = 0;
+	sisteBrukt = -1;
 	remove(filRES);
 }
 
@@ -452,7 +452,7 @@ void Ovelse::finnes(int id, poengSystem pd) {				//Funksjon som sjekker om fil f
 
 void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 	ps = pt;								//Setter poengsystemet
-	sisteBrukt = 0;
+	sisteBrukt = -1;
 
 	for (int i = 0; i < antDeltagere; i++) {	//Teller gjennom antall deltagere.
 
@@ -493,13 +493,13 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 		if(i != 0)
 			sorter();								//Sorterer array.
 	}
-	medaljer->leggTilMedaljer(filRES);
-	poeng->leggTilPoeng(filRES);
+	//medaljer->leggTilMedaljer(filRES);
+	//poeng->leggTilPoeng(filRES);
 }
 
 void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
 	if (ps == poengH || ps == poengK) {
-		for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
+		for (int i = sisteBrukt; i > 0; i--) {				//Går gjennom arrayen.	
 			if (score[i] >= score[i - 1]) {					//Sjekker om i-1 er større.
 				char temp[NASJKORTLEN];						//Mellomlagring nasjonsforkortelse.
 				char tempNvn[NVNLEN];						//Mellomlagring navn.
@@ -512,15 +512,15 @@ void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter 
 		}
 	}
 	else {
-		for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
+		for (int i = sisteBrukt; i > 0; i--) {				//Går gjennom arrayen.	
 			if (score[i] <= score[i - 1]) {					//Sjekker om i-1 er større.
 				char temp[NASJKORTLEN];						//Mellomlagring nasjonsforkortelse.
 				char tempNvn[NVNLEN];						//Mellomlagring navn.
 				int tempi;									//Mellomlagring score.b
 
-				strcpy(temp, deltNavn[i]); strcpy(tempNvn, nasj[i]); tempi = score[i];						//Kopierer i inn i mellomlagring.
+				strcpy(tempNvn, deltNavn[i]); strcpy(temp, nasj[i]); tempi = score[i];						//Kopierer i inn i mellomlagring.
 				strcpy(deltNavn[i], deltNavn[i - 1]); strcpy(nasj[i], nasj[i - 1]); score[i] = score[i - 1];	//Setter i til i-1.
-				strcpy(deltNavn[i - 1], temp); strcpy(nasj[i - 1], temp); score[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
+				strcpy(deltNavn[i - 1], tempNvn); strcpy(nasj[i - 1], temp); score[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
 			}
 		}
 	}
@@ -561,7 +561,7 @@ void Ovelse::hentPs() {								//Henter enumen ps.
 }
 
 void Ovelse::displayRes() {
-	for (int i = 0; i < sisteBrukt; i++) {
+	for (int i = 0; i <= sisteBrukt; i++) {
 		cout << "\n Navn: " << deltNavn[i]
 		 	 << "\n Nasjon: " << nasj[i]
 			 << "\t Poeng/tid: "; displayScore(i);
