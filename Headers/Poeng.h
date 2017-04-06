@@ -8,8 +8,8 @@ private:
 	int sisteBrukt;
 public:
 	Poeng() { };
-	void leggTilPoeng(char fil[FILLEN]);
-	void trekkFraPoeng(char fil[FILLEN]);
+	void leggTilPoeng(char* fil);
+	void trekkFraPoeng(char* fil);
 	void lesArrayFraFil();
 	void skrivArrayTilFil();
 	void sorter();

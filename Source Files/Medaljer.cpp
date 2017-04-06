@@ -60,7 +60,7 @@ void Medaljer::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter
 }
 
 
-void Medaljer::leggTilMedaljer(char fil[FILLEN]) {
+void Medaljer::leggTilMedaljer(char* fil) {
 	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
 	ifstream innfil(fil);				//Åpner fila til resultatlista.
@@ -87,7 +87,7 @@ void Medaljer::leggTilMedaljer(char fil[FILLEN]) {
 	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
 }
 
-void Medaljer::trekkFraMedaljer(char fil[FILLEN]) {
+void Medaljer::trekkFraMedaljer(char* fil) {
 	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
 	ifstream innfil(fil);				//Åpner fila til resultatlista.

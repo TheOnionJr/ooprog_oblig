@@ -10,8 +10,8 @@ public:
 	Medaljer();
 	void display(int i);
 	void displayAll();
-	void leggTilMedaljer(char fil[FILLEN]);
-	void trekkFraMedaljer(char fil[FILLEN]);
+	void leggTilMedaljer(char* fil);
+	void trekkFraMedaljer(char* fil);
 	void sorter();
 	void lesArrayFraFil();
 	void skrivArrayTilFil();

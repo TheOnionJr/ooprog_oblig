@@ -54,7 +54,7 @@ void Poeng::skrivArrayTilFil() {
 	}
 }
 
-void Poeng::leggTilPoeng(char fil[FILLEN]) {
+void Poeng::leggTilPoeng(char* fil) {
 	char tempNasj[ANTMED][NASJKORTLEN];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
 	ifstream innfil(fil);				//Åpner fila til resultatlista.
@@ -85,7 +85,7 @@ void Poeng::leggTilPoeng(char fil[FILLEN]) {
 	
 }
 
-void Poeng::trekkFraPoeng(char fil[FILLEN]) {
+void Poeng::trekkFraPoeng(char* fil) {
 	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
 	lesArrayFraFil();					//Henter arrayen fra fil.
 	ifstream innfil(fil);				//Åpner fila til resultatlista.
