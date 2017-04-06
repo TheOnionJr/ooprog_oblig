@@ -138,11 +138,12 @@ void Ovelse::nyDeltager(){
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);
 	bool finnes = false;
 	for(int i = 0; i <= MAXDELTAGERE; i++) {	// Sjekker om listen er tom
-		if(startListe[i] != 0) {
+		if(startListe[i] != NULL) {
 			finnes = true;						//Om listen ikke er tom
 		}
 	}
-	if(!startListe) {						//Lager ny liste
+	ifstream innfil(filSTA);
+	if(!innfil) {						//Lager ny liste
 		char kommando = 'N';
 		int i = 0;
 		while(kommando != 'Y'){					//Om bruker ikke vil avslutte
@@ -183,7 +184,8 @@ void Ovelse::fjernRESlist(){
 void Ovelse::endreListe() {
 	lesInnStartListe();										//Leser inn starlisten fra fil
 	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);		//Leser inn deltagers id										
-	if(!score){	
+	ifstream innfil(filSTA);
+	if(innfil){	
 		if(startListe) {
 			cout << "\nDette er deltagerene som er i listen fra før: ";
 			for(int i = 0; i < MAXDELTAGERE; i++) {
