@@ -211,7 +211,7 @@ void Gren::resultatListe() {
 	char kommando;
 	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
 	if (finnesAllerede(id) != -1) {
-		deltagerlisteMeny();
+		resultatlisteMeny();
 		kommando = lesKommando();
 		while (kommando != 'X') {
 			switch (kommando) {

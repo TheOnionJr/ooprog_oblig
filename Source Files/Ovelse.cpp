@@ -185,10 +185,14 @@ void Ovelse::nyDeltager(){
 }
 
 void Ovelse::fjernStartliste(){
+	antDeltagere = 0;
 	remove(filSTA);
 }
 
 void Ovelse::fjernRESlist(){
+	poeng->trekkFraPoeng(filRES);
+	medaljer->trekkFraMedaljer(filRES);
+	sisteBrukt = 0;
 	remove(filRES);
 }
 
@@ -271,8 +275,15 @@ void Ovelse::endreListe() {
 						antDeltagere--;
 					break;
 				}
+				cout << "\nHva vil du gjøre?";
+				cout << "\nN: Legge til ny deltager.";
+				cout << "\nE: Endre eksisterende deltager";
+				cout << "\nF: Fjerne en deltager";
+				cout << "\nX: Gå ut";
+				kommando = lesKommando();
 			}
 		}
+		innfil.close();
 		ofstream utfil(filSTA);
 		for(int i = 0; i < antDeltagere; i++){
 			utfil << startListe[i] << "\n";					//Skriver ID til fil
