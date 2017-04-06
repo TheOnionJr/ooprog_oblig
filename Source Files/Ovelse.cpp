@@ -17,7 +17,6 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
-#include <stdlib.h>
 
 
 using namespace std;
@@ -146,22 +145,19 @@ void Ovelse::nyDeltager(){
 				cout << "\nListen er nå full";
 				kommando = 'Y';
 			}
-			startListe[i] = les("\nVennligst skriv deltagerens ID:\t", DIVMIN, DIVMAX);
-			for(int k = 0; k <= MAXDELTAGERE; k++) {
-				if((startListe[k] == startListe[i]) && (startListe[k] != startListe[i])){
-					finnes = true;
-				}
-			}
-			while(finnes == true){
+			do{
 				finnes = false;
-				cout << "\nDenne deltageren finnes allerede!";
-				startListe[i] = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);
+				int temp = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);
 				for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
-					if((startListe[k] == startListe[i]) &&(startListe[k] != startListe[i])){
+					if(temp == startListe[k]){
 						finnes = true;
+						cout << "\nDenne deltageren finnes allerede!";
 					}
-				}		
-			}
+				}
+				if(!finnes){
+					startListe[i] = temp;						//Legger til deltageren
+				}
+			}while(finnes);
 			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
 				cout << "\nDenne deltageren finnes ikke!";
 				startListe[i] = les("\nSkriv inn deltagerens ID: ",DIVMIN,DIVMAX);
