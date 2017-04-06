@@ -155,8 +155,14 @@ void Ovelse::nyDeltager(){
 				}
 			}
 			while(finnes == true){
+				finnes = false;
 				cout << "\nDenne deltageren finnes allerede!";
 				startListe[i] = les("\nSkriv deltagerens ID: ", DIVMAX, DIVMIN);
+				for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
+					if(startListe[k] == startListe[i]){
+						finnes = true;
+					}
+				}		
 			}
 			while(!deltagere->finnesDeltager(startListe[i])){	//Om deltageren ikke finnes
 				cout << "\nDenne deltageren finnes ikke!";
