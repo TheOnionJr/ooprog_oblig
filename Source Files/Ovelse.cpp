@@ -493,6 +493,7 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 		if(i != 0)
 			sorter();								//Sorterer array.
 	}
+	skrivResTilFil();
 	//medaljer->leggTilMedaljer(filRES);
 	//poeng->leggTilPoeng(filRES);
 }
@@ -505,9 +506,9 @@ void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter 
 				char tempNvn[NVNLEN];						//Mellomlagring navn.
 				int tempi;									//Mellomlagring score.b
 
-				strcpy(temp, deltNavn[i]); strcpy(tempNvn, nasj[i]); tempi = score[i];						//Kopierer i inn i mellomlagring.
+				strcpy(tempNvn, deltNavn[i]); strcpy(temp, nasj[i]); tempi = score[i];						//Kopierer i inn i mellomlagring.
 				strcpy(deltNavn[i], deltNavn[i - 1]); strcpy(nasj[i], nasj[i - 1]); score[i] = score[i - 1];	//Setter i til i-1.
-				strcpy(deltNavn[i - 1], temp); strcpy(nasj[i - 1], temp); score[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
+				strcpy(deltNavn[i - 1], tempNvn); strcpy(nasj[i - 1], temp); score[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
 			}
 		}
 	}
@@ -530,8 +531,8 @@ void Ovelse::skrivResTilFil() {						//Funksjon som skriver resultatlista til fi
 	ofstream utfil(filRES);							//Finner filen.
 
 	if (utfil) {									//Sjekker om filen finnes/blir opprettet.
-		utfil << sisteBrukt;						//Skriver sisteBrukt til starten av filen.
-		for (int i = 0; i >= sisteBrukt; i++) {		//Teller gjennom antall entries i filen.
+		utfil << sisteBrukt << endl;						//Skriver sisteBrukt til starten av filen.
+		for (int i = 0; i <= sisteBrukt; i++) {		//Teller gjennom antall entries i filen.
 			utfil << nasj[i] << '\n';					//Skriver nasjon.
 			utfil << score[i] << '\n';					//Skriver score.
 			utfil << deltNavn[i] << "\n\n";				//Skriver deltagernavnet. + hopper over en linje.

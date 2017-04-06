@@ -179,6 +179,8 @@ void Gren::startListe() {
 	char kommando;
 	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
 	if (finnesAllerede(id) != -1) {
+		ovelser[finnesAllerede(id)]->lesInnStartListe();
+		ovelser[finnesAllerede(id)]->lesResFraFil();
 		deltagerlisteMeny();
 		kommando = lesKommando();
 		while (kommando != 'X') {
@@ -211,6 +213,8 @@ void Gren::resultatListe() {
 	char kommando;
 	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
 	if (finnesAllerede(id) != -1) {
+		ovelser[finnesAllerede(id)]->lesInnStartListe();
+		ovelser[finnesAllerede(id)]->lesResFraFil();
 		resultatlisteMeny();
 		kommando = lesKommando();
 		while (kommando != 'X') {
