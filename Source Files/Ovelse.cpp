@@ -488,7 +488,8 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 				break;
 		}
 		sisteBrukt++;								//Teller opp sisteBrukt.
-		sorter();									//Sorterer array.
+		if(i != 0)
+			sorter();								//Sorterer array.
 		medaljer->leggTilMedaljer(filRES);
 		poeng->leggTilPoeng(filRES);
 	}
@@ -558,10 +559,12 @@ void Ovelse::hentPs() {								//Henter enumen ps.
 }
 
 void Ovelse::displayRes() {
+	medaljer->lesArrayFraFil();
+	poeng->lesArrayFraFil();
 	for (int i = 0; i < sisteBrukt; i++) {
 		cout << "\n Navn: " << deltNavn[i]
 		 	 << "\n Nasjon: " << nasj[i]
-			 << "\t Poeng: "; displayScore(i);
+			 << "\t Poeng/tid: "; displayScore(i);
 		cout << "\n\n";
 	}
 }
@@ -577,19 +580,19 @@ void Ovelse::displayScore(int t) {
 			mm = score[t] / 1000;
 			ss = (score[t] - (mm * 1000)) / 10;
 			d = score[t] % 10;
-			cout << mm << ":" << ss << ":" << d;
+			cout << mm << ":" << ss << "." << d;
 			break;
 		case tidHu:
 			mm = score[t] / 10000;
 			ss = (score[t] - (mm * 10000)) / 100;
 			d = score[t] % 100;
-			cout << mm << ":" << ss << ":" << d;
+			cout << mm << ":" << ss << "." << d;
 			break;
 		case tidTu:
 			mm = score[t] / 100000;
 			ss = (score[t] - (mm * 100000)) / 1000;
 			d = score[t] % 1000;
-			cout << mm << ":" << ss << ":" << d;
+			cout << mm << ":" << ss << "." << d;
 			break;
 	}
 }
