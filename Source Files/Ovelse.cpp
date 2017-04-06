@@ -437,19 +437,19 @@ void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ove
 	strcpy(filRES, filnavn);				//Setter filnavnet.
 }
 
-void Ovelse::finnes(int id) {				//Funksjon som sjekker om fil finnes/er i bruk.
+void Ovelse::finnes(int id, poengSystem pd) {				//Funksjon som sjekker om fil finnes/er i bruk.
 	int tempSiste;							//Mellomlagring.
 	ifstream innfil(filRES);			//Henter inn riktig fil.
 
 	innfil >> tempSiste;					//Leser inn sistebrukt.
 	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
-		nyResList(id);						//Kaller funksjon for å lage ny liste.
+		nyResList(id, pd);						//Kaller funksjon for å lage ny liste.
 	else
 		cout << "Lista finnes allerede!";	//Feilmelding hvis lista finnes og er i bruk.
 }
 
-void Ovelse::nyResList(int id) {			//Lager ny resultatliste.
-	hentPs();								//Kaller funksjon som henter inn enumen 'ps'.
+void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
+	ps = pt;								//Kaller funksjon som henter inn enumen 'ps'.
 
 	for (int i = 1; i >= antDeltagere; i++) {	//Teller gjennom antall deltagere.
 		Deltager* hjelpeObjekt = deltagere->plsHelp(startListe[i]);	//Lager hjelpeobjekt.

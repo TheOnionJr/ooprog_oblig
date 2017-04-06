@@ -38,8 +38,8 @@ class Ovelse : public NumElement {
 		void skrivStartListe();
 		void filnavnRES(int id);
 		void filnavnSTA(int id);
-		void finnes(int id);
-		void nyResList(int id);
+		void finnes(int id, poengSystem pd);
+		void nyResList(int id, poengSystem pt);
 		void hentPs();
 		void sorter();	
 		void lesResFraFil();

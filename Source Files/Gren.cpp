@@ -219,7 +219,7 @@ void Gren::resultatListe() {
 				ovelser[finnesAllerede(id)]->displayRes();
 				break;
 			case 'N':
-				ovelser[finnesAllerede(id)]->nyResList(id);
+				ovelser[finnesAllerede(id)]->finnes(id, pt);
 				break;
 			case 'F':
 				ovelser[finnesAllerede(id)]->fjernRESlist();
