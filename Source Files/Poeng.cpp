@@ -12,8 +12,9 @@ using namespace std;
 
 Poeng::Poeng() {
 	sisteBrukt = (-1);
-	for(int i = 0; i < MAXNASJONER; i++)
+	for (int i = 0; i < MAXNASJONER; i++) {
 		poeng[i] = 0;
+	}
 }
 
 void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter poeng.
@@ -87,6 +88,7 @@ void Poeng::leggTilPoeng(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				poeng[sisteBrukt] += POENGSKALA[i];
 			}
+
 			if(sisteBrukt > 0)
 				sorter();
 		}
@@ -110,6 +112,7 @@ void Poeng::leggTilPoeng(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				poeng[sisteBrukt] += POENGSKALA[i];
 			}
+
 			if(sisteBrukt > 0)
 				sorter();
 		}
@@ -171,7 +174,7 @@ void Poeng::trekkFraPoeng(char* fil) {
 
 void Poeng::displayAll() {
 	bool fant = false;
-	for (int i = 0; i < sisteBrukt; i++) {
+	for (int i = 0; i <= sisteBrukt; i++) {
 		cout << "\nNasjon: " << nasjKort[i]			//Skriver ut nasjonen,
 			 << "\tPoeng: " << poeng[i] 			//antall poeng.	
 			 << "\n";								//Mellomrom.
