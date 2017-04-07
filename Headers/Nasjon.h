@@ -25,6 +25,7 @@ class Nasjon : public TextElement {
 		void fjernDeltager();
 		int returnAntDeltagere();
 		void skrivTilFil(ofstream &utfil);
+		const char* returnKortNavn();
 };
 
 #endif

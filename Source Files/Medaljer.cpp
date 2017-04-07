@@ -4,29 +4,31 @@
 
 #include "../Headers/Statistikk.h"
 #include "../Headers/Medaljer.h"
+#include "../Headers/main.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
 using namespace std;
 
 Medaljer::Medaljer() {
-	sisteBrukt = -1;
+	sisteBrukt = (-1);
 	for (int i = 0; i < MAXNASJONER; i++)
 		medaljer[i] = 0;
 }
 
 void Medaljer::lesArrayFraFil() {	//Funksjon for å oppdatere data (legge til)
 	ifstream innfil("MEDALJER.DTA");
-
-	if (innfil) {										//Sjekker om filen ble funnet.
-		innfil >> sisteBrukt; innfil.ignore();			//Leser inn sisteBrukt fra starten av filen.
-		for (int i = 0; i < sisteBrukt; i++) {			//Kjører for antall nasjoner som er skrevet til filen.
-			innfil.getline(nasjKort[i], MAXNASJONER + 1);	//Leser inn nasjKort, og setter i riktig arraynr.
-			innfil >> medaljer[i]; innfil.ignore();		//Leser inn medalje-verdien.
-			innfil.ignore();							//Blank spacer.
+	if (innfil) {
+		innfil >> sisteBrukt;
+		innfil.ignore();
+		for (int i = 0; i <= sisteBrukt; i++) {
+			innfil.getline(nasjKort[i], '\n');
+			innfil >> medaljer[i];
+			innfil.ignore(); innfil.ignore();
 		}
 	}
 	else {
+		sisteBrukt = -1;
 	}
 }
 
@@ -36,7 +38,7 @@ void Medaljer::skrivArrayTilFil() {
 
 	if (utfil) {										//Sjekker om filen ble funnet.
 		utfil << sisteBrukt << '\n';					//Skriver sisteBrukt helt i starten av filen.
-		for (int i = 0; i < sisteBrukt; i++) {			//Går gjennom alle nasjoner i arrayen, og skriver til fil.
+		for (int i = 0; i <= sisteBrukt; i++) {			//Går gjennom alle nasjoner i arrayen, og skriver til fil.
 			utfil << nasjKort[i] << '\n';				//Skriver nasjKort.
 			utfil << medaljer[i] << '\n';				//Skriver medaljeverdi.
 			utfil << '\n';								//Blank space
@@ -49,12 +51,12 @@ void Medaljer::skrivArrayTilFil() {
 }
 
 void Medaljer::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
-	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
-		if (medaljer[i] >= medaljer[i - 1]) {			//Sjekker om i-1 er større.
-			char temp[NASJKORTLEN];						//Mellomlagring.
-			int tempi;									//Mellomlagring.
+	for (int i = sisteBrukt; i > 0; i--) {				//Går gjennom arrayen.	
+		if (medaljer[i] >= medaljer[i - 1]) {					//Sjekker om i-1 er større.
+			char temp[NASJKORTLEN];						//Mellomlagring nasjonsforkortelse.
+			int tempi;									//Mellomlagring score.b
 
-			strcpy(temp, nasjKort[i]); tempi = medaljer[i];			//Kopierer i inn i mellomlagring.
+			strcpy(temp, nasjKort[i]); tempi = medaljer[i];						//Kopierer i inn i mellomlagring.
 			strcpy(nasjKort[i], nasjKort[i - 1]); medaljer[i] = medaljer[i - 1];	//Setter i til i-1.
 			strcpy(nasjKort[i - 1], temp); medaljer[i - 1] = tempi;	//Kopierer fra mellomlagring til i.
 		}
@@ -63,65 +65,109 @@ void Medaljer::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter
 
 
 void Medaljer::leggTilMedaljer(char* fil) {
-	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
-	lesArrayFraFil();					//Henter arrayen fra fil.
-	ifstream innfil(fil);				//Åpner fila til resultatlista.
-
-	if (innfil) {
-		innfil >> sisteBrukt;
-		innfil.ignore();
-		if (sisteBrukt >= ANTMED - 1) {						//-1 fordi sisteBrukt teller arrays lagret fra 0.
-			for (int i = 0; i <= ANTMED - 1; i++) {			//Går gjennom antall som skal ha medaljer.
-				innfil.getline(tempNasj[i], NASJKORTLEN);	//Henter nasjon.
-				strcpy(tempNasj[i], nasjKort[i]);
-				innfil.ignore(256, '\n');	//
-				innfil.ignore(256, '\n');	//Flytter pekeren til neste nasjonsforkortelse
-				innfil.ignore();			//
+	ifstream innfil(fil);
+	int antRes;
+	innfil >> antRes;
+	innfil.ignore();
+	char tempNasj[ANTMED][NASJKORTLEN];
+	if ((antRes + 1) > ANTMED) {
+		for (int i = 0; i < ANTMED; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					medaljer[j] += MEDVERD[i];
+					fant = true;
+				}
 			}
-			for (int i = 0; i <= ANTMED - 1; i++) {
-				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];	//Legger til verdien for 1 gull til 1. plass.
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				medaljer[sisteBrukt] += MEDVERD[i];
 			}
+			if(sisteBrukt != 0)
+				sorter();
 		}
-		else {								//Dersom det er ferre en 3 deltagere (usansynlig, men why not).
-			for (int i = 0; i <= sisteBrukt; i++) {
-				innfil.getline(tempNasj[i], NASJKORTLEN);		//Henter nasjon så langt 
-				innfil.ignore(256, '\n');	//
-				innfil.ignore(256, '\n');	//Flytter pekeren til neste nasjonsforkortelse
-				innfil.ignore();			//
-			}
-			for (int i = 0; i <= sisteBrukt; i++) {
-				medaljer[finnNasjon(tempNasj[i])] += MEDVERD[i];
-			}
-		}
+		
 	}
-	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
+	else {
+		for (int i = 0; i <= antRes; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					medaljer[j] += MEDVERD[i];
+					fant = true;
+				}
+			}
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				medaljer[sisteBrukt] += MEDVERD[i];
+			}
+			if (sisteBrukt != 0)
+				sorter();
+		}
+
+	}
 }
 
 void Medaljer::trekkFraMedaljer(char* fil) {
-	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
-	lesArrayFraFil();					//Henter arrayen fra fil.
-	ifstream innfil(fil);				//Åpner fila til resultatlista.
+	ifstream innfil(fil);
+	int antRes;
+	innfil >> antRes;
+	innfil.ignore();
+	char tempNasj[ANTMED][NASJKORTLEN];
+	if ((antRes + 1) > ANTMED) {
+		for (int i = 0; i < ANTMED; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					medaljer[j] -= MEDVERD[i];
+					fant = true;
+				}
+			}
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				medaljer[sisteBrukt] -= MEDVERD[i];
+			}
+			sorter();
+		}
 
-	if (innfil) {
-		innfil >> sisteBrukt;
-		if (sisteBrukt >= ANTMED - 1) {							//-1 fordi sisteBrukt teller arrays lagret fra 0.
-			for (int i = 0; i >= ANTMED - 1; i++) {				//Går gjennom antall som skal ha medaljer.
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
-			}
-			for (int i = 0; i >= ANTMED - 1; i++) {
-				medaljer[finnNasjon(tempNasj[i])] -= MEDVERD[i];	//Trekker fra verdien gitt i consten MEDVERD.
-			}
-		}
-		else {							//Dersom det er ferre deltagere enn antall som skal få medaljer(usansynlig, men why not).
-			for (int i = 0; i >= sisteBrukt; i++) {
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
-			}
-			for (int i = 0; i >= sisteBrukt; i++) {
-				medaljer[finnNasjon(tempNasj[i])] -= MEDVERD[i];	//Trekker fra verdien gitt i consten MEDVERD.
-			}
-		}
 	}
-	skrivArrayTilFil();					//Skriver (over) arrayen til fil.
+	else {
+		for (int i = 0; i <= antRes; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					medaljer[j] -= MEDVERD[i];
+					fant = true;
+				}
+			}
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				medaljer[sisteBrukt] -= MEDVERD[i];
+			}
+			sorter();
+		}
+
+	}
 }
 
 
@@ -147,7 +193,7 @@ void Medaljer::display(int i) {		//Regner ut og skriver medaljer.
 }
 
 void Medaljer::displayAll() {	//Skriver ut alle medaljeverdiene.
-	for (int i = 1; i < sisteBrukt; i++)				//Går gjennom alle.
+	for (int i = 0; i <= sisteBrukt; i++)				//Går gjennom alle.
 		display(i);										//Kaller displayfunksjon for i.
 	if (sisteBrukt == -1)
 		cout << "\nIngen medaljer å vise.";

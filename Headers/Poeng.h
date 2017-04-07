@@ -7,13 +7,12 @@ private:
 	int poeng[MAXNASJONER];			//Antall poeng en nasjon har.
 	int sisteBrukt;
 public:
-	Poeng() { };
+	Poeng();
 	void leggTilPoeng(char* fil);
 	void trekkFraPoeng(char* fil);
 	void lesArrayFraFil();
 	void skrivArrayTilFil();
 	void sorter();
 	void displayAll();
-	int finnNasjon(char* nasjon);
 };
 #endif

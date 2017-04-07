@@ -122,3 +122,7 @@ void Nasjon::skrivTilFil(ofstream &utfil) {
 	utfil << text << endl << fulltNavn << endl << antDeltagere
 		<< endl << kontaktNavn << endl << kontaktNr << endl;
 }
+
+const char* Nasjon::returnKortNavn() {
+	return(text);
+}

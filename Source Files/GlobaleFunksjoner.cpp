@@ -75,12 +75,16 @@ void lesFraFiler() {
 	deltagere->lesFraFil();
 	nasjoner-> lesFraFil();
 	grener->   lesFraFil();
+	medaljer-> lesArrayFraFil();
+	poeng->    lesArrayFraFil();
 }
 
 void skrivTilFiler() {
 	deltagere->skrivTilFil();
 	nasjoner-> skrivTilFil();
 	grener->   skrivTilFil();
+	medaljer-> skrivArrayTilFil();
+	poeng->    skrivArrayTilFil();
 }
 
 //Nasjoner-funksjoner.

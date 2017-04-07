@@ -10,6 +10,12 @@
 using namespace std;
 
 
+Poeng::Poeng() {
+	sisteBrukt = (-1);
+	for(int i = 0; i < MAXNASJONER; i++)
+		poeng[i] = 0;
+}
+
 void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter poeng.
 	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
 		if (poeng[i] >= poeng[i - 1]) {			//Sjekker om i-1 er større.
@@ -26,26 +32,29 @@ void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter po
 
 void Poeng::lesArrayFraFil() {
 	ifstream innfil("POENG.DTA");
-
-	if (innfil) {											//Sjekker om filen ble funnet.
-		innfil >> sisteBrukt; innfil.ignore();				//Leser inn sisteBrukt fra starten av filen.
-		for (int i = 0; i < sisteBrukt; i++) {				//Kjører for antall nasjoner som er skrevet til filen.
-			innfil.getline(nasjKort[i], MAXNASJONER + 1);	//Leser inn nasjKort, og setter i riktig arraynr.
-			innfil >> poeng[i]; innfil.ignore();			//Leser inn poeng-verdien.
-			innfil.ignore();								//Blank spacer.
+	if (innfil) {
+		innfil >> sisteBrukt;
+		innfil.ignore();
+		for (int i = 0; i <= sisteBrukt; i++) {
+			innfil.getline(nasjKort[i], '\n');
+			innfil >> poeng[i];
+			innfil.ignore(); innfil.ignore();
 		}
+	}
+	else {
+		sisteBrukt = -1;
 	}
 }
 
 void Poeng::skrivArrayTilFil() {
 	ofstream utfil("POENG.DTA");
 
-	if (utfil) {											//Sjekker om filen ble funnet.
-		utfil << sisteBrukt << '\n';						//Skriver sisteBrukt helt i starten av filen.
-		for (int i = 0; i < sisteBrukt; i++) {				//Går gjennom alle nasjoner i arrayen, og skriver til fil.
-			utfil << nasjKort[i] << '\n';					//Skriver nasjKort.
-			utfil << poeng[i] << '\n';						//Skriver poeng.
-			utfil << '\n';									//Blank space
+	if (utfil) {										//Sjekker om filen ble funnet.
+		utfil << sisteBrukt << '\n';					//Skriver sisteBrukt helt i starten av filen.
+		for (int i = 0; i <= sisteBrukt; i++) {			//Går gjennom alle nasjoner i arrayen, og skriver til fil.
+			utfil << nasjKort[i] << '\n';				//Skriver nasjKort.
+			utfil << poeng[i] << '\n';				//Skriver medaljeverdi.
+			utfil << '\n';								//Blank space
 		}
 
 	}
@@ -55,59 +64,108 @@ void Poeng::skrivArrayTilFil() {
 }
 
 void Poeng::leggTilPoeng(char* fil) {
-	char tempNasj[ANTMED][NASJKORTLEN];		//3 fordi gull, sølv, bronse.
-	lesArrayFraFil();					//Henter arrayen fra fil.
-	ifstream innfil(fil);				//Åpner fila til resultatlista.
+	ifstream innfil(fil);
+	int antRes;
+	innfil >> antRes;
+	innfil.ignore();
+	char tempNasj[PSKALALEN][NASJKORTLEN];
+	if ((antRes + 1) > PSKALALEN) {
+		for (int i = 0; i < PSKALALEN; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					poeng[j] += POENGSKALA[i];
+					fant = true;
+				}
+			}
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				poeng[sisteBrukt] += POENGSKALA[i];
+			}
+			if(sisteBrukt != 0)
+				sorter();
+		}
 
-	if (innfil) {
-		innfil >> sisteBrukt; innfil.ignore();
-		if (sisteBrukt >= PSKALALEN - 1) {
-			for (int i = 0; i <= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
-			}
-			for (int i = 0; i <= PSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
-				poeng[finnNasjon(tempNasj[i])] += POENGSKALA[i];	//Legger til riktig mengde poeng definert i POENGSKALA i const.h.
-				if (i >= 1)
-					sorter();
-			}
-		}
-		else {							//Dersom det er færre deltagere enn antall som skal få poeng (usansynlig, men why not).
-			for (int i = 0; i <= sisteBrukt; i++) {					//Teller gjennom antall brukt.
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
-			}
-			for (int i = 0; i <= sisteBrukt; i++) {					//Teller gjennom antall brukt.
-				poeng[finnNasjon(tempNasj[i])] += POENGSKALA[i];	//Legger til riktig mengde poeng.
-				if (i >= 1)
-					sorter();
-			}
-		}
 	}
-	
+	else {
+		for (int i = 0; i <= antRes; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					poeng[j] += POENGSKALA[i];
+					fant = true;
+				}
+			}
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				poeng[sisteBrukt] += POENGSKALA[i];
+			}
+			if(sisteBrukt != 0)
+				sorter();
+		}
+
+	}
 }
 
 void Poeng::trekkFraPoeng(char* fil) {
-	char tempNasj[NASJKORTLEN][3];		//3 fordi gull, sølv, bronse.
-	lesArrayFraFil();					//Henter arrayen fra fil.
-	ifstream innfil(fil);				//Åpner fila til resultatlista.
+	ifstream innfil(fil);
+	int antRes;
+	innfil >> antRes;
+	innfil.ignore();
+	char tempNasj[PSKALALEN][NASJKORTLEN];
+	if ((antRes + 1) > PSKALALEN) {
+		for (int i = 0; i < PSKALALEN; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					poeng[j] -= POENGSKALA[i];
+					fant = true;
+				}
+			}
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				poeng[sisteBrukt] -= POENGSKALA[i];
+			}
+			sorter();
+		}
 
-	if (innfil) {
-		innfil >> sisteBrukt; innfil.ignore();
-		if (sisteBrukt >= PSKALALEN - 1) {
-			for (int i = 0; i <= PSKALALEN - 1; i++) {			//Går gjennom antall som skal få poeng..
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);	//Henter nasjon.
+	}
+	else {
+		for (int i = 0; i <= antRes; i++) {
+			bool fant = false;
+			innfil.getline(tempNasj[i], NASJKORTLEN);
+			innfil.ignore(265, '\n');
+			innfil.ignore(265, '\n');
+			innfil.ignore();
+			for (int j = 0; j < MAXDELTAGERE; j++) {
+				if (strcmp(tempNasj[i], nasjKort[j]) == 0) {
+					poeng[j] -= POENGSKALA[i];
+					fant = true;
+				}
 			}
-			for (int i = 0; i <= PSKALALEN - 1; i++) {				//Går gjennom alle plassene som skal få poeng.
-				poeng[finnNasjon(tempNasj[i])] -= POENGSKALA[i];	//Legger til riktig mengde poeng definert i POENGSKALA i const.h.
+			if (!fant) {
+				sisteBrukt++;
+				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
+				poeng[sisteBrukt] -= POENGSKALA[i];
 			}
+			sorter();
 		}
-		else {							//Dersom det er færre deltagere enn antall som skal få poeng (usansynlig, men why not).
-			for (int i = 0; i <= sisteBrukt; i++) {					//Teller gjennom antall brukt.
-				innfil.getline(tempNasj[i], NASJKORTLEN + 1);		//Henter nasjon så langt 
-			}
-			for (int i = 0; i <= sisteBrukt; i++) {					//Teller gjennom antall brukt.
-				poeng[finnNasjon(tempNasj[i])] -= POENGSKALA[i];	//Legger til riktig mengde poeng.
-			}
-		}
+
 	}
 }
 
@@ -121,12 +179,4 @@ void Poeng::displayAll() {
 	}
 	if (!fant)
 		cout << "\nFant ingen poeng-statistikk.";
-}
-
-int Poeng::finnNasjon(char* nasjon) {
-	for (int i = 0; i <= NASJKORTLEN; i++) {
-		if (strcmp(nasjon, nasjKort[i]) == 0) {
-			return(i);
-		}
-	}
 }

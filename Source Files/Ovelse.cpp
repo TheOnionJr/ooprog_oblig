@@ -188,7 +188,7 @@ void Ovelse::fjernStartliste(){	//Fjerner den eksisterende startlisten
 void Ovelse::fjernRESlist(){				//Fjerner resultatlisten
 	poeng->trekkFraPoeng(filRES);			
 	medaljer->trekkFraMedaljer(filRES);
-	sisteBrukt = -1;
+	sisteBrukt = (-1);
 	remove(filRES);
 }
 
@@ -504,6 +504,7 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 	}
 	skrivResTilFil();
 	medaljer->leggTilMedaljer(filRES);
+	poeng->leggTilPoeng(filRES);
 }
 
 void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter medaljeverdi.
