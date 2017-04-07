@@ -60,7 +60,7 @@ void Deltagere::endreDeltager() {		//Endrer en deltager
 	char kommando = '0';
 	int nummer;
 	cout << "\nHva er nummeret til deltageren du vil endre på?\t";
-	cin >> nummer;		//Henter ønsket deltagers id fra brukeren
+	nummer = les("", DIVMIN, DIVMAX);		//Henter ønsket deltagers id fra brukeren
 	if (deltagerliste->inList(nummer)) {	//Om deltageren finnes
 		Deltager* hjelpeobjekt = (Deltager*)deltagerliste->remove(nummer);		//Henter deltageren fra liste
 		while (kommando != 'X') {		//Utføres til brukeren skriver 'X'
@@ -109,7 +109,7 @@ bool Deltagere::finnesDeltager(int id){			//Returnerer om en deltager eksisterer
 void Deltagere::skrivDeltager() {				//Skriver all info om en gitt deltager
 	int id;
 	cout << "\nHva er nummeret til deltageren du vil se info om?: ";
-	cin >> id;									//Henter brukerens ønskede deltager-id
+	id = les("", DIVMIN, DIVMAX);									//Henter brukerens ønskede deltager-id
 	if (deltagerliste->inList(id)) {			//Sjekker at deltageren eksisterer i lista
 		Deltager* hjelpeobjekt = (Deltager*) deltagerliste->remove(id);	//Henter deltageren fra lista
 		hjelpeobjekt->display();										//Viser informasjonen
