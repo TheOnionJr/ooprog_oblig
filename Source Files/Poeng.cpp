@@ -87,8 +87,8 @@ void Poeng::leggTilPoeng(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				poeng[sisteBrukt] += POENGSKALA[i];
 			}
-			if(sisteBrukt != 0)
-				sorter();
+			//if(sisteBrukt != 0)
+			//	sorter();
 		}
 
 	}
@@ -110,8 +110,8 @@ void Poeng::leggTilPoeng(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				poeng[sisteBrukt] += POENGSKALA[i];
 			}
-			if(sisteBrukt != 0)
-				sorter();
+			//if(sisteBrukt != 0)
+			//	sorter();
 		}
 
 	}
@@ -171,7 +171,7 @@ void Poeng::trekkFraPoeng(char* fil) {
 
 void Poeng::displayAll() {
 	bool fant = false;
-	for (int i = 0; i < sisteBrukt; i++) {
+	for (int i = 0; i <= sisteBrukt; i++) {
 		cout << "\nNasjon: " << nasjKort[i]			//Skriver ut nasjonen,
 			 << "\tPoeng: " << poeng[i] 			//antall poeng.	
 			 << "\n";								//Mellomrom.

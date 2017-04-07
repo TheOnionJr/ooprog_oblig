@@ -12,8 +12,9 @@ using namespace std;
 
 Medaljer::Medaljer() {
 	sisteBrukt = (-1);
-	for (int i = 0; i < MAXNASJONER; i++)
+	for (int i = 0; i < MAXNASJONER; i++) {
 		medaljer[i] = 0;
+	}
 }
 
 void Medaljer::lesArrayFraFil() {	//Funksjon for å oppdatere data (legge til)
@@ -111,7 +112,7 @@ void Medaljer::leggTilMedaljer(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				medaljer[sisteBrukt] += MEDVERD[i];
 			}
-			if (sisteBrukt != 0)
+			if(sisteBrukt != 0)
 				sorter();
 		}
 
