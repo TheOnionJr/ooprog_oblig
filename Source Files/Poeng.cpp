@@ -87,7 +87,7 @@ void Poeng::leggTilPoeng(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				poeng[sisteBrukt] += POENGSKALA[i];
 			}
-			if(sisteBrukt != 0)
+			if(sisteBrukt > 0)
 				sorter();
 		}
 
@@ -110,7 +110,7 @@ void Poeng::leggTilPoeng(char* fil) {
 				strcpy(nasjKort[sisteBrukt], tempNasj[i]);
 				poeng[sisteBrukt] += POENGSKALA[i];
 			}
-			if(sisteBrukt != 0)
+			if(sisteBrukt > 0)
 				sorter();
 		}
 
