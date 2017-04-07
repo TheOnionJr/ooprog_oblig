@@ -8,14 +8,14 @@
 using namespace std;
 
 Gren::Gren(char* text, ifstream &innfil) : TextElement(text) {
-	int tempEnum, tempId;
-	innfil >> tempEnum; innfil.ignore();
-	pt = (poengSystem)tempEnum ;
-	innfil >> sisteBrukt; innfil.ignore();
-	for (int i = 0; i <= sisteBrukt; i++) {
-		innfil >> tempId;
+	int tempEnum, tempId;					//Hjelpevariabler
+	innfil >> tempEnum; innfil.ignore();	//leser inn enum
+	pt = (poengSystem)tempEnum ;			//leser inn poengsystem
+	innfil >> sisteBrukt; innfil.ignore();	//Leser inn siste brukt
+	for (int i = 0; i <= sisteBrukt; i++) {	//Travasjerer
+		innfil >> tempId;					//Leser inn id
 		innfil.ignore();
-		ovelser[i] = new Ovelse(tempId, innfil);
+		ovelser[i] = new Ovelse(tempId, innfil);	//Kopierer over id
 	}
 	innfil.ignore();
 }
@@ -47,14 +47,14 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 				break;	
 			
 			case'P':
-				cout << "\nHvor mange siffer skal poengskalaen ha? "
+				cout << "\nHvor mange desimaler skal poengskalaen ha? "
 					 << "\n\t 1: 1."
 					 << "\n\t 2: 2.";
 				do {
 					svar = lesKommando();
 					switch (svar) {			//Setter antall siffer i poengskala.
-						case '1': pt = poengH;	break;			//Ett siffer.
-						case '2': pt = poengK;	break;			//To siffer.
+						case '1': pt = poengH;	break;			//En desimal.
+						case '2': pt = poengK;	break;			//To desimaler.
 						default: cout << "Ukjent svar!"; break; //Feilmeld. 
 					}
 				} while (svar != '1' && svar != '2');
@@ -76,8 +76,8 @@ Gren::Gren(char tempNvn[NVNLEN]) : TextElement(tempNvn) {
 										//Funksjon for å endre data i en gren.
 void Gren :: endre() {
 	cout << "\nSkriv inn nytt navn.\n";
-	text = lesPrivat();
-	cout << "\nNavnet er endret, det er nå " << text << ".";
+	text = lesPrivat();					//Leser inn navnet som skal endres
+	cout << "\nNavnet er endret, det er nå " << text << ".";	//Endrer navnet
 }
 
 void Gren::nyOvelse() {					//Lager ny øvelse
@@ -128,14 +128,14 @@ void Gren::slettOvelse(){
 
 void Gren::displayOvelser() {		//Displayer alle øvelser
 	for(int i = 0; i <= sisteBrukt; i++) {
-		if(ovelser[i] != nullptr)
-			ovelser[i]->display();
+		if(ovelser[i] != nullptr)		//Om ikke nullpointer
+			ovelser[i]->display();		//Viser øvelsen
 	}
 }
 
 int Gren::finnesAllerede(int id) {		//Sjekker om id'en eksisterer, og hvis den gjør det, returnerer plassen dens i arrayen
 	for(int i = 0; i <= sisteBrukt; i++) {
-		if(ovelser[i] && ovelser[i]->returnID() == id){
+		if(ovelser[i] && ovelser[i]->returnID() == id){	//returnerer i
 			return i;
 		}
 	}
@@ -151,8 +151,8 @@ void Gren::display() {
 		case tidTi: cout << "Tid med tideler (Min:Sek:Tidel).";			break;
 		case tidHu: cout << "Tid med hundredeler (Min:Sek:Hundredel)."; break;
 		case tidTu: cout << "Tid med tusendeler (Min:Sek:Tusendel).";	break;
-		case poengH: cout << "Poeng med et siffer.";					break;
-		case poengK: cout << "Poeng med to siffer.";					break;
+		case poengH: cout << "Poeng med en desimal.";					break;
+		case poengK: cout << "Poeng med to desimaler.";					break;
 		default: cout << "Finner ikke prestasjonsmåling!";				break;
 	}
 
@@ -168,71 +168,71 @@ void Gren::skrivTilFil(ofstream &utfil) {
 		  << pt << '\n'						//Skriver enumen pt.
 		  << sisteBrukt << '\n';			//Skriver sisteBrukt.
 	for (int i = 0; i <= sisteBrukt; i++) {	//Går gjennom antallet ovelser.
-		if(ovelser[i] != nullptr)
-			ovelser[i]->skrivTilFil(utfil);
+		if(ovelser[i] != nullptr)			//Om ikke nullpointer
+			ovelser[i]->skrivTilFil(utfil);	//Skriver ut til fil
 	}
-	utfil << '\n';
+	utfil << '\n';							//Formatering
 }
 
 void Gren::startListe() {
-	int id;
-	char kommando;
-	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
-	if (finnesAllerede(id) != -1) {
-		ovelser[finnesAllerede(id)]->lesInnStartListe();
-		ovelser[finnesAllerede(id)]->lesResFraFil();
-		deltagerlisteMeny();
-		kommando = lesKommando();
-		while (kommando != 'X') {
+	int id;															//ID
+	char kommando;													//Kommando
+	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);				//Leser inn ID
+	if (finnesAllerede(id) != -1) {									//Sjekker om ID finnes allerede
+		ovelser[finnesAllerede(id)]->lesInnStartListe();			//Leser inn startlste
+		ovelser[finnesAllerede(id)]->lesResFraFil();				//Leser inn resultatliste
+		deltagerlisteMeny();										//Skriver meny
+		kommando = lesKommando();									//Leser valg
+		while (kommando != 'X') {	
 			switch (kommando) {
-			case 'S':
-				ovelser[finnesAllerede(id)]->skrivStartListe();
+			case 'S':												//Skriver liste
+				ovelser[finnesAllerede(id)]->skrivStartListe();	
 				break;
-			case 'N':
+			case 'N':												//Legger til ny deltager
 				ovelser[finnesAllerede(id)]->nyDeltager();
 				break;
-			case 'E':
+			case 'E':												//Endrer liste
 				ovelser[finnesAllerede(id)]->endreListe();
 				break;
-			case 'F':
+			case 'F':												//Sletter startlisten
 				ovelser[finnesAllerede(id)]->fjernStartliste();
 				break;
 			default:
 				break;
 			}
-			deltagerlisteMeny();
-			kommando = lesKommando();
+			deltagerlisteMeny();									//Skriver deltagerliste
+			kommando = lesKommando();								//Leser inn brukers valg
 		}
 	}
 	else
 		cout << "\nId-en ble ikke funnet.";
 }
 
-void Gren::resultatListe() {
-	int id;
-	char kommando;
-	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);
-	if (finnesAllerede(id) != -1) {
-		ovelser[finnesAllerede(id)]->lesInnStartListe();
-		ovelser[finnesAllerede(id)]->lesResFraFil();
-		resultatlisteMeny();
-		kommando = lesKommando();
-		while (kommando != 'X') {
+void Gren::resultatListe() {										//Jobber på resultatliste
+	int id;															//ID variabel
+	char kommando;													//Brukers valg
+	id = les("\nSkriv en øvelses-id.", DIVMIN, DIVMAX);				//Leser inn hvilken ID som skal endres
+	if (finnesAllerede(id) != -1) {									//Sjekker om ID faktisk finnes
+		ovelser[finnesAllerede(id)]->lesInnStartListe();			//Leser inn starliste
+		ovelser[finnesAllerede(id)]->lesResFraFil();				//Leser inn resultatliste
+		resultatlisteMeny();										//Viser resultatmeny
+		kommando = lesKommando();									//Leser brukers valg
+		while (kommando != 'X') {	
 			switch (kommando) {
-			case 'S':
+			case 'S':												//Viser resultatlisten
 				ovelser[finnesAllerede(id)]->displayRes();
 				break;
-			case 'N':
+			case 'N':												//Ny resultatliste
 				ovelser[finnesAllerede(id)]->finnes(id, pt);
 				break;
-			case 'F':
+			case 'F':												//Fjerner resultatliste
 				ovelser[finnesAllerede(id)]->fjernRESlist();
 				break;
 			default:
 				break;
 			}
-			resultatlisteMeny();
-			kommando = lesKommando();
+			resultatlisteMeny();									//Viser menyen på nytt
+			kommando = lesKommando();								//leser brukerns valg
 		}
 	}
 	else
