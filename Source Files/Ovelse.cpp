@@ -198,7 +198,7 @@ void Ovelse::endreListe() {
 	if(innfil){												//Om det er en ifstream
 		if(startListe) {									//Om startlisten finnes
 			cout << "\nDette er deltagerene som er i listen fra før: ";
-			for(int i = 0; i < MAXDELTAGERE; i++) {			//Viser de deltagerne som er i listen
+			for(int i = 0; i < antDeltagere; i++) {			//Viser de deltagerne som er i listen
 				cout << "\n" << startListe[i];
 			}
 			//Spør bruker om hva han/hun vil gjøre
@@ -221,7 +221,7 @@ void Ovelse::endreListe() {
 						do{									
 							finnes = false;					//Resetter finnes bool
 							int temp = les("\nSkriv deltagerens ID: ", DIVMIN, DIVMAX);	//Spør om deltagers id
-							for(int k = 0; k <= MAXDELTAGERE; k++) {		//Sjekker om den finnes enda
+							for(int k = 0; k <= antDeltagere; k++) {		//Sjekker om den finnes enda
 								if(temp == startListe[k]){					//Om finnes
 									finnes = true;							//Sier att det finnes
 									cout << "\nDenne deltageren finnes allerede!";	//Gir beskjed
@@ -240,7 +240,8 @@ void Ovelse::endreListe() {
 							cout << "\nVil du avslutte? (y/n): ";						//Spør om bruker vil avslutte
 							kommando = lesKommando();									//Leser inn kommando
 						}
-					};
+					}
+					break;
 					case 'E':
 						temp = les("\nID til den du ønsker å endre: ", DIVMIN, DIVMAX);	//Leser deltagers ID
 						finnes = false;													//resetter finnes
