@@ -48,12 +48,20 @@ char lesKommando() {
 int les(const char * t, const int min, const int max)
 {
 	int tall;
+	bool valid = false;
 	do {
 		cout << '\t' << t << " (" << min << '-' << max << "): ";
-		cin.clear();
-		cin >> tall; //cin.ignore();
-	} while ((tall < min || tall > max) || cin.fail());
-	return tall;
+		cin >> tall;								//Leser inn.
+		if (cin.good()) {							//Sjekker om input godkjent som int.
+			valid = true;							//Input godkjent som int.
+		}
+		else {										//Hvis input ikke ble godkjent som int...
+			cin.clear();							//Tømmre cin.
+			cin.ignore(255, '\n');					//Tømmer cin for input, regner med 255+ tegn er urimelig/alvorlig feil.
+			cout << "\nUlovlig input, vennligst skriv inn på nytt!\n";
+		}
+	} while (!valid);								//Sjekker om inputen ble godkjent.
+	return tall;									//Returnerer int.
 }
 
 void les(const char t[], char s[], const int LEN) {		//Leser en array inn i s
