@@ -471,13 +471,13 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 		switch(ps) {							//Switch etter hvilken enum som er i bruk.
 			case(poengH):						//Poengtype: hopp. Form: x.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] <<  " ? (x) ";				//Spør hvor mange poeng deltager fra land fikk.
-				score[i] = les(" ", 0, 99); 							//Leser inn poeng.
+					 << " fra " << nasj[i] <<  " ? (xxx der den siste er desimal) ";	//Spør hvor mange poeng deltager fra land fikk.
+				score[i] = les(" ", 0, 999); 							//Leser inn poeng.
 				break;
 			case(poengK):						//Poengtype: kunstløp. Form: xx.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] << " ? (x): ";				//Spør hvor mange poeng deltager fra land fikk.
-				score[i] = les("", 0, 99);										//Leser inn poeng.
+					 << " fra " << nasj[i] << " ? (xxxx der de to siste er desimaler): ";//Spør hvor mange poeng deltager fra land fikk.
+				score[i] = les("", 0, 9999);										//Leser inn poeng.
 				break;
 			case(tidTi):						//Tid med tideler.
 				cout << "\nHvilken tid fikk " << deltNavn[i]			
@@ -495,7 +495,7 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 				score[i] = les("",0,5959999);							//Leser inn tid.
 				break;
 			default:
-				cout << "shit's fuck'd";
+				cout << "shit's fuck'd";		//Feilmelding
 				break;
 		}
 		sisteBrukt++;								//Teller opp sisteBrukt.
@@ -581,9 +581,15 @@ void Ovelse::displayRes() {								//Viser resultat
 void Ovelse::displayScore(int t) {
 	int mm, ss, d;
 	switch (ps) {
-		case poengH: cout << score[t]; 
+		case poengH:
+			ss = score[t] / 10;
+			d = score[t] % 10;
+			cout << ss << "." << d; 
 			break;
-		case poengK: cout << score[t];
+		case poengK: 
+			ss = score[t] / 100;
+			d = score[t] % 100;
+			cout << ss << "." << d;
 			break;
 		case tidTi: 
 			mm = score[t] / 1000;
