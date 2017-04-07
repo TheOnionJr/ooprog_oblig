@@ -193,8 +193,7 @@ void Ovelse::fjernRESlist(){				//Fjerner resultatlisten
 }
 
 void Ovelse::endreListe() {
-	lesInnStartListe();										//Leser inn starlisten fra fil
-	int id = les("\nDeltagerens ID: ", DIVMIN, DIVMAX);		//Leser inn deltagers id										
+	lesInnStartListe();										//Leser inn starlisten fra fil									
 	ifstream innfil(filSTA);								//Åpner ifstream
 	if(innfil){												//Om det er en ifstream
 		if(startListe) {									//Om startlisten finnes
