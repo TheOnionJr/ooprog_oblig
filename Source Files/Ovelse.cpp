@@ -23,15 +23,15 @@ using namespace std;
  
 
 Ovelse::Ovelse(){
-	cout << "\n\nERROR THIS IS NOT POSSIBLE";
+	cout << "\n\nERROR THIS IS NOT POSSIBLE";	//Error
 }
 
 Ovelse::Ovelse(int id) : NumElement(id) {
-	char midNavn[NVNLEN];
+	char midNavn[NVNLEN];					//Temp navn
 	cout << "\nVennligst skriv inn øvelsens fulle navn: ";
-	cin.ignore(); cin.getline(midNavn, NVNLEN);
+	cin.ignore(); cin.getline(midNavn, NVNLEN);	//leser inn temp navn
 	fulltNavn = new char[strlen(midNavn) + 1];
-	strcpy(fulltNavn, midNavn);
+	strcpy(fulltNavn, midNavn);				//string copyer navn
 
 	filnavnRES(id);
 	filnavnSTA(id);
@@ -337,7 +337,7 @@ bool Ovelse::checkDate(int day, int month, int year){
     {
         maxDager = 28;
     }
-    if ((month < 1) || (month > 12))			//Om måneden finnes
+    if ((month < 1) || (month > 12))				//Om måneden finnes
     {
         gyldigDato = false;
     }
@@ -362,32 +362,32 @@ bool Ovelse::checkTime(int ss, int mm, int tt) {
 }
 
 void Ovelse::makeDate(int day, int month, int year){ //Setter kolon mellom Short medium og long
-	char buffer[3];		//Buffer
+	char buffer[3];					//Buffer
 
 	if(day < 10) {
 		strcpy(dato, "0");			//legger til '0' for å holde formatet
-		_itoa(day, buffer, 10);			//int -> char
+		_itoa(day, buffer, 10);		//int -> char
 	}
 	else if(day >= 10){
-		_itoa(day, buffer, 10);			//Legger sekund til buffer
+		_itoa(day, buffer, 10);		//Legger sekund til buffer
 	}
 	strcpy(dato, buffer);			//Legger over fra buffer til char array
 	strcat(dato, ".");				//Legger til ':' for format SS:MM:TT
 	if(month < 10) {
 		strcat(dato, "0");			//legger til '0' for å holde formatet
-		_itoa(month, buffer, 10);			//int -> char
+		_itoa(month, buffer, 10);	//int -> char
 	}
 	else{
-		_itoa(month, buffer, 10);		//Legger til minutt i buffer
+		_itoa(month, buffer, 10);	//Legger til minutt i buffer
 	}
 	strcat(dato, buffer);			//Legger over fra buffer til char array
 	strcat(dato, ".");				//Legger til ':' for format SS:MM:TT
 	if(year < 10) {
 		strcat(dato, "0");			//Legger til '0' for å holde formatet
-		_itoa(year, buffer, 10);			//int -> char
+		_itoa(year, buffer, 10);	//int -> char
 	}
 	else{
-		_itoa(year, buffer, 10);			//Legger til timer i buffer
+		_itoa(year, buffer, 10);	//Legger til timer i buffer
 	}
 	strcat(dato, buffer);			//Legger over fra buffer til char array
 }
@@ -424,7 +424,7 @@ void Ovelse::makeTime(int s, int m, int t){ //
 }
 
 
-void Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ovelse.
+void Ovelse::filnavnSTA(int id) {			//Funksjon som genererer filnavn for en ovelse.
 	char filnavn[FILLEN];					//Filnavnet.
 	char buffer[FILLEN];					//Mellomlagring.
 
@@ -436,7 +436,7 @@ void Ovelse::filnavnSTA(int id) {				//Funksjon som genererer filnavn for en ove
 	strcpy(filSTA, filnavn);				//Setter filnavnet.
 }
 
-void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ovelse.
+void Ovelse::filnavnRES(int id) {			//Funksjon som genererer filnavn for en ovelse.
 	char filnavn[FILLEN];					//Filnavnet.
 	char buffer[FILLEN];					//Mellomlagring.
 
@@ -449,21 +449,21 @@ void Ovelse::filnavnRES(int id) {				//Funksjon som genererer filnavn for en ove
 }
 
 void Ovelse::finnes(int id, poengSystem pd) {				//Funksjon som sjekker om fil finnes/er i bruk.
-	int tempSiste;							//Mellomlagring.
-	ifstream innfil(filRES);			//Henter inn riktig fil.
+	int tempSiste;											//Mellomlagring.
+	ifstream innfil(filRES);								//Henter inn riktig fil.
 	if(innfil)
-		innfil >> tempSiste;					//Leser inn sistebrukt.
-	if ((innfil && (tempSiste <= 0)) || !innfil)	//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
-		nyResList(id, pd);						//Kaller funksjon for å lage ny liste.
+		innfil >> tempSiste;								//Leser inn sistebrukt.
+	if ((innfil && (tempSiste <= 0)) || !innfil)			//Sjekker om filen finnes og  ikke er i bruk eller om den ikke finnes.
+		nyResList(id, pd);									//Kaller funksjon for å lage ny liste.
 	else
-		cout << "Lista finnes allerede!";	//Feilmelding hvis lista finnes og er i bruk.
+		cout << "Lista finnes allerede!";					//Feilmelding hvis lista finnes og er i bruk.
 }
 
 void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
-	ps = pt;								//Setter poengsystemet
+	ps = pt;												//Setter poengsystemet
 	sisteBrukt = -1;
 
-	for (int i = 0; i < antDeltagere; i++) {	//Teller gjennom antall deltagere.
+	for (int i = 0; i < antDeltagere; i++) {				//Teller gjennom antall deltagere.
 
 		strcpy(nasj[i], deltagere->returnDeltakersKortNavn(startListe[i]));			//Henter ut nasjonaliteten til deltager nr i.
 		strcpy(deltNavn[i], deltagere->returnDeltakersNavn(startListe[i]));			//Henter ut navnet til deltager i.
@@ -471,13 +471,13 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 		switch(ps) {							//Switch etter hvilken enum som er i bruk.
 			case(poengH):						//Poengtype: hopp. Form: x.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] <<  " ? (x) ";				//Spør hvor mange poeng deltager fra land fikk.
-				score[i] = les(" ", 0, 99); 							//Leser inn poeng.
+					 << " fra " << nasj[i] <<  " ? (xxx der den siste er desimal) ";	//Spør hvor mange poeng deltager fra land fikk.
+				score[i] = les(" ", 0, 999); 							//Leser inn poeng.
 				break;
 			case(poengK):						//Poengtype: kunstløp. Form: xx.
 				cout << "\nHvor mange poeng fikk " << deltNavn[i] 
-					 << " fra " << nasj[i] << " ? (x): ";				//Spør hvor mange poeng deltager fra land fikk.
-				score[i] = les("", 0, 99);										//Leser inn poeng.
+					 << " fra " << nasj[i] << " ? (xxxx der de to siste er desimaler): ";//Spør hvor mange poeng deltager fra land fikk.
+				score[i] = les("", 0, 9999);										//Leser inn poeng.
 				break;
 			case(tidTi):						//Tid med tideler.
 				cout << "\nHvilken tid fikk " << deltNavn[i]			
@@ -495,7 +495,7 @@ void Ovelse::nyResList(int id, poengSystem pt) {			//Lager ny resultatliste.
 				score[i] = les("",0,5959999);							//Leser inn tid.
 				break;
 			default:
-				cout << "shit's fuck'd";
+				cout << "shit's fuck'd";		//Feilmelding
 				break;
 		}
 		sisteBrukt++;								//Teller opp sisteBrukt.
@@ -536,12 +536,12 @@ void Ovelse::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter 
 	}
 }
 
-void Ovelse::skrivResTilFil() {						//Funksjon som skriver resultatlista til fil.
-	ofstream utfil(filRES);							//Finner filen.
+void Ovelse::skrivResTilFil() {							//Funksjon som skriver resultatlista til fil.
+	ofstream utfil(filRES);								//Finner filen.
 
-	if (utfil) {									//Sjekker om filen finnes/blir opprettet.
-		utfil << sisteBrukt << endl;						//Skriver sisteBrukt til starten av filen.
-		for (int i = 0; i <= sisteBrukt; i++) {		//Teller gjennom antall entries i filen.
+	if (utfil) {										//Sjekker om filen finnes/blir opprettet.
+		utfil << sisteBrukt << endl;					//Skriver sisteBrukt til starten av filen.
+		for (int i = 0; i <= sisteBrukt; i++) {			//Teller gjennom antall entries i filen.
 			utfil << nasj[i] << '\n';					//Skriver nasjon.
 			utfil << score[i] << '\n';					//Skriver score.
 			utfil << deltNavn[i] << "\n\n";				//Skriver deltagernavnet. + hopper over en linje.
@@ -549,12 +549,12 @@ void Ovelse::skrivResTilFil() {						//Funksjon som skriver resultatlista til fi
 	}
 }
 
-void Ovelse::lesResFraFil() {						//Leser resultatliste fra fil.
-	ifstream innfil(filRES);						//Finner filen.
+void Ovelse::lesResFraFil() {							//Leser resultatliste fra fil.
+	ifstream innfil(filRES);							//Finner filen.
 
-	if (innfil) {									//Hvis filen finnes...
+	if (innfil) {										//Hvis filen finnes...
 		innfil >> sisteBrukt; innfil.ignore();			//Leser inn sisteBrukt og hopper til neste linje.
-		for (int i = 0; i >= sisteBrukt; i++) {		//Teller gjennom alle entries i filen.
+		for (int i = 0; i >= sisteBrukt; i++) {			//Teller gjennom alle entries i filen.
 			innfil.getline(nasj[i], NASJKORTLEN + 1);	//Leser inn nasjonen.
 			innfil >> score[i]; innfil.ignore();		//Leser inn score.
 			innfil.getline(deltNavn[i], NVNLEN + 1);	//Leser inn deltagernavnet.
@@ -566,15 +566,15 @@ void Ovelse::lesResFraFil() {						//Leser resultatliste fra fil.
 
 void Ovelse::hentPs() {								//Henter enumen ps.
 	Gren* hjelpeGren = grener->plsHelp(grenNavn);		//grenNavn = navnet som blir hentet inn når man kaller 'O'.
-	ps = (hjelpeGren->returnPt());
-	grener->thankYou(hjelpeGren);
+	ps = (hjelpeGren->returnPt());						//returnerer poengsystemet
+	grener->thankYou(hjelpeGren);						//caller thank you
 }
 
-void Ovelse::displayRes() {
-	for (int i = 0; i <= sisteBrukt; i++) {
-		cout << "\n Navn: " << deltNavn[i]
-		 	 << "\n Nasjon: " << nasj[i]
-			 << "\t Poeng/tid: "; displayScore(i);
+void Ovelse::displayRes() {								//Viser resultat
+	for (int i = 0; i < sisteBrukt; i++) {				//travasjerer
+		cout << "\n Navn: " << deltNavn[i]				//Viser navn
+		 	 << "\n Nasjon: " << nasj[i]				//Viser nasjon
+			 << "\t Poeng/tid: "; displayScore(i);		//Viser poeng
 		cout << "\n\n";
 	}
 }
@@ -582,9 +582,15 @@ void Ovelse::displayRes() {
 void Ovelse::displayScore(int t) {
 	int mm, ss, d;
 	switch (ps) {
-		case poengH: cout << score[t]; 
+		case poengH:
+			ss = score[t] / 10;
+			d = score[t] % 10;
+			cout << ss << "." << d; 
 			break;
-		case poengK: cout << score[t];
+		case poengK: 
+			ss = score[t] / 100;
+			d = score[t] % 100;
+			cout << ss << "." << d;
 			break;
 		case tidTi: 
 			mm = score[t] / 1000;

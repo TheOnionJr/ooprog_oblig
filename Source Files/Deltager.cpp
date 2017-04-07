@@ -27,13 +27,13 @@ Deltager::Deltager(int id, char* nasj) : NumElement(id) {	// Deltagers data skri
 	}
 }
 
-Deltager::Deltager(int id, ifstream &innfil) : NumElement(id) {
-	char midNavn[NVNLEN];
-	innfil.getline(midNavn, NVNLEN);
-	dNavn = new char[strlen(midNavn) + 1];
-	strcpy(dNavn, midNavn);
-	innfil.getline(nasjonalitet, NASJKORTLEN);
-	innfil >> kjonn; innfil.ignore(); innfil.ignore();
+Deltager::Deltager(int id, ifstream &innfil) : NumElement(id) {	//Leser inn fra fil
+	char midNavn[NVNLEN];										//Temp navn
+	innfil.getline(midNavn, NVNLEN);							//leser inn navn
+	dNavn = new char[strlen(midNavn) + 1];						//Buffer
+	strcpy(dNavn, midNavn);										//Setter navn
+	innfil.getline(nasjonalitet, NASJKORTLEN);					//Leser nasjonalitet
+	innfil >> kjonn; innfil.ignore(); innfil.ignore();			//Leser kjønn
 }
 
 Deltager::~Deltager() {
@@ -91,7 +91,7 @@ const char* Deltager::returnNavn() {			//Returnerer nasjonens fulle navn til bru
 	return (dNavn);
 }
 
-void Deltager::skrivTilFil(ofstream &utfil) {
+void Deltager::skrivTilFil(ofstream &utfil) {	//Skriver til fil i gitt rekkefølge
 	utfil << number << endl << dNavn << endl
 		<< nasjonalitet << endl << kjonn << endl << endl;
 }
