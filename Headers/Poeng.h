@@ -4,10 +4,10 @@
 
 class Poeng : public Statistikk {
 private:
-	int poeng[MAXNASJONER];			//Antall poeng en nasjon har.
-	int sisteBrukt;
+	int poeng[MAXNASJONER] = { 0 };			//Antall poeng en nasjon har.
+	int sisteBrukt = (-1);
 public:
-	Poeng();
+	//Poeng();
 	void leggTilPoeng(char* fil);
 	void trekkFraPoeng(char* fil);
 	void lesArrayFraFil();

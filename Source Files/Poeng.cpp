@@ -10,15 +10,15 @@
 using namespace std;
 
 
-Poeng::Poeng() {
+/*Poeng::Poeng() {
 	sisteBrukt = (-1);
 	for (int i = 0; i < MAXNASJONER; i++) {
 		poeng[i] = 0;
 	}
-}
+}*/
 
 void Poeng::sorter() {			//Funksjon som går gjennom arrayen og sorterer etter poeng.
-	for (int i = sisteBrukt; i >= 0; i--) {				//Går gjennom arrayen.	
+	for (int i = sisteBrukt; i > 0; i--) {				//Går gjennom arrayen.	
 		if (poeng[i] >= poeng[i - 1]) {			//Sjekker om i-1 er større.
 			char temp[NASJKORTLEN];						//Mellomlagring.
 			int tempi;									//Mellomlagring.

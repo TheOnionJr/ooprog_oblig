@@ -554,7 +554,7 @@ void Ovelse::lesResFraFil() {							//Leser resultatliste fra fil.
 
 	if (innfil) {										//Hvis filen finnes...
 		innfil >> sisteBrukt; innfil.ignore();			//Leser inn sisteBrukt og hopper til neste linje.
-		for (int i = 0; i >= sisteBrukt; i++) {			//Teller gjennom alle entries i filen.
+		for (int i = 0; i <= sisteBrukt; i++) {			//Teller gjennom alle entries i filen.
 			innfil.getline(nasj[i], NASJKORTLEN + 1);	//Leser inn nasjonen.
 			innfil >> score[i]; innfil.ignore();		//Leser inn score.
 			innfil.getline(deltNavn[i], NVNLEN + 1);	//Leser inn deltagernavnet.
@@ -571,7 +571,7 @@ void Ovelse::hentPs() {								//Henter enumen ps.
 }
 
 void Ovelse::displayRes() {								//Viser resultat
-	for (int i = 0; i < sisteBrukt; i++) {				//travasjerer
+	for (int i = 0; i <= sisteBrukt; i++) {				//travasjerer
 		cout << "\n Navn: " << deltNavn[i]				//Viser navn
 		 	 << "\n Nasjon: " << nasj[i]				//Viser nasjon
 			 << "\t Poeng/tid: "; displayScore(i);		//Viser poeng
