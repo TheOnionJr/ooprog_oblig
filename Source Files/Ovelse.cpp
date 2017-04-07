@@ -570,7 +570,7 @@ void Ovelse::hentPs() {								//Henter enumen ps.
 }
 
 void Ovelse::displayRes() {								//Viser resultat
-	for (int i = 0; i <= sisteBrukt; i++) {				//travasjerer
+	for (int i = 0; i < sisteBrukt; i++) {				//travasjerer
 		cout << "\n Navn: " << deltNavn[i]				//Viser navn
 		 	 << "\n Nasjon: " << nasj[i]				//Viser nasjon
 			 << "\t Poeng/tid: "; displayScore(i);		//Viser poeng
